@@ -2,34 +2,65 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8" />
-        <title>Wifouze</title>
+        <title>Wifouse</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		
         <style type="text/css">
 
-        .container{
-        	margin-left: 0px;
-        }
+        
+		
+		form{
+		padding-top: 15px;
+		padding-left : 25px; 
+	    padding-bottom: 15px;
 
+		}
+		
+		img{
+	    padding-top: 10px;
+	    padding-bottom: 15px;
+		}
+		
+		#geolocalisation{
+			margin-left: 8px;
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+	
+		#nav{
+		  box-shadow: 6px 6px 8px #aaa;
+		}
         </style>
 
     </head>
 
     <body>
-    	<div class="container">
-    	<div class=row">
+    	<div class="container-fluid">
+    	<div class="row" id="nav">
     	<div class ="col">
+		<div class ="nav">
     				<img src="logo.png" alt="Header + Logo" />
+					<form class="form-inline">
+					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					</form>
+					<button type="button" id="geolocalisation" class="btn btn-outline-success btn-sg">
+					<i class="fa fa-crosshairs"></i>					
+					</button> 
+				</div>					
+				</div>					
 				</div>
-		</div>
-    	<div class=row">
+				
+    	<div class="row">
     	<div class ="col">
+		
 
     	</div>
-
     	<div class="col">
+			
 
     	</div>
     			
