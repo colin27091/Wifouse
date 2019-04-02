@@ -1,0 +1,41 @@
+Projet tw3
+
+Cartographie:
+https://openstreetmap.fr/
+https://openlayers.org/
+
+
+Bornes wi-fi Toulouse:
+https://www.data.toulouse-metropole.fr/explore/dataset/bornes-wi-fi/information/
+
+OpenData France:
+https://datafrance.info/toulouse-31000
+
+SQLite Online:
+https://blog.shevarezo.fr/post/2018/04/20/sites-ouvrir-manipuler-base-de-donnees-sqlite
+
+Leafleft:
+
+SQLite: Base de données intégré au navigateur
+
+PHP: Query to SQLite
+
+JSON: Bornes WIFI
+
+Correlation: Population découpé en quartier
+https://data.toulouse-metropole.fr/explore/dataset/recensement-population-2012-grands-quartiers-population-toulouse/information/
+
+
+http://jsonviewer.stack.hu/
+
+IndexedDB :
+
+
+
+
+
+
+
+
+
+
