@@ -1,40 +1,63 @@
 
+const file = "bornes-wi-fi.json";//Fichier Json
+var idb;
+var request;
+var db;
+var data;
 
-$(document).ready(function() {
 
 
-    var data = loadJSON()//Recuperation des données du JSON file
+loadJSON();//Import des records dans data
 
-
-})
 
 
 async function loadJSON() {
-    var response = await fetch("bornes-wi-fi.json")
-    var str = await response.text()
-    var data = JSON.parse(str)
-    createIDB(data)
+    var response = await fetch(file);
+    var str = await response.text();
+
+    data = JSON.parse(str);
+
+    createIDB(data);
+
+    
 }
 
 
-function createIDB(){
-    var idb = window.indexedDB
-    var request = idb.open("bornes")
+function createIDB(data){
+
+    idb = window.indexedDB;
+    request =  idb.open("DATA",3);
 
 
     request.onerror = function(event){
-        console.log("Erreur lors de l'initialisation de l'indexedDB")
-    }
+        console.error("Error IDB");
+    };
 
     request.onsuccess = function(event){
-        console.log("IndexedDB bien initialisée")
-    }
+        console.log("Success IDB");
+        db = event.target.result;
+    };
 
     request.onupgradeneeded = function(event){
-        var db = event.target.result
-        for(var obj in data){
-            var objectStore = db.createObjectStore("bornes", { keyPath : "key"})
-        }
+
+        db = event.target.result;
         
-    }
+        db.onerror = function(event){
+            console.error("Database error");
+        };
+
+        objectStore = db.createObjectStore("Bornes", {autoIncrement: true});
+        
+        objectStore.transaction.oncomplete = function(event){
+            transaction = db.transaction("Bornes", "readwrite").objectStore("Bornes");
+
+            for(var i in data){
+                transaction.add(data[i]);
+            }
+        };
+
+
+    };
+
 }
+
