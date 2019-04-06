@@ -31,16 +31,31 @@
 			margin-bottom: 15px;
 		}
 	
-		#nav{
+		#navigation{
 		  box-shadow: 6px 6px 8px #aaa;
 		}
+
+		#graph{
+			margin-left: auto;
+			margin-top: 15px;
+			margin-bottom: 15px;
+
+			}
+
+		#results{
+			background-color: green;
+		}
+
+
         </style>
+
+
 
     </head>
 
     <body>
     	<div class="container-fluid">
-    	<div class="row" id="nav">
+    	<div class="row" id="navigation">
     	<div class ="col">
 		<div class ="nav">
     				<img src="logo.png" alt="Header + Logo" />
@@ -51,16 +66,20 @@
 					<button type="button" id="geolocalisation" class="btn btn-outline-success btn-sg">
 					<i class="fa fa-crosshairs"></i>					
 					</button> 
+
+					<button type="button" id="graph" class="btn btn-outline-success ">Graphiques <i class="fa fa-chevron-right"></i> </button>
 				</div>					
 				</div>					
 				</div>
 				
     	<div class="row">
-    	<div class ="col">
-		
+    	<div id="results" class ="col-6">
+    				<div>
+
+					</div>
 
     	</div>
-    	<div class="col">
+    	<div class="col-12">
 			
 		</div>
     			
