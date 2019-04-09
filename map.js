@@ -66,7 +66,7 @@ var recherche = map.addControl(new MapboxGeocoder({
         
     }
     
-}));
+}),'top-right');
 
 // Add geolocate control to the map.
 // User location
@@ -78,7 +78,10 @@ var userlocation = map.addControl(new mapboxgl.GeolocateControl({
 }),'bottom-right');
 
 // Navigation controls (Zoom and scroll bar on top right)
-//map.addControl(new mapboxgl.NavigationControl());
 
+map.addControl(new mapboxgl.NavigationControl(),'top-right');
 
-
+// Get mouse coordinates on click
+map.on('click', function (e) {
+    console.log(JSON.stringify(e.lngLat))
+    });
