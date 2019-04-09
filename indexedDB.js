@@ -1,40 +1,50 @@
 var db;
-var storeName;
+var storeName = "bornes";
+var file = "bornes-wi-fi.json";
 var result;
 
 function openDB(){//Ouverture Base
     var request = window.indexedDB.open("DATA");
-	request.onsuccess = function(event){
+    
+    request.onsuccess = function(event){
         db = event.target.result;
         console.log("Database success");
-	};
+        chargeMap();
+    };
+    
 	request.onerror = function(event){
         console.error("Database error");
-	};
+    };
+    
 	request.onupgradeneeded = function(event){
         db = event.target.result;
+        console.log("Initialisation DB");
 		initDB();
 	};
 }
 
 function initDB() {//Création Store
-    storeName = "bornes";
 	if (!db.objectStoreNames.contains("bornes")) {
         
 		const store = db.createObjectStore(storeName, { keyPath: "ID", autoIncrement: true });
 		store.createIndex("recordid", "recordid", { unique: true });
         store.createIndex("adresse", "fields.adresse", { unique: false });
-        setData();
+        loadJSON();
 	}
 }
 
-async function setData() {//Fonction asynchrone
-    var file = "bornes-wi-fi.json";
+async function loadJSON(){//Fonction asynchrone
+    
     var response = await fetch(file);//Lecture du fichier
     var str = await response.text();
 
     var data = JSON.parse(str);//JSON to Array
-    
+
+    setData(data);
+}
+
+function setData(data) {
+
     const transaction = db.transaction(storeName, "readwrite");
     const store = transaction.objectStore(storeName);
 
@@ -188,3 +198,44 @@ function getCoordPoint(){//Change result value __ to fix
     };
 
 }
+
+function chargeMap(){
+
+    console.log(map);
+
+}
+
+function IndexedDBToJSON(){//To fix - Write in file
+
+    var obj = [];
+
+    var transaction = db.transaction("bornes");
+    var store = transaction.objectStore("bornes");
+    var request = store.openCursor();
+
+    request.onsuccess = function(event){
+
+        var cursor = request.result;
+
+        if(cursor){
+
+            obj.push(cursor.value);
+
+            cursor.continue();
+        }
+
+    };
+
+    transaction.oncomplete = function(event){
+
+        var file = new File(["bornes_test"], "bornes_test.json", {
+            type: "text/json",
+          });
+        file.open("w");
+        file.writeln(JSON.stringify(obj));
+        file.close();
+    
+    };
+    
+}
+

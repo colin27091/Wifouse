@@ -25,63 +25,63 @@ var map = new mapboxgl.Map({
 // Label to Search Countries/Cities
 // Var from for start 
 
-map.on('load', function () {
+// map.on('load', function () {
  
-    map.addLayer({
-        "type": "FeatureCollection",
-        "features":[
-            {
-                "type": "Feature",
-                "properties": {},
-                "geometry": {
-                    "type": "Point",
-                    "coordinates":[
-                        1.436122221425398,
-                        43.6032638910665
-                    ]
-                }
-            }
-        ]
-    });
-});
+//     map.addLayer({
+//         "type": "FeatureCollection",
+//         "features":[
+//             {
+//                 "type": "Feature",
+//                 "properties": {},
+//                 "geometry": {
+//                     "type": "Point",
+//                     "coordinates":[
+//                         1.436122221425398,
+//                         43.6032638910665
+//                     ]
+//                 }
+//             }
+//         ]
+//     });
+// });
 
 
 
 
 
-var recherche = map.addControl(new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
+// var recherche = map.addControl(new MapboxGeocoder({
+//     accessToken: mapboxgl.accessToken,
     
-    // Limit results to country
-    countries: 'fr',
+//     // Limit results to country
+//     countries: 'fr',
     
-    filter: function (item) {
+//     filter: function (item) {
         
-        return item.context.map(function (i) {
+//         return item.context.map(function (i) {
             
-            return i.text;
-        }).reduce(function (acc, cur) {
-            return acc || cur;
-        });
+//             return i.text;
+//         }).reduce(function (acc, cur) {
+//             return acc || cur;
+//         });
         
-    }
+//     }
     
-}),'top-right');
+// }),'top-right');
 
 // Add geolocate control to the map.
 // User location
-var userlocation = map.addControl(new mapboxgl.GeolocateControl({
-    positionOptions: {
-        enableHighAccuracy: true
-    },
-    trackUserLocation: true
-}),'bottom-right');
+// var userlocation = map.addControl(new mapboxgl.GeolocateControl({
+//     positionOptions: {
+//         enableHighAccuracy: true
+//     },
+//     trackUserLocation: true
+// }),'bottom-right');
 
 // Navigation controls (Zoom and scroll bar on top right)
 
-map.addControl(new mapboxgl.NavigationControl(),'top-right');
+// map.addControl(new mapboxgl.NavigationControl(),'top-right');
 
 // Get mouse coordinates on click
-map.on('click', function (e) {
-    console.log(JSON.stringify(e.lngLat))
-    });
+// map.on('click', function (e) {
+//     console.log(JSON.stringify(e.lngLat))
+//     });
