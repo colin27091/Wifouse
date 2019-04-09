@@ -6,7 +6,7 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v9',
     center: [1.4437, 43.6043], // Toulouse Data GPS
-    zoom: 10
+    zoom: 11
 });
 
 // var layerList = document.getElementById('menu');
@@ -24,6 +24,30 @@ var map = new mapboxgl.Map({
 
 // Label to Search Countries/Cities
 // Var from for start 
+
+map.on('load', function () {
+ 
+    map.addLayer({
+        "type": "FeatureCollection",
+        "features":[
+            {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                    "type": "Point",
+                    "coordinates":[
+                        1.436122221425398,
+                        43.6032638910665
+                    ]
+                }
+            }
+        ]
+    });
+});
+
+
+
+
 
 var recherche = map.addControl(new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
@@ -54,7 +78,7 @@ var userlocation = map.addControl(new mapboxgl.GeolocateControl({
 }),'bottom-right');
 
 // Navigation controls (Zoom and scroll bar on top right)
-map.addControl(new mapboxgl.NavigationControl());
+//map.addControl(new mapboxgl.NavigationControl());
 
 
 

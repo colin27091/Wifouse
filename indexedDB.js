@@ -93,7 +93,7 @@ function removeTerminal(id){
 
 }
 
-function getValue(key){
+function getValue(key){//Change result value
 
 
 	var transaction = db.transaction("bornes");
@@ -111,7 +111,7 @@ function getValue(key){
         
 }
 
-function getWithAddress(adresse){
+function getWithAddress(ad){//Change result value
 
     var transaction = db.transaction("bornes");
     var store = transaction.objectStore("bornes");
@@ -126,7 +126,7 @@ function getWithAddress(adresse){
         if(cursor){
 
             var adresse = cursor.value.fields.adresse;
-            if(adresse == adresse){
+            if(ad == adresse){
                 result.push(cursor.value);
             }
             
@@ -142,7 +142,7 @@ function getWithAddress(adresse){
 
 }
 
-function getAll(){
+function getAll(){//Change result value
 
     var transaction = db.transaction("bornes");
     var store = transaction.objectStore("bornes");
@@ -160,5 +160,31 @@ function getAll(){
 		console.error("Request error");
     };
 
+
+}
+
+function getCoordPoint(){//Change result value __ to fix 
+
+    var transaction = db.transaction("bornes");
+    var store = transaction.objectStore("bornes");
+    var request = store.openCursor();
+
+    result = [];
+
+    request.onsuccess = function(event){
+
+        var cursor = request.result;
+
+        if(cursor){
+
+            result.push(cursor.value.fields.geo_point_2d);
+            cursor.continue();
+            
+        }
+    };
+
+    request.onerror = function(event){
+		console.error("Request error");
+    };
 
 }
