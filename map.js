@@ -6,7 +6,7 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v9',
     center: [1.4437, 43.6043], // Toulouse Data GPS
-    zoom: 10
+    zoom: 11
 });
 
 // var layerList = document.getElementById('menu');
@@ -42,7 +42,7 @@ var recherche = map.addControl(new MapboxGeocoder({
         
     }
     
-}));
+}),'top-right');
 
 // Add geolocate control to the map.
 // User location
@@ -54,7 +54,5 @@ var userlocation = map.addControl(new mapboxgl.GeolocateControl({
 }),'bottom-right');
 
 // Navigation controls (Zoom and scroll bar on top right)
-map.addControl(new mapboxgl.NavigationControl());
-
-
+map.addControl(new mapboxgl.NavigationControl(),'top-right');
 
