@@ -56,3 +56,7 @@ var userlocation = map.addControl(new mapboxgl.GeolocateControl({
 // Navigation controls (Zoom and scroll bar on top right)
 map.addControl(new mapboxgl.NavigationControl(),'top-right');
 
+// Get mouse coordinates on click
+map.on('click', function (e) {
+    console.log(JSON.stringify(e.lngLat))
+    });
