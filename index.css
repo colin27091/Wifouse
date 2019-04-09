@@ -1,0 +1,37 @@
+		
+		form{
+			padding-top: 15px;
+			padding-left : 25px; 
+			padding-bottom: 15px;
+			
+		}
+		
+		img{
+			padding-top: 10px;
+			padding-bottom: 15px;
+		}
+		
+		#geolocalisation{
+			margin-left: 8px;
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+		
+		#navigation{
+			box-shadow: 6px 6px 8px #aaa;
+		}
+		
+		#graph{
+			margin-left: auto;
+			margin-top: 15px;
+			margin-bottom: 15px;
+			
+		}
+		
+		#results{
+			background-color: green;
+		}
+
+		/* Testing map width and height, quentin will improve it */
+		#map { top:0; bottom:0; width:1450px; height: 650px; } 
+		

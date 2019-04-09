@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 	<meta charset="utf-8" />
+	<link rel="stylesheet" href="index.css" />
 	<title>Wifouse</title>
 	
 	<!-- mapbox gl -->
@@ -26,49 +27,7 @@
 		});
 		
 	</script>
-	
-	<style type="text/css">
-		
-		
-		
-		form{
-			padding-top: 15px;
-			padding-left : 25px; 
-			padding-bottom: 15px;
-			
-		}
-		
-		img{
-			padding-top: 10px;
-			padding-bottom: 15px;
-		}
-		
-		#geolocalisation{
-			margin-left: 8px;
-			margin-top: 15px;
-			margin-bottom: 15px;
-		}
-		
-		#navigation{
-			box-shadow: 6px 6px 8px #aaa;
-		}
-		
-		#graph{
-			margin-left: auto;
-			margin-top: 15px;
-			margin-bottom: 15px;
-			
-		}
-		
-		#results{
-			background-color: green;
-		}
 
-		/* Testing map width and height, quentin will improve it */
-		#map { top:0; bottom:0; width:1450px; height: 650px; } 
-		
-	</style>
-	
 	
 	
 </head>
@@ -83,9 +42,7 @@
 						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 					</form>
-					<button type="button" id="geolocalisation" onclick="" class="btn btn-outline-success btn-sg">
-						<i class="fa fa-crosshairs"></i>					
-					</button> 
+					
 					
 					<button type="button" id="graph" class="btn btn-outline-success ">Graphiques <i class="fa fa-chevron-right"></i> </button>
 				</div>					
