@@ -25,24 +25,14 @@
 		$(document).ready(function(){
 			openDB();
 		});
+
+		$('#geolocalisation').click(function() {
+  			$(this).parent().find('#results').css("display" , "relative");
+  			$(this).css("display", "none");
+});
 		
-		$(".reponse").click(function() {
-				console.log($(this).text())
-					if ($(this).text() == "afficher") {
-						$(this).siblings(".reponse").show();
-						$(this).text("masquer");
-					} else {
-						$(this).siblings(".reponse").hide();
-						$(this).text("afficher");
-						//attention, pas de replaceWith, sinon c'est un nouveau bouton
-						//et il ne répond pas aux événements de ce code
-					}
-				});
-
-
-
 	</script>
-	
+
 	
 	
 </head>
@@ -55,7 +45,7 @@
 					<img src="logo.png" alt="Header + Logo" />
 					<form class="form-inline">
 						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-						<button id="recherche" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						<button id=reponse" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 					</form>
 					<button type="button" id="geolocalisation" onclick="" class="btn btn-outline-success btn-sg">
 						<i class="fa fa-crosshairs"></i>					
@@ -67,15 +57,15 @@
 		</div>
 		
 		<div class="row">
-			<div id="results" class ="col-2">
-				<div>
-					<h1> ISSOU </h1>
-				</div>
+			<div id="results" class ="col-3">
+
+			<h1> Ise </h1>	
 				
 			</div>
-			<div id='map' class="col-12">
+
+			<div class="col-12">
+				<div id='map'></div>
 			</div>
-			<pre id='info'></pre>
 			
 		</div>
 		
