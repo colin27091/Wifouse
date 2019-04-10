@@ -201,7 +201,7 @@ function getCoordPoint(){//Change result value __ to fix
 
 function chargeMap(){
 
-    console.log(map);
+    
 
 }
 
