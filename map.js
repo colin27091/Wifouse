@@ -9,15 +9,19 @@ var map = new mapboxgl.Map({
     zoom: 11
 });
 
-// Switch the theme of the layers
-function switchLayer(layer) {
-    var layerId = layer.target.id;
-    map.setStyle('mapbox://styles/mapbox/' + layerId + '-v9');
-} 
 
-for (var i = 0; i < inputs.length; i++) {
-    inputs[i].onclick = switchLayer;
-}
+// ------------LAISSEZ CA EN COMMENTAIRE ON EN A PAS BESOIN POUR LE MOMENT---------
+// ---------CA CORRESPOND AU CHANGEMENT DE STYLE DE LA MAP DONC PAS PRIORITAIRE POUR LE MOMENT------
+
+// Switch the theme of the layers
+// function switchLayer(layer) {
+//     var layerId = layer.target.id;
+//     map.setStyle('mapbox://styles/mapbox/' + layerId + '-v9');
+// } 
+
+// for (var i = 0; i < inputs.length; i++) {
+//     inputs[i].onclick = switchLayer;
+// }
 
 
 
@@ -58,46 +62,47 @@ map.addControl(new mapboxgl.NavigationControl(),'top-right');
 // Get mouse coordinates on click
 map.on('click', function (e) {
     console.log(JSON.stringify(e.lngLat))
-    });
+});
 
-    var radius = 20;
- 
-    function pointOnCircle(angle) {
+var radius = 20;
+
+function pointOnCircle(angle) {
     return {
-    "type": "Point",
-    "coordinates": [
-    Math.cos(angle) * radius,
-    Math.sin(angle) * radius
-    ]
+        "type": "Point",
+        "coordinates": [
+            Math.cos(angle) * radius,
+            Math.sin(angle) * radius
+        ]
     };
-    }
-     
-    map.on('load', function () {
+}
+
+map.on('load', function () {
     // Add a source and layer displaying a point which will be animated in a circle.
     map.addSource('point', {
-    "type": "geojson",
-    "data": pointOnCircle(0)
+        "type": "geojson",
+        "data": pointOnCircle(0)
     });
-     
+    
     map.addLayer({
-    "id": "point",
-    "source": "point",
-    "type": "circle",
-    "paint": {
-    "circle-radius": 10,
-    "circle-color": "#007cbf"
-    }
+        "id": "point",
+        "source": "point",
+        "type": "circle",
+        "paint": {
+            "circle-radius": 10,
+            "circle-color": "#007cbf"
+        }
     });
-     
+    
     function animateMarker(timestamp) {
-    // Update the data to a new position based on the animation timestamp. The
-    // divisor in the expression `timestamp / 1000` controls the animation speed.
-    map.getSource('point').setData(pointOnCircle(timestamp / 1000));
-     
-    // Request the next frame of the animation.
-    requestAnimationFrame(animateMarker);
+        // Update the data to a new position based on the animation timestamp. The
+        // divisor in the expression `timestamp / 1000` controls the animation speed.
+        map.getSource('point').setData(pointOnCircle(timestamp / 1000));
+        
+        // Request the next frame of the animation.
+        requestAnimationFrame(animateMarker);
     }
-     
+    
     // Start the animation.
     animateMarker(0);
-    });
+});
+
