@@ -24,25 +24,35 @@
 		
 		$(document).ready(function(){
 			openDB();
+
+
+
+
+			$("#reponse").click(function() {
+				console.log("OKK");
+  				$("#results").toggle(function() {
+  					 $("#map").css('width', '107%');
+  					 $("#map").css('max-width', '100%');
+
+
+  				},function() {
+  					 $("#map").css('width', '108%');
+  					 $("#carte").toggleClass('col-md-9');
+
+
+  				});
+
+
+
+
+			});
+
 		});
+
 		
-		$(".reponse").click(function() {
-				console.log($(this).text())
-					if ($(this).text() == "afficher") {
-						$(this).siblings(".reponse").show();
-						$(this).text("masquer");
-					} else {
-						$(this).siblings(".reponse").hide();
-						$(this).text("afficher");
-						//attention, pas de replaceWith, sinon c'est un nouveau bouton
-						//et il ne répond pas aux événements de ce code
-					}
-				});
-
-
-
+		
 	</script>
-	
+
 	
 	
 </head>
@@ -55,29 +65,70 @@
 					<img src="logo.png" alt="Header + Logo" />
 					<form class="form-inline">
 						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-						<button id="recherche" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						<button  type="button" id="reponse" class="btn btn-outline-success my-2 my-sm-0">Search</button>
 					</form>
-					<button type="button" id="geolocalisation" onclick="" class="btn btn-outline-success btn-sg">
+					<button type="button" id="geolocalisation" class="btn btn-outline-success btn-sg">
 						<i class="fa fa-crosshairs"></i>					
 					</button> 
+
 					
 					<button type="button" id="graph" class="btn btn-outline-success ">Graphiques <i class="fa fa-chevron-right"></i> </button>
 				</div>					
 			</div>					
 		</div>
-		
-		<div class="row">
-			<div id="results" class ="col-2">
-				<div>
-					<h1> ISSOU </h1>
-				</div>
+		<div class="row" id="resultats">
+			<div id="results" class ="col-md-8" style="max-width:20.499999995%;">
+			<div class="row" id="result-n">
+
+							<h1> Ise </h1>	
+			</div>
+
+			<div class="row" id="result-n">
+
+							<h1> Ise </h1>	
+			</div>
+
+
+			<div class="row" id="result-n">
+
+						<h1> Ise </h1>	
+			</div>
+
+
+			<div class="row" id="result-n">
+
+							<h1> Ise </h1>	
+			</div>
+
+
+			<div class="row" id="result-n">
+
+							<h1> Ise </h1>	
+			</div>
+
+
+			<div class="row">
+
+				
+				<button type="button" id="ajout-borne" class="btn btn-outline-success btn-sg"> Ajouter borne </button>
+
+				<button type="button" id="supprimer" class="btn btn-outline-success btn-sg">
+				<i class="fa fa-times"></i>
+			    </button>
+
 				
 			</div>
-			<div id='map' class="col-12">
+
+
 			</div>
-			<pre id='info'></pre>
+
+
+			<div id="carte" class="col-12" style="max-width:95%;">
+				<div id='map'></div>
+			</div>
 			
 		</div>
+
 		
 	</div>
 	
