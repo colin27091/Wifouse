@@ -211,22 +211,32 @@ function getCoordPoint(){//Change result value __ to fix
 // LES METHODES POUR AJOUTER UN MARKER MANUELLEMENT JE LES METS JEUDI EN COURS COMME CA TU VOIS CE QUE CA DONNE ET TU ME DIS SI C'EST CA OU PAS
 
 function chargeMap(){
+
+    var transaction = db.transaction("bornes");
+    var store = transaction.objectStore("bornes");
+    var request = store.getAll();
     
-    // add markers to map
-    geojson.features.forEach(function(marker) {
+    result = null;
+    
+    request.onsuccess = function(event){
         
-        // create a HTML element for each feature
-        var el = document.createElement('div');
-        el.className = 'marker';
+        request.result.forEach(function(marker){
+
+            var el = document.createElement('div');
+            el.className = 'marker';
+
+            new mapboxgl.Marker(el)
+                .setLngLat(marker.geometry.coordinates)
+                .addTo(map);
+        })
         
-        // make a marker for each feature and add to the map
-        new mapboxgl.Marker(el)
-        .setLngLat(marker.geometry.coordinates)
-        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-        .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
-        .addTo(map);
         
-    }); 
+    };
+    
+    request.onerror = function(event){
+        console.error("Request error");
+    };
+
     
 }
 
