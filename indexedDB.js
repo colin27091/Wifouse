@@ -103,6 +103,11 @@ function removeTerminal(id){
     
 }
 
+
+function get(res){
+    return res;
+}
+
 function getValue(key){//Change result value
     
     
@@ -117,8 +122,9 @@ function getValue(key){//Change result value
     
     request.onerror = function(event){
         console.error("Request error");
-    }; 
-    
+        result = null;
+    };
+
 }
 
 function getWithAddress(ad){//Change result value
@@ -259,3 +265,27 @@ function IndexedDBToJSON(){//To fix - Write in file
     
 }
 
+function getWithTab(tab){
+
+    var result = [];
+    var transaction = db.transaction("bornes");
+    var store = transaction.objectStore("bornes");
+
+    tab.forEach(function(item){
+        var request = store.get(item);
+
+        request.onsuccess = function(event){
+
+        result.push(request.result);
+
+        };
+    })
+
+    transaction.oncomplete = function(event){
+
+        console.log(result);
+
+    };
+
+
+}
