@@ -204,25 +204,26 @@ function getCoordPoint(){//Change result value __ to fix
 //https://docs.mapbox.com/help/tutorials/custom-markers-gl-js/
 // LES METHODES POUR AJOUTER UN MARKER MANUELLEMENT JE LES METS JEUDI EN COURS COMME CA TU VOIS CE QUE CA DONNE ET TU ME DIS SI C'EST CA OU PAS
 
-// function chargeMap(){
+function chargeMap(){
     
-//     // add markers to map
-//     geojson.features.forEach(function(marker) {
+    // add markers to map
+    geojson.features.forEach(function(marker) {
         
-//         // create a HTML element for each feature
-//         var el = document.createElement('div');
-//         el.className = 'marker';
+        // create a HTML element for each feature
+        var el = document.createElement('div');
+        el.className = 'marker';
         
-//         // make a marker for each feature and add to the map
-//         new mapboxgl.Marker(el)
-//         .setLngLat(marker.geometry.coordinates)
-//         .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-//         .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
-//         .addTo(map);
+        // make a marker for each feature and add to the map
+        new mapboxgl.Marker(el)
+        .setLngLat(marker.geometry.coordinates)
+        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+        .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+        .addTo(map);
         
-//     }); 
+    }); 
     
-// }
+}
+
 
 function IndexedDBToJSON(){//To fix - Write in file
     

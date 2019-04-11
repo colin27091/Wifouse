@@ -61,6 +61,7 @@ map.addControl(new mapboxgl.NavigationControl(),'top-right');
 
 // Get mouse coordinates on click
 map.on('click', function (e) {
+<<<<<<< Updated upstream
     console.log(JSON.stringify(e.lngLat))
 });
 
@@ -83,6 +84,10 @@ map.on('load', function () {
         "data": pointOnCircle(0)
     });
     
+=======
+        console.log(JSON.stringify(e.lngLat))
+});
+>>>>>>> Stashed changes
     map.addLayer({
         "id": "point",
         "source": "point",
@@ -91,6 +96,7 @@ map.on('load', function () {
             "circle-radius": 10,
             "circle-color": "#007cbf"
         }
+<<<<<<< Updated upstream
     });
     
     function animateMarker(timestamp) {
@@ -106,3 +112,6 @@ map.on('load', function () {
     animateMarker(0);
 });
 
+=======
+    })
+>>>>>>> Stashed changes

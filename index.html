@@ -64,8 +64,9 @@
 				<div class ="nav">
 					<img src="logo.png" alt="Header + Logo" />
 					<form class="form-inline">
-						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-						<button  type="button" id="reponse" class="btn btn-outline-success my-2 my-sm-0">Search</button>
+
+						<input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+						<button id="recherche" onclick="get5near()" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
 					</form>
 					<button type="button" id="geolocalisation" class="btn btn-outline-success btn-sg">
 						<i class="fa fa-crosshairs"></i>					
@@ -136,6 +137,7 @@
 	<script type="text/javascript" src="indexedDB.js"></script>
 	<!-- Start Map Script -->
 	<script type="text/javascript" src="map.js"></script>
+	<script type="text/javascript" src="distance.js"></script>
 	
 </body>
 
