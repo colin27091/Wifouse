@@ -61,57 +61,58 @@ map.addControl(new mapboxgl.NavigationControl(),'top-right');
 
 // Get mouse coordinates on click
 map.on('click', function (e) {
-<<<<<<< Updated upstream
     console.log(JSON.stringify(e.lngLat))
 });
-
-var radius = 20;
-
-function pointOnCircle(angle) {
-    return {
-        "type": "Point",
-        "coordinates": [
-            Math.cos(angle) * radius,
-            Math.sin(angle) * radius
-        ]
-    };
-}
-
+var circleRadius = 45;
 map.on('load', function () {
-    // Add a source and layer displaying a point which will be animated in a circle.
-    map.addSource('point', {
+
+    map.addSource('markers', {
         "type": "geojson",
-        "data": pointOnCircle(0)
-    });
-    
-=======
-        console.log(JSON.stringify(e.lngLat))
-});
->>>>>>> Stashed changes
-    map.addLayer({
-        "id": "point",
-        "source": "point",
-        "type": "circle",
-        "paint": {
-            "circle-radius": 10,
-            "circle-color": "#007cbf"
+        "data": {
+            "type": "FeatureCollection",
+            "features": [
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [1.4437, 43.6043]
+                }
+            }
+            ]
         }
-<<<<<<< Updated upstream
-    });
+    })
     
-    function animateMarker(timestamp) {
-        // Update the data to a new position based on the animation timestamp. The
-        // divisor in the expression `timestamp / 1000` controls the animation speed.
-        map.getSource('point').setData(pointOnCircle(timestamp / 1000));
+
+    var popup = new mapboxgl.Popup({
+        closeButton: true,
+        closeOnClick: false,
+        anchor: 'bottom',
         
-        // Request the next frame of the animation.
-        requestAnimationFrame(animateMarker);
-    }
-    
-    // Start the animation.
-    animateMarker(0);
+    })
+    .setLngLat([1.4437, 43.6043])
+    .setHTML('<form>'+
+       '<div class="form-group">'+
+            '<label for="nom-connexion">Nom de la connexion</label>'+
+            '<input type="email" class="form-control" id="nom-connexion" >'+
+        '</div>'+
+        '<div class="form-group">'+
+            '<label for="commune">Commune</label>'+
+            '<input type="text" class="form-control" id="commune" >'+
+        '</div>'+
+        '<div class="form-group">'+
+            '<label for="adresse">Adresse</label>'+
+            '<input type="text" class="form-control" id="adresse" >'+
+        '</div>'+
+        '<div class="form-group">'+
+                '<label for="site">Site</label>'+
+                '<input type="text" class="form-control" id="site" >'+
+       '</div>'+
+        '<div class="form-group">'+
+            '<button type="submit" class="btn btn-primary">Sauvegarder</button>'+
+            '<button type="submit" class="btn btn-secondary">Modifier</button>'+
+            '<button type="submit" class="btn btn-danger">Annuler</button>'+
+        '</div>'+   
+    '</form>')
+    .addTo(map);
 });
 
-=======
-    })
->>>>>>> Stashed changes

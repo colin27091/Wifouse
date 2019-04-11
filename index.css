@@ -1,51 +1,69 @@
-		
-		form{
-			padding-top: 15px;
-			padding-left : 25px; 
-			padding-bottom: 15px;
-			
-		}
-		
-		img{
-			padding-top: 10px;
-			padding-bottom: 15px;
-		}
-		
-		#geolocalisation{
-			margin-left: 8px;
-			margin-top: 15px;
-			margin-bottom: 15px;
-		}
-		
-		#navigation{
-			box-shadow: 6px 6px 8px #aaa;
-		}
-		
-		#graph{
-			margin-left: auto;
-			margin-top: 15px;
-			margin-bottom: 15px;
-			
-		}
-		
 
-		
+form{
+	padding-top: 15px;
+	padding-left : 25px; 
+	padding-bottom: 15px;
+	
+}
 
-		#results{
-			margin-top: 7px;
-			display: none;
-			border: 3px solid #2BB906;
-		}
+img{
+	padding-top: 10px;
+	padding-bottom: 15px;
+}
 
-		#ajout-borne{
-			margin :20px 35px 20px 35px ;
-			
-		}
+#geolocalisation{
+	margin-left: 8px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
 
-		#supprimer{
-					margin :20px 0 20px 0 ;
-				}
+#navigation{
+	box-shadow: 6px 6px 8px #aaa;
+}
 
-		/* Testing map width and height, quentin will improve it */
-		#map {top:7px; left:-10px; width:107%; height:674px;} 
+#graph{
+	margin-left: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	
+}
 
+
+
+
+#results{
+	margin-top: 7px;
+	display: none;
+	border: 3px solid #2BB906;
+}
+
+#ajout-borne{
+	margin :20px 35px 20px 35px ;
+	
+}
+
+#supprimer{
+	margin :20px 0 20px 0 ;
+}
+
+/* Testing map width and height, quentin will improve it */
+#map {top:7px; left:-10px; width:107%; height:674px;} 
+
+.marker {
+	background-image: url('logo.png');
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	cursor: pointer;
+  }
+  
+
+.mapboxgl-popup {
+	max-width: 1000px;
+}
+
+.mapboxgl-popup-content {
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+}
