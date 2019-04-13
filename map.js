@@ -64,55 +64,80 @@ map.on('click', function (e) {
     console.log(JSON.stringify(e.lngLat))
 });
 var circleRadius = 45;
-map.on('load', function () {
 
-    map.addSource('markers', {
-        "type": "geojson",
-        "data": {
-            "type": "FeatureCollection",
-            "features": [
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [1.4437, 43.6043]
-                }
-            }
-            ]
-        }
-    })
+
+function centerOnId(id){
+
+    var transaction = db.transaction("bornes");
+    var store = transaction.objectStore("bornes");
+    var request = store.get(id);
     
+    request.onsuccess = function(event){
+        
 
-    var popup = new mapboxgl.Popup({
+        var coord = request.result.geometry.coordinates;
+
+        map.flyTo({center: coord, zoom:17});
+        popup(request.result);
+    };
+    
+    request.onerror = function(event){
+        console.error("Request error");
+    };
+
+
+}
+
+function popup(obj){
+
+    var pop = new mapboxgl.Popup({
         closeButton: true,
         closeOnClick: false,
         anchor: 'bottom',
         
     })
-    .setLngLat([1.4437, 43.6043])
-    .setHTML('<form>'+
-       '<div class="form-group">'+
-            '<label for="nom-connexion">Nom de la connexion</label>'+
-            '<input type="email" class="form-control" id="nom-connexion" >'+
-        '</div>'+
-        '<div class="form-group">'+
-            '<label for="commune">Commune</label>'+
-            '<input type="text" class="form-control" id="commune" >'+
-        '</div>'+
-        '<div class="form-group">'+
-            '<label for="adresse">Adresse</label>'+
-            '<input type="text" class="form-control" id="adresse" >'+
-        '</div>'+
-        '<div class="form-group">'+
-                '<label for="site">Site</label>'+
-                '<input type="text" class="form-control" id="site" >'+
-       '</div>'+
-        '<div class="form-group">'+
-            '<button type="submit" class="btn btn-primary">Sauvegarder</button>'+
-            '<button type="submit" class="btn btn-secondary">Modifier</button>'+
-            '<button type="submit" class="btn btn-danger">Annuler</button>'+
-        '</div>'+   
-    '</form>')
-    .addTo(map);
-});
 
+    var coord = obj.geometry.coordinates;
+
+    pop.setLngLat(coord);
+    pop.setHTML('<form>'+
+    '<div class="form-group">'+
+         '<label for="nom-connexion">Nom de la connexion</label>'+
+         '<input type="email" class="form-control" id="nom-connexion" >'+
+     '</div>'+
+     '<div class="form-group">'+
+         '<label for="commune">Commune</label>'+
+         '<input type="text" class="form-control" id="commune" >'+
+     '</div>'+
+     '<div class="form-group">'+
+         '<label for="adresse">Adresse</label>'+
+         '<input type="text" class="form-control" id="adresse" >'+
+     '</div>'+
+     '<div class="form-group">'+
+             '<label for="site">Site</label>'+
+             '<input type="text" class="form-control" id="site" >'+
+    '</div>'+
+     '<div class="form-group">'+
+         '<button type="submit" class="btn btn-primary">Sauvegarder</button>'+
+         '<button type="submit" class="btn btn-secondary">Modifier</button>'+
+         '<button type="submit" class="btn btn-danger">Annuler</button>'+
+     '</div>'+   
+ '</form>');
+
+    pop.addTo(map);
+
+}
+
+function centerOnCoordWithUserLocation(coord){
+
+    var el = document.createElement('div');
+    
+    el.setAttribute("id", "userLocation");
+    el.className = 'marker';
+    new mapboxgl.Marker(el) 
+            .setLngLat(coord)
+            .addTo(map);
+
+    map.flyTo({center: coord, zoom:17});
+
+}

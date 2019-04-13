@@ -103,11 +103,6 @@ function removeTerminal(id){
     
 }
 
-
-function get(res){
-    return res;
-}
-
 function getValue(key){//Change result value
     
     
@@ -216,16 +211,21 @@ function chargeMap(){
     var store = transaction.objectStore("bornes");
     var request = store.getAll();
     
-    result = null;
-    
     request.onsuccess = function(event){
         
         request.result.forEach(function(marker){
 
             var el = document.createElement('div');
+            el.setAttribute("id", marker.ID);
             el.className = 'marker';
 
-            new mapboxgl.Marker(el)
+            el.onclick = function(event){
+
+                var id = parseInt(event.target.id);
+                centerOnId(id);
+            };
+
+            new mapboxgl.Marker(el) 
                 .setLngLat(marker.geometry.coordinates)
                 .addTo(map);
         })
