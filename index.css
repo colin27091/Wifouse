@@ -145,3 +145,23 @@ img{
 .slide-enter, .slide-leave-to{
 	transform: opacity 0;
 }
+
+.show {
+    z-index:1000;
+    position: absolute;
+    background-color : white;
+    border: 1px solid white;
+    padding: 2px;
+    display: block;
+    margin: 0;
+    list-style-type: none;
+    list-style: none;
+}
+
+.hide {
+    display: none;
+}
+
+.show li{ list-style: none; }
+.show a { border: 0 !important; text-decoration: none; }
+.show a:hover { text-decoration: underline !important; }

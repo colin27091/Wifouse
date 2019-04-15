@@ -4,7 +4,7 @@ var navigation;
 
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9',
+    style: 'mapbox://styles/mapbox/streets-v11',
     center: [1.4437, 43.6043], // Toulouse Data GPS
     zoom: 11
 });
@@ -24,46 +24,25 @@ var map = new mapboxgl.Map({
 // }
 
 
-
-
-
-var recherche = map.addControl(new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
-    
-    // Limit results to country
-    countries: 'fr',
-    
-    filter: function (item) {
-        
-        return item.context.map(function (i) {
-            
-            return i.text;
-        }).reduce(function (acc, cur) {
-            return acc || cur;
-        });
-        
-    }
-    
-}),'top-right');
-
-// Add geolocate control to the map.
-// User location
-var userlocation = map.addControl(new mapboxgl.GeolocateControl({
-    positionOptions: {
-        enableHighAccuracy: true
-    },
-    trackUserLocation: true
-}),'bottom-right');
-
 // Navigation controls (Zoom and scroll bar on top right)
-
 map.addControl(new mapboxgl.NavigationControl(),'top-right');
 
 // Get mouse coordinates on click
 map.on('click', function (e) {
     console.log(JSON.stringify(e.lngLat))
 });
-var circleRadius = 45;
+
+map.on('contextmenu', function(e) {
+    document.getElementById("menu").className = "show";
+    document.getElementById("menu").style.top =  mouseY(event) + 'px';
+    document.getElementById("menu").style.left = mouseX(event) + 'px';
+
+    
+});
+
+$(document).bind("click", function(event) {
+        document.getElementById("menu").className = "hide";
+});
 
 
 function centerOnId(id){
@@ -140,4 +119,28 @@ function centerOnCoordWithUserLocation(coord){
 
     map.flyTo({center: coord, zoom:17});
 
+}
+
+function mouseX(evt) {
+    if (evt.pageX) {
+        return evt.pageX;
+    } else if (evt.clientX) {
+       return evt.clientX + (document.documentElement.scrollLeft ?
+           document.documentElement.scrollLeft :
+           document.body.scrollLeft);
+    } else {
+        return null;
+    }
+}
+
+function mouseY(evt) {
+if (evt.pageY) {
+    return evt.pageY;
+} else if (evt.clientY) {
+    return evt.clientY + (document.documentElement.scrollTop ?
+    document.documentElement.scrollTop :
+    document.body.scrollTop);
+} else {
+    return null;
+}
 }
