@@ -76,3 +76,72 @@ img{
 	text-align: center;
 	font-family: 'Open Sans', sans-serif;
 }
+		
+html { overflow-y: hidden; 
+} 
+
+		
+
+form{
+	padding-top: 15px;
+	padding-left : 25px; 
+	padding-bottom: 15px;
+	
+}
+
+img{
+	padding-top: 10px;
+	padding-bottom: 15px;
+}
+
+#geolocalisation{
+	margin-left: 8px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#navigation{
+	box-shadow: 6px 6px 8px #aaa;
+}
+
+#graph{
+	margin-left: auto;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	
+}
+
+
+
+
+#results{
+	margin-top: 7px;
+	display: none;
+	border: 3px solid #2BB906;
+}
+
+#ajout-borne{
+	margin :20px 35px 20px 35px ;
+	
+}
+
+#supprimer{
+			margin :20px 0 20px 0 ;
+		}
+
+/* Testing map width and height, quentin will improve it */
+#map {top:7px; left:-10px; width:107%; height:674px;} 
+
+.slide-enter-active{
+	transition: all .5s ease;
+
+}
+
+.slide-enter-active{
+	transition: all .5s cubic-bezier(1.0,0.5,0.8,1.0);
+	
+}
+
+.slide-enter, .slide-leave-to{
+	transform: opacity 0;
+}

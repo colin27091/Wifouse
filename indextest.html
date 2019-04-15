@@ -26,19 +26,13 @@
 			openDB();
 
 
+			jQuery.fx.speeds.fast = 10;
 
 
 			$("#reponse").click(function() {
 				console.log("OKK");
-  				$("#results").toggle(function() {
-  					 $("#map").css('width', '107%');
-  					 $("#map").css('max-width', '100%');
-
-
-  				},function() {
-  					 $("#map").css('width', '108%');
+  				$("#results").toggle('fast',function() {
   					 $("#carte").toggleClass('col-md-9');
-
 
   				});
 
