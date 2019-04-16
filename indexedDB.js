@@ -24,11 +24,9 @@ function openDB(){//Ouverture Base
 }
 
 function initDB() {//Création Store
-    if (!db.objectStoreNames.contains("bornes")) {
+    if (!db.objectStoreNames.contains(storeName)) {
         
-        const store = db.createObjectStore(storeName, { keyPath: "ID", autoIncrement: true });
-        store.createIndex("recordid", "recordid", { unique: true });
-        store.createIndex("adresse", "fields.adresse", { unique: false });
+        db.createObjectStore(storeName, { keyPath: "ID", autoIncrement: true });
         loadJSON();
     }
 }
@@ -54,6 +52,7 @@ function setData(data) {
     
     transaction.oncomplete = function(event){
         console.log("Add data success");
+        chargeMap();
     };
     
     transaction.onabort = function(event){
@@ -200,15 +199,10 @@ function getCoordPoint(){//Change result value __ to fix
     
 }
 
-// J'AI MIS LA FONCTION EN COMMENTAIRE CAR IL FAUT REMPLACER GEOJSON PAR LES COORDONNEES GPS
-// JE TE METS LE LIEN ICI POUR QUE TU COMPRENNE, MAIS VOILA CETTE METHODE AJOUTE UN MARKER DEPUIS LA BDD
-//https://docs.mapbox.com/help/tutorials/custom-markers-gl-js/
-// LES METHODES POUR AJOUTER UN MARKER MANUELLEMENT JE LES METS JEUDI EN COURS COMME CA TU VOIS CE QUE CA DONNE ET TU ME DIS SI C'EST CA OU PAS
-
 function chargeMap(){
 
-    var transaction = db.transaction("bornes");
-    var store = transaction.objectStore("bornes");
+    var transaction = db.transaction(storeName, 'readonly');
+    var store = transaction.objectStore(storeName);
     var request = store.getAll();
     
     request.onsuccess = function(event){

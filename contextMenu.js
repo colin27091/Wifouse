@@ -16,7 +16,7 @@ $(document).ready(function(){
 
     contextMenu.innerHTML("BONJOUR");
 
-    $("#map").append("<div>OKK</div>");
+    $("#")
 
 
 });
