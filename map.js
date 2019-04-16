@@ -32,18 +32,6 @@ map.on('click', function (e) {
     console.log(JSON.stringify(e.lngLat))
 });
 
-map.on('contextmenu', function(e) {
-    document.getElementById("menu").className = "show";
-    document.getElementById("menu").style.top =  mouseY(event) + 'px';
-    document.getElementById("menu").style.left = mouseX(event) + 'px';
-
-    
-});
-
-$(document).bind("click", function(event) {
-        document.getElementById("menu").className = "hide";
-});
-
 
 function centerOnId(id){
 
@@ -79,29 +67,7 @@ function popup(obj){
     var coord = obj.geometry.coordinates;
 
     pop.setLngLat(coord);
-    pop.setHTML('<form>'+
-    '<div class="form-group">'+
-         '<label for="nom-connexion">Nom de la connexion</label>'+
-         '<input type="email" class="form-control" id="nom-connexion" >'+
-     '</div>'+
-     '<div class="form-group">'+
-         '<label for="commune">Commune</label>'+
-         '<input type="text" class="form-control" id="commune" >'+
-     '</div>'+
-     '<div class="form-group">'+
-         '<label for="adresse">Adresse</label>'+
-         '<input type="text" class="form-control" id="adresse" >'+
-     '</div>'+
-     '<div class="form-group">'+
-             '<label for="site">Site</label>'+
-             '<input type="text" class="form-control" id="site" >'+
-    '</div>'+
-     '<div class="form-group">'+
-         '<button type="submit" class="btn btn-primary">Sauvegarder</button>'+
-         '<button type="submit" class="btn btn-secondary">Modifier</button>'+
-         '<button type="submit" class="btn btn-danger">Annuler</button>'+
-     '</div>'+   
- '</form>');
+    pop.setHTML("<button>"+obj.fields.adresse+"</button>");
 
     pop.addTo(map);
 
