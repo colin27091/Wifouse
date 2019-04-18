@@ -244,42 +244,7 @@ function chargeMap(){
     
 }
 
-
-function IndexedDBToJSON(){//To fix - Write in file
-    
-    var obj = [];
-    
-    var transaction = db.transaction("bornes");
-    var store = transaction.objectStore("bornes");
-    var request = store.openCursor();
-    
-    request.onsuccess = function(event){
-        
-        var cursor = request.result;
-        
-        if(cursor){
-            
-            obj.push(cursor.value);
-            
-            cursor.continue();
-        }
-        
-    };
-    
-    transaction.oncomplete = function(event){
-        
-        var file = new File(["bornes_test"], "bornes_test.json", {
-            type: "text/json",
-        });
-        file.open("w");
-        file.writeln(JSON.stringify(obj));
-        file.close();
-        
-    };
-    
-}
-
-function getWithTab(tab){
+function getByIdTab(tab){
 
     var result = [];
     var transaction = db.transaction("bornes");
@@ -302,4 +267,31 @@ function getWithTab(tab){
     };
 
 
+}
+
+function get5near(coord){
+
+    var tab = [];
+
+    var transaction = db.transaction("bornes");
+    var store = transaction.objectStore("bornes");
+    var request = store.openCursor();
+
+    request.onsuccess = function(event){
+
+        var cursor = request.result;
+        if(cursor){
+            tab.push(cursor.value.fields.geo_point_2d);
+            cursor.continue(); 
+        } 
+    };
+
+    request.onerror = function(event){
+        console.error("Request error");  
+    };
+    
+    transaction.oncomplete = function(event){
+        var result = distCalcul(tab, coord);
+        getByIdTab(result);
+    };
 }

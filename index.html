@@ -25,46 +25,6 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script>
-		
-		$(document).ready(function(){
-			openDB();
-
-    		$('a').on('click', function(evt){
-       			evt.preventDefault(); 
-		 		var target = $(this).attr('href');
- 				$('html, body') 
-       			.stop()
-       			.animate({scrollTop: $(target).offset().top}, 500 );
-    	});
-
-			jQuery.fx.speeds.fast = 10;
-
-
-			$("#reponse").click(function() {
-				console.log("OKK");
-  				$("#results").toggle('fast',function() {
-					 $("#map").css('width', '107.1%');
-  					 $("#carte").toggleClass('col-md-9');
-
-  				});
-
-
-
-
-			});
-
-			$("#research").submit(function(event){
-				event.preventDefault();
-			});
-
-
-		});
-
-		
-		
-	</script>
-
 	
 	
 </head>
@@ -74,7 +34,7 @@
 		<div class="row" id="navigation">
 			<div class ="col">
 				<div class ="nav">
-					<img src="logo.png" alt="Header + Logo" />
+					<img src="logo/logo.png" alt="Header + Logo" />
 					<form id="research" class="form-inline">
 
 						<input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -177,17 +137,13 @@ v
 
 	
 	<!-- Start Database script -->
-	<script type="text/javascript" src="indexedDB.js"></script>
+	<script type="text/javascript" src="js/indexedDB.js"></script>
 	<!-- Start Map Script -->
-	<script type="text/javascript" src="map.js"></script>
-	<script type="text/javascript" src="distance.js"></script>
+	<script type="text/javascript" src="js/map.js"></script>
 	
-	<script type="text/javascript" src="contextMenu.js"></script>
-	<script type="text/javascript" src="popUpScript.js"></script>
-	<script type="text/javascript" src="navigation.js"></script>
-	<script type="text/javascript" src="intersection.js"></script>
-	<script type="text/javascript" src="result.js"></script>
-	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+
+	<script type="text/javascript" src="js/uselyFunction.js"></script>
 
 </body>
 

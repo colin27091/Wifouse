@@ -50,7 +50,7 @@ img{
 #map {top:7px; left:-10px; width:107%; height:674px;} 
 
 .marker {
-	background-image: url('marqueur.png');
+	background-image: url('logo/marqueur.png');
 	background-size: cover;
 	width: 30px;
 	height: 30px;
@@ -59,7 +59,7 @@ img{
   }
 
 #userLocation {
-	background-image: url('userlocation.png');
+	background-image: url('logo/userlocation.png');
 	background-size: cover;
 	width: 30px;
 	height: 30px;
