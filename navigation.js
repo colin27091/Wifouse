@@ -1,12 +1,7 @@
 $(document).ready(function(){
 
 
-    $("#search").submit(function(){
-
-        console.log("pas submit");
-        return false;
-
-    });
+    
 
 
 });
@@ -14,12 +9,9 @@ $(document).ready(function(){
 
 function getCoord(adresse){
 
-    var geocoder = new MapboxGeocoder();
-
-    geocoder.on('result', function(event){
-        console.log(event.result.geometry);
+    $.getJSON('https://api-adresse.data.gouv.fr/search/?q='+adresse, function(data){
+        console.log(data.features[0].geometry.coordinates);
     });
 
-    geocoder.on = "Albi";
 
 }

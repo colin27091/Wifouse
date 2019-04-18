@@ -1,6 +1,8 @@
 var db;
 var storeName = "bornes";
-var file = "bornes-wi-fi.json";
+var storePop = "population";
+var file_terminal = "bornes-wi-fi.json";
+var file_population = "population_Toulouse.json";
 var result;
 
 function openDB(){//Ouverture Base
@@ -27,27 +29,34 @@ function initDB() {//Création Store
     if (!db.objectStoreNames.contains(storeName)) {
         
         db.createObjectStore(storeName, { keyPath: "ID", autoIncrement: true });
-        loadJSON();
+        loadJSON(file_terminal, storeName);
     }
+    if (!db.objectStoreNames.contains(storePop)) {
+        
+        db.createObjectStore(storePop, { keyPath: "ID", autoIncrement: true });
+        loadJSON(file_population, storePop);
+    }
+
+
 }
 
-async function loadJSON(){//Fonction asynchrone
+async function loadJSON(file, store){//Fonction asynchrone
     
     var response = await fetch(file);//Lecture du fichier
     var str = await response.text();
     
     var data = JSON.parse(str);//JSON to Array
     
-    setData(data);
+    setData(data, store);
 }
 
-function setData(data) {
+function setData(data, store) {
     
-    const transaction = db.transaction(storeName, "readwrite");
-    const store = transaction.objectStore(storeName);
+    const transaction = db.transaction(store, "readwrite");
+    const objectStore = transaction.objectStore(store);
     
     for(var i in data){
-        store.put(data[i]);
+        objectStore.put(data[i]);
     }
     
     transaction.oncomplete = function(event){

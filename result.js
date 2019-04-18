@@ -1,13 +1,7 @@
 $(document).ready(function(){
-
-
-
-
-
-
-
-
-
-
     
+
+
+
+
 });
