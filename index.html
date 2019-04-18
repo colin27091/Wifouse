@@ -17,6 +17,10 @@
 	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.min.js'></script>
 	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.css' type='text/css' />   
 	
+	<!-- Geocode Google -->
+
+
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -50,6 +54,9 @@
 
 			});
 
+			$("#research").submit(function(event){
+				event.preventDefault();
+			});
 
 
 		});
@@ -68,7 +75,7 @@
 			<div class ="col">
 				<div class ="nav">
 					<img src="logo.png" alt="Header + Logo" />
-					<form class="form-inline">
+					<form id="research" class="form-inline">
 
 						<input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 						<button id="reponse" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
@@ -81,7 +88,7 @@
 					
 					<button  type="button" id="graph" class="btn btn-outline-success "> <a id="transition" href="#graphique" style="text-decoration: none; color: green;"> Graphiques </a> <i class="fa fa-chevron-down"></i> </button>
 				</div>					
-			</div>					
+			</div>				
 		</div>
 		<div class="row" id="resultats">
 			<div id="results" class ="col-md-8" style="max-width:20.499999995%;">
@@ -107,7 +114,6 @@
 			</div>
 			
 		</div>
-	</transition>
 
 		
 
@@ -178,6 +184,9 @@ v
 	<script type="text/javascript" src="main.js"></script>
 	<script type="text/javascript" src="contextMenu.js"></script>
 	<script type="text/javascript" src="popUpScript.js"></script>
+	<script type="text/javascript" src="navigation.js"></script>
+	<script type="text/javascript" src="intersection.js"></script>
+
 
 </body>
 

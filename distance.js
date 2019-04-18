@@ -75,6 +75,5 @@ function get5near(coord){
 
 }
 
-
 console.log($("#search").val());
     $("#search").val('');

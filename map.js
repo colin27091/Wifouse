@@ -25,6 +25,11 @@ var map = new mapboxgl.Map({
 
 
 // Navigation controls (Zoom and scroll bar on top right)
+
+
+
+
+
 map.addControl(new mapboxgl.NavigationControl(),'top-right');
 
 // Get mouse coordinates on click
@@ -67,7 +72,7 @@ function popup(obj){
     var coord = obj.geometry.coordinates;
 
     pop.setLngLat(coord);
-    pop.setHTML("<button>"+obj.fields.adresse+"</button>");
+    pop.setHTML("<button>"+obj.ID+"</button>");
 
     pop.addTo(map);
 

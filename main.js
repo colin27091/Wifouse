@@ -5,6 +5,7 @@ $(document).ready(function(){
     $("#geolocalisation").click(function(){
         navigator.geolocation.getCurrentPosition(function(position){
             centerOnCoordWithUserLocation([position.coords.longitude, position.coords.latitude]);
+            get5near([position.coords.longitude, position.coords.latitude]);
         });
     });
 

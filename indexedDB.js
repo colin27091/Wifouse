@@ -60,7 +60,8 @@ function setData(data) {
     };
 }
 
-function addTerminal(terminal){
+
+function addTerminal1(terminal){
     
     var transaction = db.transaction("bornes", "readwrite");
     var store = transaction.objectStore("bornes");
