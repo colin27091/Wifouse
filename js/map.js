@@ -17,13 +17,12 @@ map.on('click', function (e) {
 });
 
 map.on('contextmenu', function(e) {
-        
     var contextMenu = document.createElement("nav");
     contextMenu.id = "menu";
     contextMenu.className = "show";
     contextMenu.innerHTML = "<div id='context'>"
                             +   "<div onclick=openForm("+ JSON.stringify(e.lngLat) +")>Ajouter une Borne</div>"
-                            +   "<div onclick=searchWithCoord("+ JSON.stringify(e.lngLat) +")>Recherche sur le clic</div>"
+                            +   "<div onclick=get5near("+ JSON.stringify([e.lngLat.lat,e.lngLat.lng]) +")>Recherche sur le clic</div>"
                             +"</div>";
     contextMenu.style.top =  event.pageY-document.getElementById("navigation").clientHeight + 'px';
     contextMenu.style.left = event.pageX-document.getElementById("results").clientWidth + 'px';
@@ -32,6 +31,13 @@ map.on('contextmenu', function(e) {
 
 
     $("#menu").mouseleave(function(event) {
+        if(document.getElementById("menu") != null){
+            document.getElementById("menu").remove();
+        }
+            
+    });
+
+    $(document).bind('click', function(event) {
         if(document.getElementById("menu") != null){
             document.getElementById("menu").remove();
         }
@@ -51,7 +57,7 @@ function centerOnId(id){
 
         var coord = request.result.geometry.coordinates;
 
-        map.flyTo({center: coord, zoom:17});
+        map.flyTo({center: coord, zoom:15});
         popup(request.result);
     };
     
@@ -65,19 +71,27 @@ function centerOnId(id){
 function popup(obj){
 
     var pop = new mapboxgl.Popup({
-        closeButton: true,
-        closeOnClick: false,
+        closeButton: false,
+        closeOnClick: true,
         anchor: 'bottom',
         
     })
 
+    console.log(pop);
+
     var coord = obj.geometry.coordinates;
+    
+    var div = document.createElement('div');
+    div.innerText = obj.fields.site;
+
+
 
     pop.setLngLat(coord);
-    pop.setHTML("<button>"+obj.ID+"</button>");
+    pop.setHTML(div.outerHTML);
+
+    
 
     pop.addTo(map);
-
 }
 
 function centerOnCoord(coord){

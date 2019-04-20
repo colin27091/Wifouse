@@ -42,9 +42,6 @@ img{
 	
 }
 
-#supprimer{
-	margin :20px 0 20px 0 ;
-}
 
 /* Testing map width and height, quentin will improve it */
 #map {top:7px; left:-10px; width:107%; height:674px;} 

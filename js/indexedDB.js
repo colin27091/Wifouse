@@ -244,18 +244,19 @@ function chargeMap(){
     
 }
 
-function getByIdTab(tab){
+function getByIdTab(tab){//Array of ID to Array of Terminal(Object)
 
     var result = [];
-    var transaction = db.transaction("bornes");
-    var store = transaction.objectStore("bornes");
+    var transaction = db.transaction(storeName);
+    var store = transaction.objectStore(storeName);
 
     tab.forEach(function(item){
+
         var request = store.get(item);
 
         request.onsuccess = function(event){
 
-        result.push(request.result);
+            result.push(request.result);
 
         };
     })
@@ -269,7 +270,7 @@ function getByIdTab(tab){
 
 }
 
-function get5near(coord){
+function get5near(coord){//Coord([lat, lng]) -> Array of Terminal(Object)
 
     var tab = [];
 
@@ -291,6 +292,7 @@ function get5near(coord){
     };
     
     transaction.oncomplete = function(event){
+
         var result = distCalcul(tab, coord);
         getByIdTab(result);
     };
