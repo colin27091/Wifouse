@@ -82,14 +82,15 @@ function popup(obj){
     var coord = obj.geometry.coordinates;
     
     var div = document.createElement('div');
-    div.innerText = obj.fields.site;
+    div.innerText = obj.fields.site + " " + obj.ID;
+    var but = document.createElement('button');
+    but.setAttribute("onclick", "removeTerminal("+obj.ID +")");
+    but.innerText = "REMOVE";
 
 
 
     pop.setLngLat(coord);
-    pop.setHTML(div.outerHTML);
-
-    
+    pop.setHTML(div.outerHTML+but.outerHTML);
 
     pop.addTo(map);
 }
@@ -115,6 +116,26 @@ function openForm(coord){
 function searchWithCoord(coord){
 
     getByIdTab([coord.lat,coord.lng]);
+
+}
+
+function addMarker(obj){
+
+    var el = document.createElement('div');
+    el.setAttribute("id", obj.ID);
+    el.className = 'marker';
+
+    el.onclick = function(event){
+
+        var id = parseInt(event.target.id);
+        console.log(id);
+        centerOnId(id);
+    };
+
+    new mapboxgl.Marker(el) 
+        .setLngLat(obj.geometry.coordinates)
+        .addTo(map);
+
 
 }
 

@@ -70,26 +70,43 @@ function setData(data, store) {
 }
 
 
-function addTerminal1(terminal){
+var new_terminal = {
+
+    "fields":{
+        "site":"New Bornes"
+    },
+    
+    "geometry":{
+
+        "coordinates":[
+            1.636122221425398,
+            43.6032638910665
+        ]
+
+}}
+
+
+
+function addTerminal(terminal){
     
     var transaction = db.transaction("bornes", "readwrite");
     var store = transaction.objectStore("bornes");
     var request = store.add(terminal);
     
     request.onsuccess = function(event){
+        chargeMap();
         console.log("Terminal added");
     };
     
     request.onerror = function(event){
         console.log("Terminal not added");
     };
-    
-    
-    
+
 }
 
 function removeTerminal(id){
     
+    $(".mapboxgl-popup").remove();
     var transaction = db.transaction("bornes", "readwrite");
     var store = transaction.objectStore("bornes");
     
@@ -107,6 +124,10 @@ function removeTerminal(id){
         
     } else {
         console.error("Remove not allow");
+    }
+
+    transaction.oncomplete = function(event){
+        chargeMap();
     }
     
     
@@ -211,6 +232,7 @@ function getCoordPoint(){//Change result value __ to fix
 
 function chargeMap(){
 
+    $('.marker').remove();
     var transaction = db.transaction(storeName, 'readonly');
     var store = transaction.objectStore(storeName);
     var request = store.getAll();
@@ -218,20 +240,7 @@ function chargeMap(){
     request.onsuccess = function(event){
         
         request.result.forEach(function(marker){
-
-            var el = document.createElement('div');
-            el.setAttribute("id", marker.ID);
-            el.className = 'marker';
-
-            el.onclick = function(event){
-
-                var id = parseInt(event.target.id);
-                centerOnId(id);
-            };
-
-            new mapboxgl.Marker(el) 
-                .setLngLat(marker.geometry.coordinates)
-                .addTo(map);
+            addMarker(marker);
         })
         
         
@@ -296,4 +305,40 @@ function get5near(coord){//Coord([lat, lng]) -> Array of Terminal(Object)
         var result = distCalcul(tab, coord);
         getByIdTab(result);
     };
+}
+
+function calculateQuarter(){
+
+    var result = [];
+
+    var transaction = db.transaction(storePop, 'readonly');
+    var store = transaction.objectStore(storePop);
+    var request = store.getAll();
+
+    request.onsuccess = function(event){
+        console.log("Success calculate quarter");
+
+        request.result.forEach(function(quarter){
+
+            result.push([quarter.fields.libelle_des_grands_quartiers, quarter.fields.p15_pop]);
+
+        })
+
+
+    }
+
+    request.onerror = function(event){
+        console.error("Erreur calculate Quarter ");
+    }
+
+    transaction.oncomplete = function(event){
+
+        var transaction1 = db.transaction(storeName, 'readonly');
+        var store = transaction.objectStore(storeName);
+        var request = store.getAll();
+        
+    }
+
+
+
 }
