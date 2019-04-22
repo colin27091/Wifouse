@@ -1,9 +1,9 @@
 
 form{
 	padding-top: 15px;
-	padding-left : 25px; 
+	padding-left : 25px;
 	padding-bottom: 15px;
-	
+
 }
 
 img{
@@ -28,11 +28,8 @@ img{
 	margin-left: auto;
 	margin-top: 15px;
 	margin-bottom: 15px;
-	
+
 }
-
-
-
 
 #results{
 	margin-top: 7px;
@@ -41,10 +38,22 @@ img{
 }
 
 
+#choixgraph{
+	margin-top: 15px ;
+	margin-bot: 15px ;
+	margin-left: auto ;
+
+
+}
+
+
+
+#Les_grpahs{
+	margin: 15px auto;
+}
 
 
 /* Testing map width and height, quentin will improve it */
-#map {top:7px; left:-10px; width:107%; height:674px;} 
 
 .marker {
 	background-image: url('logo/marqueur.png');
@@ -63,7 +72,7 @@ img{
 	border-radius: 50%;
 	cursor: pointer;
 }
-  
+
 
 .mapboxgl-popup {
 	max-width: 1000px;
@@ -73,9 +82,9 @@ img{
 	text-align: center;
 	font-family: 'Open Sans', sans-serif;
 }
-		
-html { overflow-y: hidden; 
-} 
+
+html { overflow-y: hidden;
+}
 
 
 #supprimer{
@@ -83,7 +92,7 @@ html { overflow-y: hidden;
 		}
 
 /* Testing map width and height, quentin will improve it */
-#map {top:7px; left:-10px; width:107%; height:674px;} 
+#map {top:7px; left:-10px; width:107%; min-height: 91vh}
 
 .slide-enter-active{
 	transition: all .5s ease;
@@ -92,7 +101,7 @@ html { overflow-y: hidden;
 
 .slide-enter-active{
 	transition: all .5s cubic-bezier(1.0,0.5,0.8,1.0);
-	
+
 }
 
 .slide-enter, .slide-leave-to{
@@ -127,5 +136,5 @@ html { overflow-y: hidden;
 	height: 10%;
 }
 .section_graph{
-	height: 800px;
+	height: 91vh;
 }

@@ -4,19 +4,19 @@
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href="index.css" />
 	<title>Wifouse</title>
-	
+
 	<!-- mapbox gl -->
 	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
 	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
-	
+
 	<!-- mapbox -->
 	<script src='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.js'></script>
 	<link href='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.css' rel='stylesheet' />
-	
+
 	<!-- mapbox gl geocoding -->
 	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.min.js'></script>
-	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.css' type='text/css' />   
-	
+	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.css' type='text/css' />
+
 	<!-- Geocode Google -->
 
 
@@ -25,8 +25,11 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	
-	
+
+<!--  ChartJS -->
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 </head>
 
 <body>
@@ -35,21 +38,21 @@
 			<div class ="col">
 				<div class ="nav">
 					<img src="logo/logo.png" alt="Header + Logo" />
-					<form id="research" class="form-inline">
+					<form class="form-inline">
 
 						<input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 						<button id="reponse" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
 					</form>
 					<button type="button" id="ajout-borne" class="btn btn-outline-success btn-sg"> Ajouter borne </button>
 					<button type="button" id="geolocalisation" class="btn btn-outline-success btn-sg">
-						<i class="fa fa-crosshairs"></i>					
+						<i class="fa fa-crosshairs"></i>
 					</button>
-					
 
-					
+
+
 					<button  type="button" id="graph" class="btn btn-outline-success "> <a id="transition" href="#graphique" style="text-decoration: none; color: green;"> Graphiques </a> <i class="fa fa-chevron-down"></i> </button>
-				</div>					
-			</div>					
+				</div>
+			</div>
 		</div>
 		<div class="row" id="resultats">
 			<div id="results" class ="col-md-8" style="max-width:20.499999995%;">
@@ -60,10 +63,10 @@
 
 			<div id="carte" class="col-12" style="max-width:95%;">
 				<div id='map'>
-					
+
 				</div>
 			</div>
-			
+
 		</div>
 
 	</div>
@@ -71,7 +74,7 @@
 	<div id="espace" style="height: 25px;">
 
 	</div>
-	
+
 
 	</div>
 	<div class="container-fluid" id="graphique">
@@ -81,27 +84,46 @@
 					<img src="logo/logo.png" alt="Header + Logo" />
 					<form class="form-inline">
 					</form>
+					<div id ="choixgraph" class="form-group col-md-4">
+							<select id="inputState" class="form-control" >
+							<option selected>Lignes</option>
+							<option>Colonnes</option>
+							<option>Nuage de points</option>
+							<option>Radar</option>
+							<option>Polaire</option>
 
+							</select>
+							</div>
 					<button type="button" id="graph" class="btn btn-outline-success "> <a id="transition" href="#carteTop" style="text-decoration: none; color: green;">  Carte </a> <i class="fa fa-chevron-up"></i> </button>
-				</div>					
-			</div>					
+				</div>
+			</div>
 		</div>
 		<div class="section_graph">
-			
+			<div id="Les_grpahs" style="width:75%">
+
+		<canvas id="Charts"></canvas>
+		<script type="text/javascript" src="js/graphs.js"></script>
+
+		<script>
+	</script>
 		</div>
-			
+
+		</div>
+
 	</div>
 
 
-	
+
 	<!-- Start Database script -->
 	<script type="text/javascript" src="js/indexedDB.js"></script>
 	<!-- Start Map Script -->
 	<script type="text/javascript" src="js/map.js"></script>
-	
+
 	<script type="text/javascript" src="js/main.js"></script>
 
 	<script type="text/javascript" src="js/uselyFunction.js"></script>
+
+
 
 </body>
 
