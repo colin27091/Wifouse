@@ -12,6 +12,7 @@ function openDB(){//Ouverture Base
         db = event.target.result;
         console.log("Database success");
         chargeMap();
+        calculateQuarter();
     };
     
     request.onerror = function(event){
@@ -61,6 +62,7 @@ function setData(data, store) {
     transaction.oncomplete = function(event){
         console.log("Add data success");
         chargeMap();
+        calculateQuarter();
     };
     
     transaction.onabort = function(event){
@@ -315,17 +317,14 @@ function calculateQuarter(){
     var request = store.getAll();
 
     request.onsuccess = function(event){
-        console.log("Success calculate quarter");
 
         request.result.forEach(function(quarter){
 
-            var tab_quarter = {"name":quarter.fields.libelle_des_grands_quartiers, "pop": quarter.fields.p15_pop, "polygone": quarter.fields.geo_shape.coordinates, "nbborne":0};
+            var tab_quarter = {"name":quarter.fields.libelle_des_grands_quartiers, "pop": Math.round(quarter.fields.p15_pop), "polygone": quarter.fields.geo_shape.coordinates[0], "nbborne":0};
 
             result.push(tab_quarter);
 
         })
-
-
     }
 
     request.onerror = function(event){
@@ -333,9 +332,44 @@ function calculateQuarter(){
     }
 
     transaction.oncomplete = function(event){
-        console.log(result);
+        localStorage.setItem("DistrictTab", JSON.stringify(result));
+        updateNbTerminal();
     }
+}
+
+function updateNbTerminal(){
+
+    var tab = JSON.parse(localStorage.getItem("DistrictTab"));
+    var result = [];
+
+    var transaction = db.transaction(storeName, 'readonly');
+    var store = transaction.objectStore(storeName);
+    var request = store.getAll();
+
+    request.onsuccess = function(event){
+
+        tab.forEach(function(item){
+
+            request.result.forEach(function(terminal){
+
+                if(isInside(terminal.geometry.coordinates, item.polygone)){
+                    item.nbborne += 1;
+                }
 
 
+            })
+            result.push(item);
+
+        })
+    };
+
+    request.onerror = function(event){
+
+    };
+
+    transaction.oncomplete = function(event){
+
+        localStorage.setItem("DistrictTab", JSON.stringify(result));
+    };
 
 }

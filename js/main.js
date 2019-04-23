@@ -2,6 +2,7 @@ $(document).ready(function(){
 
     openDB();// initDB -> loadJSON -> setData || chargeMap
 
+
     $("#geolocalisation").click(function(){
         navigator.geolocation.getCurrentPosition(function(position){
             centerOnCoord([position.coords.longitude, position.coords.latitude]);
@@ -32,9 +33,6 @@ $(document).ready(function(){
     $("#research").submit(function(event){
         event.preventDefault();
     });
-
-
-
 
 });  
         
