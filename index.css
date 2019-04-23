@@ -46,10 +46,29 @@ img{
 
 }
 
+#checkboxdiv{
+	margin-top: 50px;
+	margin-left: 10px;
+	float: left;
+
+}
+
+#Les_graphs{
+	margin: 50px auto;
+	padding-left: 80px;
 
 
-#Les_grpahs{
-	margin: 15px auto;
+}
+
+#check{
+	margin-top: 6px;
+	margin-left: 1px;
+}
+
+
+#checkbox{
+	margin-top: 11px;
+
 }
 
 
