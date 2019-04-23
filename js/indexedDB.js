@@ -1,8 +1,8 @@
 var db;
 var storeName = "bornes";
 var storePop = "population";
-var file_terminal = "bornes-wi-fi.json";
-var file_population = "population_Toulouse.json";
+var file_terminal = "data/bornes-wi-fi.json";
+var file_population = "data/population_Toulouse.json";
 var result;
 
 function openDB(){//Ouverture Base
@@ -41,7 +41,6 @@ function initDB() {//Création Store
 }
 
 async function loadJSON(file, store){//Fonction asynchrone
-    
     var response = await fetch(file);//Lecture du fichier
     var str = await response.text();
     
@@ -51,7 +50,6 @@ async function loadJSON(file, store){//Fonction asynchrone
 }
 
 function setData(data, store) {
-    
     const transaction = db.transaction(store, "readwrite");
     const objectStore = transaction.objectStore(store);
     
@@ -320,7 +318,9 @@ function calculateQuarter(){
 
         request.result.forEach(function(quarter){
 
-            result.push([quarter.fields.libelle_des_grands_quartiers, quarter.fields.p15_pop]);
+            var tab_quarter = {"name":quarter.fields.libelle_des_grands_quartiers, "pop": quarter.fields.p15_pop, "polygone": quarter.fields.geo_shape.coordinates, "nbborne":0};
+
+            result.push(tab_quarter);
 
         })
 
@@ -332,11 +332,7 @@ function calculateQuarter(){
     }
 
     transaction.oncomplete = function(event){
-
-        var transaction1 = db.transaction(storeName, 'readonly');
-        var store = transaction.objectStore(storeName);
-        var request = store.getAll();
-        
+        console.log(result);
     }
 
 
