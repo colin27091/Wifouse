@@ -40,6 +40,7 @@ function initDB() {//Création Store
 
 }
 
+//Change to Chrome 
 async function loadJSON(file, store){//Fonction asynchrone
     var response = await fetch(file);//Lecture du fichier
     var str = await response.text();
