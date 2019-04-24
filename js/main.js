@@ -1,9 +1,16 @@
 $(document).ready(function(){
+    
 
     openDB();// initDB -> loadJSON -> setData || chargeMap
 
+    
+
+    $("#choixgraph").change(function(event){
+        chargeChart();
+    });
+
     $("#checkboxdiv").change(function(){
-        
+        chargeChart();
     });
 
     $("#geolocalisation").click(function(){

@@ -373,6 +373,7 @@ function updateNbTerminal(){
     transaction.oncomplete = function(event){
 
         localStorage.setItem("DistrictTab", JSON.stringify(result));
+        chargeChart();
         
     };
 
