@@ -13,6 +13,7 @@ function openDB(){//Ouverture Base
         console.log("Database success");
         chargeMap();
         calculateQuarter();
+
     };
     
     request.onerror = function(event){
@@ -339,6 +340,8 @@ function calculateQuarter(){
 
 function updateNbTerminal(){
 
+    console.log("Update Terminal Tab LocalStorage");
+
     var tab = JSON.parse(localStorage.getItem("DistrictTab"));
     var result = [];
 
@@ -370,6 +373,7 @@ function updateNbTerminal(){
     transaction.oncomplete = function(event){
 
         localStorage.setItem("DistrictTab", JSON.stringify(result));
+        
     };
 
 }

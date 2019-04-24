@@ -47,7 +47,7 @@
 
 
 
-					<button  type="button" id="graph" class="btn btn-outline-success "> <a id="transition" href="#graphique" style="text-decoration: none; color: green;"> Graphiques </a> <i class="fa fa-chevron-down"></i> </button>
+					<button  type="button" id="graph" class="btn btn-outline-success "> <a id="transition" onclick="updateNbTerminal()" href="#graphique" style="text-decoration: none; color: green;"> Graphiques </a> <i class="fa fa-chevron-down"></i> </button>
 				</div>
 			</div>
 		</div>
@@ -97,45 +97,22 @@
 				</div>
 			</div>
 		</div>
-		<div class="section_graph">
+		<div class="section_graph" >
 
 			<div id="checkboxdiv"  class ="col-md-8" style="max-width:14.499999995%; min-height: 91vh;">
-			<div id="checkbox" class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="check" id="defaultCheck1">
-						<label id="checktext" class="form-check-label" for="defaultCheck1">
-						  Tout cocher
-						</label>
-				</div>
 				<div id="checkbox" class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="check" id="defaultCheck1">
-
-						<label id="checktext" class="form-check-label" for="defaultCheck2">
-						 Tout décocher
-						</label>
+					<input class="form-check-input" type="checkbox" id="amidonnier" value="Amidonniers">
+					<label id="checktext" class="form-check-label" for="amidonnier">
+						Amidonniers
+					</label>
 				</div>
-				<div id="checkbox" class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="check"  id="defaultCheck3">
-						<label id="checktext" class="form-check-label" for="defaultCheck3">
-						 Quartier 1
-						</label>
-				</div>
-				<div id="checkbox" class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="check"  id="defaultCheck4">
-						<label id="checktext" class="form-check-label" for="defaultCheck4">
-						 Quartier 2
-						</label>
-				</div>
-				<div id="checkbox" class="form-check">
-						<input class="form-check-input" type="checkbox" value="" id="check"  id="defaultCheck5">
-						<label id="checktext" class="form-check-label" for="defaultCheck5">
-						 Quartier 3
-						</label>
-				</div>
+				
 			</div>
+
 		<div id="Les_graphs" style="width:75%; min-height: 83vh;">
 
 		<canvas id="Charts"></canvas>
-		<script type="text/javascript" src="js/graphs.js"></script>
+		
 
 		</div>
 
@@ -148,11 +125,16 @@
 	<!-- Start Database script -->
 	<script type="text/javascript" src="js/indexedDB.js"></script>
 	<!-- Start Map Script -->
+	
+	<script type="text/javascript" src="js/graphs.js"></script>
+
 	<script type="text/javascript" src="js/map.js"></script>
 
+	<script type="text/javascript" src="js/uselyFunction.js"></script>
+	
 	<script type="text/javascript" src="js/main.js"></script>
 
-	<script type="text/javascript" src="js/uselyFunction.js"></script>
+	
 
 
 

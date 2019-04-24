@@ -67,3 +67,50 @@ function getCoordWithAddress(adresse){
 
 
 }
+
+function getGraphForm(){
+
+    var type = document.getElementById("inputState").value;
+    var newType;
+
+    switch(type){
+        case "Lignes":
+            newType = "line";
+            break;
+        case "Colonnes":
+            newType = "bar";
+            break;
+        case "Nuage de points":
+            newType = "bubble";
+            break;
+        case "Radar":
+            newType = "radar";
+            break;
+        case "Polaire":
+            newType = "polarArea";
+            break;
+        case "Donuts":
+            newType = "doughnut";
+            break;
+            
+    }
+    return newType;
+}
+
+function getDistrictChecked(){//Verifie les quartier qui ont été coché
+    
+    var res = [];
+
+    var tab = JSON.parse(localStorage.getItem("DistrictTab"));
+    var dis = [];
+    var nbBorne =[];
+    tab.forEach(function(item){
+        dis.push(item.name);
+        nbBorne.push(item.nbborne);
+    })
+    res.push(dis);
+    res.push(nbBorne);
+
+    return res;
+}
+

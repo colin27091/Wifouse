@@ -2,6 +2,9 @@ $(document).ready(function(){
 
     openDB();// initDB -> loadJSON -> setData || chargeMap
 
+    $("#checkboxdiv").change(function(){
+        
+    });
 
     $("#geolocalisation").click(function(){
         navigator.geolocation.getCurrentPosition(function(position){
