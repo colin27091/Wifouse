@@ -9,54 +9,53 @@ var map = new mapboxgl.Map({
     zoom: 11
 });
 
+// Navigation controls (Zoom and scroll bar on top right)
 map.addControl(new mapboxgl.NavigationControl(),'top-right');
 
-// Get mouse coordinates on click
-map.on('click', function (e) {
-    console.log(JSON.stringify(e.lngLat))
-});
+// View the map on fullscreen
+map.addControl(new mapboxgl.FullscreenControl(),'bottom-right');
 
 map.on('contextmenu', function(e) {
     var contextMenu = document.createElement("nav");
     contextMenu.id = "menu";
     contextMenu.className = "show";
     contextMenu.innerHTML = "<div id='context'>"
-                            +   "<div onclick=openForm("+ JSON.stringify(e.lngLat) +")>Ajouter une Borne</div>"
-                            +   "<div onclick=get5near("+ JSON.stringify([e.lngLat.lat,e.lngLat.lng]) +")>Recherche sur le clic</div>"
-                            +"</div>";
+    +   "<div onclick=openForm("+ JSON.stringify(e.lngLat) +")>Ajouter une Borne</div>"
+    +   "<div onclick=get5near("+ JSON.stringify([e.lngLat.lat,e.lngLat.lng]) +")>Recherche sur le clic</div>"
+    +"</div>";
     contextMenu.style.top =  event.pageY-document.getElementById("navigation").clientHeight + 'px';
     contextMenu.style.left = event.pageX-document.getElementById("results").clientWidth + 'px';
     
     $("#map").append(contextMenu);
-
-
+    
+    
     $("#menu").mouseleave(function(event) {
         if(document.getElementById("menu") != null){
             document.getElementById("menu").remove();
         }
-            
+        
     });
-
+    
     $(document).bind('click', function(event) {
         if(document.getElementById("menu") != null){
             document.getElementById("menu").remove();
         }
-            
+        
     });
     
 });
 
 function centerOnId(id){
-
+    
     var transaction = db.transaction("bornes");
     var store = transaction.objectStore("bornes");
     var request = store.get(id);
     
     request.onsuccess = function(event){
         
-
+        
         var coord = request.result.geometry.coordinates;
-
+        
         map.flyTo({center: coord, zoom:15});
         popup(request.result);
     };
@@ -64,21 +63,21 @@ function centerOnId(id){
     request.onerror = function(event){
         console.error("Request error");
     };
-
-
+    
+    
 }
 
 function popup(obj){
-
+    
     var pop = new mapboxgl.Popup({
         closeButton: false,
         closeOnClick: true,
         anchor: 'bottom',
         
     })
-
+    
     console.log(pop);
-
+    
     var coord = obj.geometry.coordinates;
     
     var div = document.createElement('div');
@@ -86,27 +85,27 @@ function popup(obj){
     var but = document.createElement('button');
     but.setAttribute("onclick", "removeTerminal("+obj.ID +")");
     but.innerText = "REMOVE";
-
-
-
+    
+    
+    
     pop.setLngLat(coord);
     pop.setHTML(div.outerHTML+but.outerHTML);
-
+    
     pop.addTo(map);
 }
 
 function centerOnCoord(coord){
-
+    
     var el = document.createElement('div');
     
     el.setAttribute("id", "userLocation");
     el.className = 'marker';
     new mapboxgl.Marker(el) 
-            .setLngLat(coord)
-            .addTo(map);
-
+    .setLngLat(coord)
+    .addTo(map);
+    
     map.flyTo({center: coord, zoom:17});
-
+    
 }
 
 function openForm(coord){
@@ -114,31 +113,51 @@ function openForm(coord){
 }
 
 function searchWithCoord(coord){
-
+    
     getByIdTab([coord.lat,coord.lng]);
-
+    
 }
 
 function addMarker(obj){
-
+    
     var el = document.createElement('div');
     el.setAttribute("id", obj.ID);
     el.className = 'marker';
-
+    
     el.onclick = function(event){
-
+        
         var id = parseInt(event.target.id);
         console.log(id);
         centerOnId(id);
     };
-
+    
     new mapboxgl.Marker(el) 
-        .setLngLat(obj.geometry.coordinates)
-        .addTo(map);
+    .setLngLat(obj.geometry.coordinates)
+    .addTo(map);
+    
+    
+}
+// Method to add a draggable marker
 
+var markerdrag = new mapboxgl.Marker({
+    draggable: true
+})
+.setLngLat([1.4437, 43.6043]) //Toulouse Center
 
+function onDragEnd() {
+    var lngLat = markerdrag.getLngLat();
+    console.log(JSON.stringify(lngLat));
 }
 
+markerdrag.on('dragend', onDragEnd);
+
+var marqueur = document.getElementById("ajout-borne");
+
+function AjoutBorne() {
+    markerdrag.addTo(map)
+    var coordon = markerdrag.getLngLat();
+    map.flyTo({center: coordon, zoom:13});
+}    
 
 // ------------LAISSEZ CA EN COMMENTAIRE ON EN A PAS BESOIN POUR LE MOMENT---------
 // ---------CA CORRESPOND AU CHANGEMENT DE STYLE DE LA MAP DONC PAS PRIORITAIRE POUR LE MOMENT------
@@ -154,7 +173,7 @@ function addMarker(obj){
 // }
 
 
-// Navigation controls (Zoom and scroll bar on top right)
+
 
 
 
