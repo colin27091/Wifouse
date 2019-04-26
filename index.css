@@ -1,4 +1,3 @@
-
 form{
 	padding-top: 15px;
 	padding-left : 25px;
@@ -75,7 +74,7 @@ img{
 /* Testing map width and height, quentin will improve it */
 
 .marker {
-	background-image: url('logo/wifi-red.png');
+	background-image: url('logo/marqueur.png');
 	background-size: cover;
 	width: 30px;
 	height: 30px;
@@ -156,4 +155,20 @@ html { overflow-y: hidden;
 }
 .section_graph{
 	height: 91vh;
+}
+
+#checkboxdiv{
+	width: 150px;
+	border-width: 3px;
+  border-style: solid;
+  border-image: 
+    linear-gradient(
+      rgb(25, 199, 83), 
+      rgba(0, 0, 0, 0)
+    ) 10 ;
+}
+
+#amidonnier{
+	margin-left: 3px;
+	margin-top: 6px;
 }
