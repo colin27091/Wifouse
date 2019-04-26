@@ -10,6 +10,7 @@ img{
 	padding-bottom: 15px;
 }
 
+
 #geolocalisation{
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -171,4 +172,12 @@ html { overflow-y: hidden;
 #amidonnier{
 	margin-left: 3px;
 	margin-top: 6px;
+}
+
+#ajout:hover{
+	background-color: #f2f2f2;
+}
+
+#clic:hover{
+	background-color: #f2f2f2;
 }
