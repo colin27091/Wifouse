@@ -62,8 +62,16 @@ function distCalcul(tab, coord){
 function getCoordWithAddress(adresse){
 
     $.getJSON('https://api-adresse.data.gouv.fr/search/?q='+adresse, function(data){
-        return data.features[0].geometry.coordinates;
+
+        var coord = data.features[0].geometry.coordinates;
+        map.flyTo({center: coord, zoom:14});
+        document.getElementById('research').value = data.features[0].properties.label;
+
+    get5near([coord[1], coord[0]]);
+
+
     });
+
 
 
 }
@@ -76,14 +84,16 @@ function listQuartier(){
     var tab = JSON.parse(localStorage.getItem("DistrictTab"));
 
     tab.forEach(function(item){
-        console.log(item);
+
+        var div = document.createElement('div');
+
         var input = document.createElement("input");
         input.className = "form-check-input";
         input.type = "checkbox";
         input.id = item.name;
         input.value = item.name;
 
-        checkbox.append(input);
+        div.append(input);
 
         var label = document.createElement("label");
         label.id = "checktext";
@@ -91,7 +101,9 @@ function listQuartier(){
         label.setAttribute("for", item.name);
         label.innerText = item.name;
 
-        checkbox.append(label);
+        div.append(label);
+
+        checkbox.append(div);
 
     });
 }

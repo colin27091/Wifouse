@@ -20,9 +20,6 @@ $(document).ready(function(){
         });
     });
 
-    $("reponse").click(function(){
-    });
-
     $('a').on('click', function(evt){
         evt.preventDefault(); 
         var target = $(this).attr('href');
@@ -31,19 +28,18 @@ $(document).ready(function(){
         .animate({scrollTop: $(target).offset().top}, 500 );
     });
 
-    $("#reponse").click(function() {
-        console.log("OKK");
-        $("#results").toggle('fast',function() {
-            $("#map").css('width', '107.1%');
-            $("#carte").toggleClass('col-md-9');
+    // $("#reponse").click(function() {
+    //     $("#results").toggle('fast',function() {
+    //         $("#map").css('width', '107.1%');
+    //         $("#carte").toggleClass('col-md-9');
+    //     });
+    // });
 
-        });
-    });
-
-    $("#research").submit(function(event){
-        event.preventDefault();
+    $("#research").keydown(function(event){
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            getCoordWithAddress(document.getElementById("research").value);
+        }
     });
 
 });  
-        
-

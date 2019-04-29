@@ -32,6 +32,7 @@ img{
 }
 
 #results{
+
 	margin-top: 7px;
 	display: none;
 	border: 3px solid #2BB906;
@@ -40,7 +41,7 @@ img{
 
 #choixgraph{
 	margin-top: 15px ;
-	margin-bot: 15px ;
+	margin-bottom: 15px ;
 	margin-left: auto ;
 
 

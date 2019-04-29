@@ -133,7 +133,7 @@ function addMarker(obj){
 
     new mapboxgl.Marker(el)
     .setLngLat(obj.geometry.coordinates)
-     .addTo(map);
+    .addTo(map);
 
 
 }
