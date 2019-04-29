@@ -159,6 +159,14 @@ function addTerminal(obj){
 }
 // Method to add a draggable marker
 
+
+function addBorne(coord){
+    var markerdrag = new mapboxgl.Markel({
+        draggable: true
+    })
+    .setLngLat();
+}
+
 var markerdrag = new mapboxgl.Marker({
     draggable: true
 })
@@ -169,7 +177,9 @@ function onDragEnd() {
     console.log(JSON.stringify(lngLat));
 }
 
-markerdrag.on('dragend', onDragEnd);
+markerdrag.on('dragend', function(event){
+    console.log(event);
+});
 
 var marqueur = document.getElementById("ajout-borne");
 
