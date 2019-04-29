@@ -137,6 +137,26 @@ function addMarker(obj){
 
 
 }
+
+
+function addTerminal(obj){
+
+    var el = document.createElement('div');
+    el.setAttribute("id", "draggable");
+    el.className = 'draggable';
+
+    el.onclick = function(event){
+
+        console.log(event.target);
+    }
+
+    new mapboxgl.Marker(el)
+    .setDraggable(true)
+    .setLngLat([obj.lng, obj.lat])
+    .addTo(map);
+
+
+}
 // Method to add a draggable marker
 
 var markerdrag = new mapboxgl.Marker({
@@ -152,6 +172,8 @@ function onDragEnd() {
 markerdrag.on('dragend', onDragEnd);
 
 var marqueur = document.getElementById("ajout-borne");
+
+
 
 function AjoutBorne() {
     markerdrag.addTo(map)
