@@ -68,6 +68,35 @@ function getCoordWithAddress(adresse){
 
 }
 
+function listQuartier(){
+
+    var checkbox = document.getElementById("checkbox")
+    checkbox.innerHTML = "";
+
+    var tab = JSON.parse(localStorage.getItem("DistrictTab"));
+
+    tab.forEach(function(item){
+        console.log(item);
+        var input = document.createElement("input");
+        input.className = "form-check-input";
+        input.type = "checkbox";
+        input.id = item.name;
+        input.value = item.name;
+
+        checkbox.append(input);
+
+        var label = document.createElement("label");
+        label.id = "checktext";
+        label.className = "form-check-label";
+        label.setAttribute("for", item.name);
+        label.innerText = item.name;
+
+        checkbox.append(label);
+
+    });
+}
+
+
 function getGraphForm(){
 
     var type = document.getElementById("inputState").value;
@@ -97,7 +126,23 @@ function getGraphForm(){
     return newType;
 }
 
-function getDistrictChecked(){//Verifie les quartier qui ont été coché
+function getQuartierChecked(){
+    var res = [];
+
+    var el = document.getElementById("checkbox");
+
+    var tab = el.getElementsByTagName('INPUT');
+
+    for(var i = 0; i < tab.length; ++i){
+        var quartier = tab[i];
+        if(quartier.checked) {
+            res.push(quartier.value.toUpperCase());
+        }
+    }
+    return res;
+}
+
+function disctrictToChart(quartier_checked){//Verifie les quartier qui ont été coché
     
     var res = [];
 
@@ -105,8 +150,11 @@ function getDistrictChecked(){//Verifie les quartier qui ont été coché
     var dis = [];
     var nbBorne =[];
     tab.forEach(function(item){
-        dis.push(item.name);
-        nbBorne.push(item.nbborne);
+        if(quartier_checked.includes(item.name)){
+            dis.push(item.name);
+            nbBorne.push(item.nbborne);  
+        }
+        
     })
     res.push(dis);
     res.push(nbBorne);
@@ -146,7 +194,10 @@ function chargeChart() {
 
     temp.type = getGraphForm();
 
-    var label_data = getDistrictChecked();
+    var quartier_checked = getQuartierChecked();
+
+    var label_data = disctrictToChart(quartier_checked);
+
     temp.data.labels = label_data[0]//Label
     temp.data.datasets[0].data = label_data[1]//Data
     chart = new Chart(ctx, temp);

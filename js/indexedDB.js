@@ -340,8 +340,6 @@ function calculateQuarter(){
 
 function updateNbTerminal(){
 
-    console.log("Update Terminal Tab LocalStorage");
-
     var tab = JSON.parse(localStorage.getItem("DistrictTab"));
     var result = [];
 
@@ -372,7 +370,8 @@ function updateNbTerminal(){
 
     transaction.oncomplete = function(event){
 
-        localStorage.setItem("DistrictTab", JSON.stringify(result)); 
+        localStorage.setItem("DistrictTab", JSON.stringify(result));
+        listQuartier();
         chargeChart();
         
     };
