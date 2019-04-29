@@ -20,7 +20,7 @@ map.on('contextmenu', function(e) {
     contextMenu.id = "menu";
     contextMenu.className = "show";
     contextMenu.innerHTML = "<div id='context' style='height:50px; box-shadow:2px 5px 2em #aaa; width: 150px;'>"
-    +   "<div id='ajout' style='margin-left:2px; font-size:14px; font-style:italic; font-family:Hind,sans-serif; padding-top:2px; margin: 2px 2px;' onclick=openForm("+ JSON.stringify(e.lngLat) +")>Ajouter une Borne</div>"
+    +   "<div id='ajout' style='margin-left:2px; font-size:14px; font-style:italic; font-family:Hind,sans-serif; padding-top:2px; margin: 2px 2px;' onclick=addBorne("+ JSON.stringify(e.lngLat) +")>Ajouter une Borne</div>"
     +   "<div id='clic' style=' margin-left:2px; font-size:14px;font-style:italic; font-family:Hind, sans-serif;  padding-bottom:3px;' onclick=get5near("+ JSON.stringify([e.lngLat.lat,e.lngLat.lng]) +")>Recherche sur le clic</div>"
     +"</div>";
     contextMenu.style.top =  event.pageY-document.getElementById("navigation").clientHeight + 'px';
@@ -150,6 +150,11 @@ function addTerminal(obj){
         console.log(event.target);
     }
 
+    map.on('click', 'draggable', function(event){
+        console.log("OKK", event.target);
+        
+    })
+
     new mapboxgl.Marker(el)
     .setDraggable(true)
     .setLngLat([obj.lng, obj.lat])
@@ -161,35 +166,43 @@ function addTerminal(obj){
 
 
 function addBorne(coord){
-    var markerdrag = new mapboxgl.Markel({
+    var markerdrag = new mapboxgl.Marker({
         draggable: true
     })
-    .setLngLat();
+    .setLngLat([coord.lng, coord.lat])
+    .addTo(map)
+
+    map.on('click', '', function(event){
+        if(markerdrag){
+            console.log("OKK", event.target);
+        }
+    })
+
+    marker
 }
 
-var markerdrag = new mapboxgl.Marker({
-    draggable: true
-})
-.setLngLat([1.4437, 43.6043]) //Toulouse Center
+function openForm(){
 
-function onDragEnd() {
-    var lngLat = markerdrag.getLngLat();
-    console.log(JSON.stringify(lngLat));
 }
 
-markerdrag.on('dragend', function(event){
-    console.log(event);
-});
+// function onDragEnd() {
+//     var lngLat = markerdrag.getLngLat();
+//     console.log(JSON.stringify(lngLat));
+// }
 
-var marqueur = document.getElementById("ajout-borne");
+// markerdrag.on('dragend', function(event){
+//     console.log(event);
+// });
+
+// var marqueur = document.getElementById("ajout-borne");
 
 
 
-function AjoutBorne() {
-    markerdrag.addTo(map)
-    var coordon = markerdrag.getLngLat();
-    map.flyTo({center: coordon, zoom:13});
-}
+// function AjoutBorne() {
+//     markerdrag.addTo(map)
+//     var coordon = markerdrag.getLngLat();
+//     map.flyTo({center: coordon, zoom:13});
+// }
 
 // ------------LAISSEZ CA EN COMMENTAIRE ON EN A PAS BESOIN POUR LE MOMENT---------
 // ---------CA CORRESPOND AU CHANGEMENT DE STYLE DE LA MAP DONC PAS PRIORITAIRE POUR LE MOMENT------
