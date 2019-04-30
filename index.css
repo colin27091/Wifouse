@@ -32,7 +32,10 @@ img{
 }
 
 #results{
-
+	background-color: white;
+	height: 90vh;
+	position : relative;
+	z-index: 3;
 	margin-top: 7px;
 	display: none;
 	border: 3px solid #2BB906;
