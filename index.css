@@ -79,7 +79,7 @@ img{
 /* Testing map width and height, quentin will improve it */
 
 .marker {
-	background-image: url('logo/marqueur.png');
+	background-image: url('logo/wifi-red.png');
 	background-size: cover;
 	width: 30px;
 	height: 30px;
