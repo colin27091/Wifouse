@@ -66,6 +66,7 @@ img{
 
 }
 
+
 #check{
 	margin-top: 6px;
 	margin-left: 1px;
@@ -73,7 +74,8 @@ img{
 
 
 #checkbox{
-	margin-top: 11px;
+	margin-top: 13px;
+	margin-left : 20px;
 
 }
 
@@ -160,6 +162,12 @@ html { overflow-y: hidden;
 
 /* .show { a faire } */
 
+#checktext{
+	margin-bottom: 3px;
+	font-size:14px; 
+	font-style:italic; 
+	font-family:Hind,sans-serif;
+}
 
 .context-menu {
   position: absolute;
@@ -174,22 +182,19 @@ html { overflow-y: hidden;
 }
 
 #checkboxdiv{
+	height:70vh;
 	overflow:scroll;
 	overflow-x: hidden;
-	width: 150px;
+	width: 200px;
 	border-width: 3px;
   border-style: solid;
   border-image: 
     linear-gradient(
       rgb(25, 199, 83), 
       rgba(0, 0, 0, 0)
-    ) 10 ;
+    ) 100 ;
 }
 
-#amidonnier{
-	margin-left: 3px;
-	margin-top: 6px;
-}
 
 #ajout:hover{
 	background-color: #f2f2f2;
@@ -198,3 +203,4 @@ html { overflow-y: hidden;
 #clic:hover{
 	background-color: #f2f2f2;
 }
+
