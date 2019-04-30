@@ -39,6 +39,8 @@ img{
 	margin-top: 7px;
 	display: none;
 	border: 3px solid #2BB906;
+	overflow:scroll;
+	overflow-x: hidden
 }
 
 
@@ -172,6 +174,8 @@ html { overflow-y: hidden;
 }
 
 #checkboxdiv{
+	overflow:scroll;
+	overflow-x: hidden;
 	width: 150px;
 	border-width: 3px;
   border-style: solid;
