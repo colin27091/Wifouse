@@ -140,28 +140,28 @@ function addTerminal(coord){
     el.setAttribute("id", "drag");
     el.className = 'draggable';
 
-    el.onclick = function(event){
-
-        openForm([drag.getLngLat().lng, drag.getLngLat().lat]);
-        drag.setDraggable(false);
-    }
-
     var drag  = new mapboxgl.Marker(el)
     .setDraggable(true)
     .setLngLat(coord)
     .addTo(map);
 
+    el.onclick = function(event){
 
+        var drag_lnglat = drag.getLngLat();
+        openForm([drag_lnglat.lng, drag_lnglat.lat]);
+        drag.setDraggable(false);
+    }
 }
 // Method to add a draggable marker
 
 function openForm(coord){
+
+    console.log("coord", coord);
     
     var pop = new mapboxgl.Popup({
         closeButton: false,
         closeOnClick: true,
         anchor: 'bottom',
-
     })
 
     var div = document.createElement('div');
@@ -169,8 +169,6 @@ function openForm(coord){
     var but = document.createElement('button');
 
     but.innerText = "REMOVE";
-
-
 
     pop.setLngLat(coord);
     pop.setHTML(div.outerHTML+but.outerHTML);
