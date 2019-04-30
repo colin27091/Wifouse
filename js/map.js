@@ -20,7 +20,7 @@ map.on('contextmenu', function(e) {
     contextMenu.id = "menu";
     contextMenu.className = "show";
     contextMenu.innerHTML = "<div id='context' style='height:50px; box-shadow:2px 5px 2em #aaa; width: 150px;'>"
-    +   "<div id='ajout' style='margin-left:2px; font-size:14px; font-style:italic; font-family:Hind,sans-serif; padding-top:2px; margin: 2px 2px;' onclick=addBorne("+ JSON.stringify(e.lngLat) +")>Ajouter une Borne</div>"
+    +   "<div id='ajout' style='margin-left:2px; font-size:14px; font-style:italic; font-family:Hind,sans-serif; padding-top:2px; margin: 2px 2px;' onclick=addTerminal("+ JSON.stringify([e.lngLat.lng, e.lngLat.lat]) +")>Ajouter une Borne</div>"
     +   "<div id='clic' style=' margin-left:2px; font-size:14px;font-style:italic; font-family:Hind, sans-serif;  padding-bottom:3px;' onclick=get5near("+ JSON.stringify([e.lngLat.lat,e.lngLat.lng]) +")>Recherche sur le clic</div>"
     +"</div>";
     contextMenu.style.top =  event.pageY-document.getElementById("navigation").clientHeight + 'px';
@@ -76,8 +76,6 @@ function popup(obj){
 
     })
 
-    console.log(pop);
-
     var coord = obj.geometry.coordinates;
 
     var div = document.createElement('div');
@@ -108,10 +106,6 @@ function centerOnCoord(coord){
 
 }
 
-function openForm(coord){
-    console.log(coord);
-}
-
 function searchWithCoord(coord){
 
     getByIdTab([coord.lat,coord.lng]);
@@ -126,62 +120,62 @@ function addMarker(obj){
 
     el.onclick = function(event){
 
+        console.log("ok", mark.getLngLat());
+
         var id = parseInt(event.target.id);
         console.log(id);
         centerOnId(id);
     };
 
-    new mapboxgl.Marker(el)
+    var mark = new mapboxgl.Marker(el)
     .setLngLat(obj.geometry.coordinates)
     .addTo(map);
-
 
 }
 
 
-function addTerminal(obj){
+function addTerminal(coord){
 
     var el = document.createElement('div');
-    el.setAttribute("id", "draggable");
+    el.setAttribute("id", "drag");
     el.className = 'draggable';
 
     el.onclick = function(event){
 
-        console.log(event.target);
+        openForm([drag.getLngLat().lng, drag.getLngLat().lat]);
+        drag.setDraggable(false);
     }
 
-    map.on('click', 'draggable', function(event){
-        console.log("OKK", event.target);
-        
-    })
-
-    new mapboxgl.Marker(el)
+    var drag  = new mapboxgl.Marker(el)
     .setDraggable(true)
-    .setLngLat([obj.lng, obj.lat])
+    .setLngLat(coord)
     .addTo(map);
 
 
 }
 // Method to add a draggable marker
 
+function openForm(coord){
+    
+    var pop = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: true,
+        anchor: 'bottom',
 
-function addBorne(coord){
-    var markerdrag = new mapboxgl.Marker({
-        draggable: true
-    })
-    .setLngLat([coord.lng, coord.lat])
-    .addTo(map)
-
-    map.on('click', '', function(event){
-        if(markerdrag){
-            console.log("OKK", event.target);
-        }
     })
 
-    marker
-}
+    var div = document.createElement('div');
+    div.innerText = "OK Test";
+    var but = document.createElement('button');
 
-function openForm(){
+    but.innerText = "REMOVE";
+
+
+
+    pop.setLngLat(coord);
+    pop.setHTML(div.outerHTML+but.outerHTML);
+
+    pop.addTo(map);
 
 }
 

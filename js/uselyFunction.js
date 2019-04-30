@@ -67,7 +67,7 @@ function getCoordWithAddress(adresse){
         map.flyTo({center: coord, zoom:14});
         document.getElementById('research').value = data.features[0].properties.label;
 
-    get5near([coord[1], coord[0]]);
+        get5near([coord[1], coord[0]]);
 
 
     });
