@@ -79,15 +79,49 @@ function popup(obj){
     var coord = obj.geometry.coordinates;
 
     var div = document.createElement('div');
-    div.innerText = obj.fields.site + " " + obj.ID;
-    var but = document.createElement('button');
-    but.setAttribute("onclick", "removeTerminal("+obj.ID +")");
-    but.innerText = "REMOVE";
+    div.setAttribute("id", "popupborne");
+    var site = document.createElement('div');
+    site.setAttribute('id', 'site');
+    var annee = document.createElement('div');
+    annee.setAttribute('id', 'annee');
+    var dispo = document.createElement('div');
+    dispo.setAttribute('id', 'dispo');
+    var nom = document.createElement('div');
+    nom.setAttribute('id', 'nom');
+    var zone = document.createElement('div');
+    zone.setAttribute('id', 'zone');
 
+
+    site.innerText = obj.fields.site;
+    annee.innerText = "Installer en " +obj.fields.annee_installation;
+    dispo.innerText = "Disponible "+obj.fields.disponibilite;
+    nom.innerText = "Nom de connexion:  "+obj.fields.nom_connexion;
+    zone.innerText = "Zone d'émission: "+ obj.fields.zone_emission;
+
+    
+    var but = document.createElement('button');
+
+    but.setAttribute("class", "btn btn-outline-danger btn-sm");
+    but.setAttribute("onclick", "removeTerminal("+obj.ID +"),");
+
+    but.innerText = "Supprimer";
+
+
+    div.append(site);
+    div.append(annee);
+    div.append(dispo);
+    div.append(nom);
+    div.append(zone);
+
+
+
+
+    div.append(but);
+    
 
 
     pop.setLngLat(coord);
-    pop.setHTML(div.outerHTML+but.outerHTML);
+    pop.setHTML(div.outerHTML);
 
     pop.addTo(map);
 }
@@ -165,6 +199,7 @@ function openForm(coord){
     })
 
     var div = document.createElement('div');
+    div.setAttribute('id','')
     div.innerText = "OK Test";
     var but = document.createElement('button');
 

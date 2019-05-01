@@ -115,9 +115,12 @@ img{
 }
 
 .mapboxgl-popup-content {
+	background: red;
+	padding : 0px;
 	text-align: center;
 	font-family: 'Open Sans', sans-serif;
 }
+
 
 html { overflow-y: hidden;
 }
@@ -203,4 +206,18 @@ html { overflow-y: hidden;
 #clic:hover{
 	background-color: #f2f2f2;
 }
+
+
+.mapboxgl-popup-close-button {
+  display: none;
+}
+
+.mapboxgl-popup-content {
+  font: 14px 'Hind', 'Helvetica Neue', Sans-serif;
+  padding: 0;
+  width: 300px;
+}
+
+
+
 
