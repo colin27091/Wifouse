@@ -149,16 +149,49 @@ function addQuartier(obj){
             'type' : 'geojson',
             'data' : {
                 'type': 'Feature',
+                "properties" : {
+                    'name' : obj.fields.libelle_des_grands_quartiers
+                },
+                
                 'geometry' : obj.fields.geo_shape
             }
                 
         },
-        'layout' : {},
+        'layout' : {
+        },
         'paint' : {
-            'fill-color': '#088'
+            'fill-color': '#AFAFAF',
+            'fill-opacity': 0.4,
+            'fill-outline-color' : '#606060'
         }
     });
+
+    map.addLayer({
+        "id": obj.fields.libelle_des_grands_quartiers+'_name',
+        "type": "symbol",
+        "source":{
+            'type' : 'geojson',
+            'data' : {
+                'type': 'Feature',
+                "properties" : {
+                    'name' : obj.fields.libelle_des_grands_quartiers
+                },
+            
+                'geometry' : obj.geometry
+            } 
+        },
+        "layout": {
+            "text-font": ["Open Sans Regular"],
+            "text-field": obj.fields.libelle_des_grands_quartiers,
+            "text-size": 12
+        },
+        "paint": {}
+    });
 }
+        
+
+
+
 
 function addMarker(obj){
 
@@ -196,6 +229,7 @@ function addTerminal(coord){
     el.onclick = function(event){
 
         var drag_lnglat = drag.getLngLat();
+        map.flyTo({center: drag_lnglat, zoom:15});
         drag.setDraggable(false);
         drag.setPopup(openForm([drag_lnglat.lng, drag_lnglat.lat]));
     }

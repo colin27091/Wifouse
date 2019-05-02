@@ -44,7 +44,7 @@ function distCalcul(tab, coord){
         top5.push(dist(coord, item));
     })
 
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 10; i++) {
         var min  = null;
         var ind = null;
         top5.forEach(function(item, index){
@@ -53,8 +53,9 @@ function distCalcul(tab, coord){
                 ind = index;
             }
         })
+        result.push([ind + 1, top5[ind]]);
         top5[ind] = null;
-        result.push(ind + 1);
+        
     }
     return result;
 }
@@ -220,3 +221,45 @@ function chargeChart() {
     temp.data.datasets[0].data = label_data[1]//Data
     chart = new Chart(ctx, temp);
 };
+
+function showInResult(tab){///afaire 
+
+    var checkbox = document.getElementById("checkbox")
+    checkbox.innerHTML = "";
+
+    var tab = JSON.parse(localStorage.getItem("DistrictTab"));
+
+    tab.forEach(function(item){
+
+        var div = document.createElement('div');
+
+        var input = document.createElement("input");
+        input.className = "form-check-input";
+        input.type = "checkbox";
+        input.id = item.name;
+        input.value = item.name;
+        input.checked = true;
+
+        div.append(input);
+
+        var label = document.createElement("label");
+        label.id = "checktext";
+        label.className = "form-check-label";
+        label.setAttribute("for", item.name);
+        label.innerText = item.name;
+
+        div.append(label);
+
+        checkbox.append(div);
+
+    });
+
+}
+
+function removeResults(){
+
+}
+
+function openResults(tab){
+
+}

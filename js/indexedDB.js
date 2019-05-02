@@ -11,9 +11,7 @@ function openDB(){//Ouverture Base
     request.onsuccess = function(event){
         db = event.target.result;
         console.log("Database success");
-        chargeQuartier();
-        chargeMap();
-        chargeQuartier();
+        onloadMap();
         calculateQuarter();
 
     };
@@ -241,13 +239,22 @@ function chargeQuartier(){
     var request = store.getAll();
 
     request.onsuccess = function(event){
+
         request.result.forEach(function(quartier){
+            console.log(quartier);
             addQuartier(quartier);
         })
     }
     request.onerror = function(event){
         console.error("Request error");
     };
+}
+
+function onloadMap(){
+    map.on('load', function(){
+        chargeMap();
+        chargeQuartier();
+    });
 }
 
 function chargeMap(){
@@ -281,11 +288,11 @@ function getByIdTab(tab){//Array of ID to Array of Terminal(Object)
 
     tab.forEach(function(item){
 
-        var request = store.get(item);
+        var request = store.get(item[0]);
 
         request.onsuccess = function(event){
 
-            result.push(request.result);
+            result.push([request.result, item[1]]);
 
         };
     })
@@ -293,11 +300,15 @@ function getByIdTab(tab){//Array of ID to Array of Terminal(Object)
     transaction.oncomplete = function(event){
 
         console.log(result);
+        showInResult(result);
 
     };
 
 
 }
+
+
+
 
 function get5near(coord){//Coord([lat, lng]) -> Array of Terminal(Object)
 
