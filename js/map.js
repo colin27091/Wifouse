@@ -93,7 +93,7 @@ function popup(obj){
 
 
     site.innerText = obj.fields.site;
-    annee.innerText = "Installer en " +obj.fields.annee_installation;
+    annee.innerText = "Installé en " +obj.fields.annee_installation;
     dispo.innerText = "Disponible "+obj.fields.disponibilite;
     nom.innerText = "Nom de connexion:  "+obj.fields.nom_connexion;
     zone.innerText = "Zone d'émission: "+ obj.fields.zone_emission;
@@ -104,21 +104,15 @@ function popup(obj){
     but.setAttribute("class", "btn btn-outline-danger btn-sm");
     but.setAttribute("onclick", "removeTerminal("+obj.ID +"),");
 
-    but.innerText = "Supprimer";
-
+    but.innerText = "Supprimer"
 
     div.append(site);
     div.append(annee);
     div.append(dispo);
     div.append(nom);
     div.append(zone);
-
-
-
-
     div.append(but);
     
-
 
     pop.setLngLat(coord);
     pop.setHTML(div.outerHTML);
@@ -202,13 +196,15 @@ function addTerminal(coord){
     el.onclick = function(event){
 
         var drag_lnglat = drag.getLngLat();
-        openForm([drag_lnglat.lng, drag_lnglat.lat]);
         drag.setDraggable(false);
+        drag.setPopup(openForm([drag_lnglat.lng, drag_lnglat.lat]));
     }
 }
 // Method to add a draggable marker
 
 function openForm(coord){
+
+    // console.log("coord", coord);
     
     var pop = new mapboxgl.Popup({
         closeButton: false,
@@ -217,15 +213,49 @@ function openForm(coord){
     })
 
     var div = document.createElement('div');
-    div.setAttribute('id','')
-    div.innerText = "OK Test";
+    div.setAttribute("id", "Nouvelleborne");
+    var site = document.createElement('div');
+    site.setAttribute('id', 'Nsite');
+    var annee = document.createElement('div');
+    annee.setAttribute('id', 'Nannee');
+    var dispo = document.createElement('div');
+    dispo.setAttribute('id', 'Ndispo');
+    var nom = document.createElement('div');
+    nom.setAttribute('id', 'Nnom');
+    var zone = document.createElement('div');
+    zone.setAttribute('id', 'Nzone');
+
+
+    site.innerText = "adresse"
+    annee.innerText = "Installé en " ;
+    dispo.innerText = "Disponible ";
+    nom.innerText = "Nom de connexion:  ";
+    zone.innerText = "Zone d'émission: ";
+
+    
+    var but = document.createElement('button');
+
+    but.setAttribute("class", "btn btn-outline-danger btn-sm");
+    but.setAttribute("onclick", "removeTerminal("+"),");
+
+    but.innerText = "Supprimer"
+
+    div.append(site);
+    div.append(annee);
+    div.append(dispo);
+    div.append(nom);
+    div.append(zone);
+    div.append(but);
+    
 
     pop.setLngLat(coord);
     pop.setHTML(div.outerHTML);
 
-    pop.addTo(map);
-
+    pop.setLngLat(coord);
+    pop.setHTML(div.outerHTML);
+    return pop;
 }
+
 
 // function onDragEnd() {
 //     var lngLat = markerdrag.getLngLat();
