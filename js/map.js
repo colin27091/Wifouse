@@ -248,38 +248,76 @@ function openForm(coord){
 
     var div = document.createElement('div');
     div.setAttribute("id", "Nouvelleborne");
+
     var site = document.createElement('div');
     site.setAttribute('id', 'Nsite');
+    var lsite = document.createElement('div');
+    site.setAttribute('id', 'Lsite');
+
     var annee = document.createElement('div');
     annee.setAttribute('id', 'Nannee');
+    var lannee = document.createElement('div');
+    annee.setAttribute('id', 'Lannee');
+
     var dispo = document.createElement('div');
     dispo.setAttribute('id', 'Ndispo');
+    var ldispo = document.createElement('div');
+    dispo.setAttribute('id', 'Ldispo');
+
     var nom = document.createElement('div');
     nom.setAttribute('id', 'Nnom');
+    var lnom = document.createElement('div');
+    nom.setAttribute('id', 'Lnom');
+
     var zone = document.createElement('div');
     zone.setAttribute('id', 'Nzone');
+    var lzone = document.createElement('div');
+    zone.setAttribute('id', 'Lzone');
 
 
-    site.innerText = "adresse"
-    annee.innerText = "Installé en " ;
-    dispo.innerText = "Disponible ";
-    nom.innerText = "Nom de connexion:  ";
-    zone.innerText = "Zone d'émission: ";
+    site.innerText = "Adresse :"
+    lsite.innerHTML = "<input>"+"</input>"
+
+
+    annee.innerText = "Installé en :" ;
+    lannee.innerHTML = "<input>"+"</input>"
+    
+    
+    dispo.innerText = "Disponibilité :";
+    ldispo.innerHTML = "<input>"+"</input>"
+    
+    
+    nom.innerText = "Nom de la connexion :  ";
+    lnom.innerHTML = "<input>"+"</input>"
+    
+    
+    zone.innerText = "Zone d'émission : ";
+    lzone.innerHTML = "<input>"+"</input>"
 
     
     var but = document.createElement('button');
+    var but1 = document.createElement('button');
+    var but2 = document.createElement('button');
 
     but.setAttribute("class", "btn btn-outline-danger btn-sm");
     but.setAttribute("onclick", "removeTerminal("+"),");
 
-    but.innerText = "Supprimer"
+    but1.setAttribute("class", "btn btn-outline-danger btn-sm");
+    but1.setAttribute("onclick", "removeTerminal("+"),");
 
-    div.append(site);
-    div.append(annee);
-    div.append(dispo);
-    div.append(nom);
-    div.append(zone);
-    div.append(but);
+    but2.setAttribute("class", "btn btn-outline-danger btn-sm");
+    but2.setAttribute("onclick", "removeTerminal("+"),");
+
+    but.innerText = "Sauvegarder"
+    but1.innerText = "Modifier"
+    but2.innerText = "Annuler"
+
+    div.append(site,lsite);
+    div.append(annee,lannee);
+    div.append(dispo,ldispo);
+    div.append(nom,lnom);
+    div.append(zone,lzone);
+    div.append(but,but1,but2);
     
 
     pop.setLngLat(coord);
