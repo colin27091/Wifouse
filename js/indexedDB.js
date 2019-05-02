@@ -11,7 +11,9 @@ function openDB(){//Ouverture Base
     request.onsuccess = function(event){
         db = event.target.result;
         console.log("Database success");
+        chargeQuartier();
         chargeMap();
+        chargeQuartier();
         calculateQuarter();
 
     };
@@ -62,7 +64,6 @@ function setData(data, store) {
     
     transaction.oncomplete = function(event){
         console.log("Add data success");
-        chargeMap();
         calculateQuarter();
     };
     
@@ -97,6 +98,7 @@ function addTerminal(terminal){
     
     request.onsuccess = function(event){
         chargeMap();
+        chargeQuartier();
         console.log("Terminal added");
     };
     
@@ -130,6 +132,7 @@ function removeTerminal(id){
 
     transaction.oncomplete = function(event){
         chargeMap();
+        chargeQuartier();
     }
     
     
@@ -230,6 +233,21 @@ function getCoordPoint(){//Change result value __ to fix
         console.error("Request error");
     };
     
+}
+
+function chargeQuartier(){
+    var transaction = db.transaction(storePop, 'readonly');
+    var store = transaction.objectStore(storePop);
+    var request = store.getAll();
+
+    request.onsuccess = function(event){
+        request.result.forEach(function(quartier){
+            addQuartier(quartier);
+        })
+    }
+    request.onerror = function(event){
+        console.error("Request error");
+    };
 }
 
 function chargeMap(){

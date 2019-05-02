@@ -20,7 +20,7 @@ $(document).ready(function(){
         });
     });
     
-    $('a').on('click', function(evt){
+    $('#transition').on('click', function(evt){
         evt.preventDefault(); 
         var target = $(this).attr('href');
         $('html, body') 

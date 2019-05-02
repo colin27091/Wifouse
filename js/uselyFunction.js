@@ -92,6 +92,7 @@ function listQuartier(){
         input.type = "checkbox";
         input.id = item.name;
         input.value = item.name;
+        input.checked = true;
 
         div.append(input);
 
@@ -200,7 +201,12 @@ function chargeChart() {
 
     var ctx = document.getElementById("Charts").getContext("2d");
     // Remove the old chart and all its event handles
-    document.getElementById("Charts").innerHTML = '';
+
+
+    document.getElementById("Les_graphs").innerHTML = "<canvas id='Charts'></canvas>";
+
+    var ctx = document.getElementById("Charts").getContext("2d");
+
     // Chart.js modifies the object you pass in. Pass a copy of the object so we can use the original object later
     var temp = jQuery.extend(true, {}, chart_pattern);
 

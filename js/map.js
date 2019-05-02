@@ -24,7 +24,7 @@ map.on('contextmenu', function(e) {
     +   "<div id='clic' style=' margin-left:2px; font-size:14px;font-style:italic; font-family:Hind, sans-serif;  padding-bottom:3px;' onclick=get5near("+ JSON.stringify([e.lngLat.lat,e.lngLat.lng]) +")>Recherche sur le clic</div>"
     +"</div>";
     contextMenu.style.top =  event.pageY-document.getElementById("navigation").clientHeight + 'px';
-    contextMenu.style.left = event.pageX-document.getElementById("results").clientWidth + 'px';
+    contextMenu.style.left = event.pageX/*-document.getElementById("results").clientWidth +*/+ 'px';
 
     $("#map").append(contextMenu);
 
@@ -146,6 +146,26 @@ function searchWithCoord(coord){
 
 }
 
+function addQuartier(obj){
+
+    map.addLayer({
+        'id' : obj.fields.libelle_des_grands_quartiers,
+        'type' : 'fill',
+        'source' : {
+            'type' : 'geojson',
+            'data' : {
+                'type': 'Feature',
+                'geometry' : obj.fields.geo_shape
+            }
+                
+        },
+        'layout' : {},
+        'paint' : {
+            'fill-color': '#088'
+        }
+    });
+}
+
 function addMarker(obj){
 
     var el = document.createElement('div');
@@ -189,8 +209,6 @@ function addTerminal(coord){
 // Method to add a draggable marker
 
 function openForm(coord){
-
-    console.log("coord", coord);
     
     var pop = new mapboxgl.Popup({
         closeButton: false,
@@ -201,12 +219,9 @@ function openForm(coord){
     var div = document.createElement('div');
     div.setAttribute('id','')
     div.innerText = "OK Test";
-    var but = document.createElement('button');
-
-    but.innerText = "REMOVE";
 
     pop.setLngLat(coord);
-    pop.setHTML(div.outerHTML+but.outerHTML);
+    pop.setHTML(div.outerHTML);
 
     pop.addTo(map);
 
