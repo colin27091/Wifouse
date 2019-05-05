@@ -80,16 +80,26 @@ function popup(obj){
 
     var div = document.createElement('div');
     div.setAttribute("id", "popupborne");
+
     var site = document.createElement('div');
     site.setAttribute('id', 'site');
+    site.setAttribute('class', 'popuptext');
+
     var annee = document.createElement('div');
     annee.setAttribute('id', 'annee');
+    annee.setAttribute('class', 'popuptext');
+
     var dispo = document.createElement('div');
     dispo.setAttribute('id', 'dispo');
+    dispo.setAttribute('class', 'popuptext');
+
     var nom = document.createElement('div');
     nom.setAttribute('id', 'nom');
+    nom.setAttribute('class', 'popuptext');
+
     var zone = document.createElement('div');
     zone.setAttribute('id', 'zone');
+
 
 
     site.innerText = obj.fields.site;
@@ -98,22 +108,13 @@ function popup(obj){
     nom.innerText = "Nom de connexion:  "+obj.fields.nom_connexion;
     zone.innerText = "Zone d'émission: "+ obj.fields.zone_emission;
 
-    
-    var but = document.createElement('button');
-
-    but.setAttribute("class", "btn btn-outline-danger btn-sm");
-    but.setAttribute("onclick", "removeTerminal("+obj.ID +"),");
-
-    but.innerText = "Supprimer"
 
     div.append(site);
     div.append(annee);
     div.append(dispo);
     div.append(nom);
     div.append(zone);
-    div.append(but);
     
-
     pop.setLngLat(coord);
     pop.setHTML(div.outerHTML);
 
@@ -323,8 +324,6 @@ function openForm(coord){
     pop.setLngLat(coord);
     pop.setHTML(div.outerHTML);
 
-    pop.setLngLat(coord);
-    pop.setHTML(div.outerHTML);
     return pop;
 }
 

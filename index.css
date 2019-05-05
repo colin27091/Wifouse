@@ -115,8 +115,7 @@ img{
 }
 
 .mapboxgl-popup-content {
-	background: red;
-	padding : 0px;
+	
 	text-align: center;
 	font-family: 'Open Sans', sans-serif;
 }
@@ -205,6 +204,7 @@ html { overflow-y: hidden;
 
 #clic:hover{
 	background-color: #f2f2f2;
+
 }
 
 
@@ -213,11 +213,27 @@ html { overflow-y: hidden;
 }
 
 .mapboxgl-popup-content {
-  font: 14px 'Hind', 'Helvetica Neue', Sans-serif;
+  font: 15px 'Hind', 'Helvetica Neue', Sans-serif;
   padding: 0;
-  width: 300px;
+	width: 300px;
+
 }
 
 
+#popupborne{
+	margin-bottom: 5px;
+	border: thick double black;
+
+}
+
+.popuptext{
+	margin-bottom: 5px;
+
+	border-bottom: 2px solid black;
+
+}
 
 
+#buttonpopup{
+
+}
