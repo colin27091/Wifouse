@@ -144,8 +144,7 @@ function getValue(key){//Change result value
     var request = store.get(key);
     
     request.onsuccess = function(event){
-        console.log("Request success : ", request.result);
-        result = request.result;
+        
     };
     
     request.onerror = function(event){

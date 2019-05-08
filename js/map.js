@@ -24,7 +24,7 @@ map.on('contextmenu', function(e) {
     +   "<div id='clic' style=' margin-left:2px; font-size:14px;font-style:italic; font-family:Hind, sans-serif;  padding-bottom:3px;' onclick=get5near("+ JSON.stringify([e.lngLat.lat,e.lngLat.lng]) +")>Recherche sur le clic</div>"
     +"</div>";
     contextMenu.style.top =  event.pageY-document.getElementById("navigation").clientHeight + 'px';
-    contextMenu.style.left = event.pageX/*-document.getElementById("results").clientWidth +*/+ 'px';
+    contextMenu.style.left = event.pageX-document.getElementById("results").clientWidth + 'px';
 
     $("#map").append(contextMenu);
 

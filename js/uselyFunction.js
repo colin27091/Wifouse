@@ -211,7 +211,13 @@ function chargeChart() {
     // Chart.js modifies the object you pass in. Pass a copy of the object so we can use the original object later
     var temp = jQuery.extend(true, {}, chart_pattern);
 
-    temp.type = getGraphForm();
+    var type = getGraphForm();
+
+    temp.type = type;
+
+    if(type == "polarArea"){
+        
+    }
 
     var quartier_checked = getQuartierChecked();
 
@@ -226,16 +232,24 @@ function showInResult(tab){
 
 
     var results = document.getElementById("results");
+    results.innerHTML ="";
     results.style.width = "250px";
-
     tab.forEach(function(item){
         var it = document.createElement('div');
-        it.id = item[0].ID;
+        if(item[0].ID <= 84){
+            it.id = "not_mine";
+        } else {
+            it.id = "mine";
+        }
 
         var name = document.createElement('h');
-        name.innerText = item[0].fields.site;
+        name.innerText = item[0].fields.site + " "+ item[1]+"km";
         it.append(name);
         results.append(it);
+        it.onclick = function(event){
+            centerOnId(item[0].ID);
+        }
+
     })
 
 }
