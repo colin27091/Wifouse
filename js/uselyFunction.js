@@ -226,8 +226,7 @@ function showInResult(tab){
 
 
     var results = document.getElementById("results");
-    result.style.width = "250px";
-    document.getElementById("carte").style.marginLeft = "250px";
+    results.style.width = "250px";
 
     tab.forEach(function(item){
         var it = document.createElement('div');

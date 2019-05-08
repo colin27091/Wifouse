@@ -32,15 +32,12 @@ img{
 }
 
 .sidebar {
-  height: 100%; /* 100% Full-height */
+  height: 90vh; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0;
-  left: 0;
+  position: relative; /* Stay in place */
+  z-index:1000; /* Stay on top */
   background-color: #111; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
 }
 
@@ -75,8 +72,6 @@ img{
 #Les_graphs{
 	margin: 50px auto;
 	padding-left: 80px;
-
-
 }
 
 
@@ -143,7 +138,7 @@ html { overflow-y: hidden;
 		}
 
 /* Testing map width and height, quentin will improve it */
-#map {top:7px; left:-10px; width:107%; min-height: 91vh}
+#map {top:7px; left:-2px; width:100%; min-height: 91vh; position: absolute; z-index: 0;}
 
 .slide-enter-active{
 	transition: all .5s ease;
@@ -246,6 +241,9 @@ html { overflow-y: hidden;
 }
 
 
-#buttonpopup{
+#butform{
+	margin-top: 10px;
+	margin-right: 10px;
 
 }
+

@@ -297,20 +297,18 @@ function openForm(coord){
 
     
     var but = document.createElement('button');
-    var but1 = document.createElement('button');
     var but2 = document.createElement('button');
 
-    but.setAttribute("class", "btn btn-outline-danger btn-sm");
+    but.setAttribute("class", "btn btn-outline-success btn-sm");
+    but.setAttribute("id", "butform");
     but.setAttribute("onclick", "removeTerminal("+"),");
 
-    but1.setAttribute("class", "btn btn-outline-danger btn-sm");
-    but1.setAttribute("onclick", "removeTerminal("+"),");
 
     but2.setAttribute("class", "btn btn-outline-danger btn-sm");
+    but2.setAttribute("id", "butform");
     but2.setAttribute("onclick", "removeTerminal("+"),");
 
     but.innerText = "Sauvegarder"
-    but1.innerText = "Modifier"
     but2.innerText = "Annuler"
 
     div.append(site,lsite);
@@ -318,7 +316,7 @@ function openForm(coord){
     div.append(dispo,ldispo);
     div.append(nom,lnom);
     div.append(zone,lzone);
-    div.append(but,but1,but2);
+    div.append(but,but2);
     
 
     pop.setLngLat(coord);
