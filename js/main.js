@@ -29,20 +29,14 @@ $(document).ready(function(){
     });
     
     $("#reponse").click(function() {
-        $("#results").toggle('fast',function() {
-            $("#map").css('width', '107.1%');
-            $("#carte").toggleClass('col');
-            $("#carte").css("position","absolute");
-            $("#carte").css("z-index","1");
-
-
-        });
+        getCoordWithAddress(document.getElementById("research").value);
     });
     
     $("#research").keydown(function(event){
         if(event.keyCode == 13) {
             event.preventDefault();
             getCoordWithAddress(document.getElementById("research").value);
+
         }
     });
     

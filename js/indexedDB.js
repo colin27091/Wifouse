@@ -241,7 +241,6 @@ function chargeQuartier(){
     request.onsuccess = function(event){
 
         request.result.forEach(function(quartier){
-            console.log(quartier);
             addQuartier(quartier);
         })
     }
@@ -299,7 +298,6 @@ function getByIdTab(tab){//Array of ID to Array of Terminal(Object)
 
     transaction.oncomplete = function(event){
 
-        console.log(result);
         showInResult(result);
 
     };
@@ -350,7 +348,7 @@ function calculateQuarter(){
 
         request.result.forEach(function(quarter){
 
-            var tab_quarter = {"name":quarter.fields.libelle_des_grands_quartiers, "pop": Math.round(quarter.fields.p15_pop), "polygone": quarter.fields.geo_shape.coordinates[0], "nbborne":0};
+            var tab_quarter = {"name":quarter.fields.libelle_des_grands_quartiers,'coord': quarter.fields.geo_point, "pop": Math.round(quarter.fields.p15_pop), "polygone": quarter.fields.geo_shape.coordinates[0], "nbborne":0};
 
             result.push(tab_quarter);
 

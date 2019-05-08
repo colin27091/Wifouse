@@ -162,8 +162,8 @@ function addQuartier(obj){
         },
         'paint' : {
             'fill-color': '#AFAFAF',
-            'fill-opacity': 0.4,
-            'fill-outline-color' : '#606060'
+            'fill-opacity': 0.2,
+            'fill-outline-color' : '#000000'
         }
     });
 

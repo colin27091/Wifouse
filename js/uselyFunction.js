@@ -79,7 +79,7 @@ function getCoordWithAddress(adresse){
 
 function listQuartier(){
 
-    var checkbox = document.getElementById("checkbox")
+    var checkbox = document.getElementById("checkbox");
     checkbox.innerHTML = "";
 
     var tab = JSON.parse(localStorage.getItem("DistrictTab"));
@@ -222,37 +222,22 @@ function chargeChart() {
     chart = new Chart(ctx, temp);
 };
 
-function showInResult(tab){///afaire 
+function showInResult(tab){
 
-    var checkbox = document.getElementById("checkbox")
-    checkbox.innerHTML = "";
 
-    var tab = JSON.parse(localStorage.getItem("DistrictTab"));
+    var results = document.getElementById("results");
+    result.style.width = "250px";
+    document.getElementById("carte").style.marginLeft = "250px";
 
     tab.forEach(function(item){
+        var it = document.createElement('div');
+        it.id = item[0].ID;
 
-        var div = document.createElement('div');
-
-        var input = document.createElement("input");
-        input.className = "form-check-input";
-        input.type = "checkbox";
-        input.id = item.name;
-        input.value = item.name;
-        input.checked = true;
-
-        div.append(input);
-
-        var label = document.createElement("label");
-        label.id = "checktext";
-        label.className = "form-check-label";
-        label.setAttribute("for", item.name);
-        label.innerText = item.name;
-
-        div.append(label);
-
-        checkbox.append(div);
-
-    });
+        var name = document.createElement('h');
+        name.innerText = item[0].fields.site;
+        it.append(name);
+        results.append(it);
+    })
 
 }
 
@@ -260,6 +245,98 @@ function removeResults(){
 
 }
 
-function openResults(tab){
+function openNav() {
+
+    document.getElementById("results").style.width = "250px";
+    document.getElementById("carte").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("results").style.width = "0";
+    document.getElementById("carte").style.marginLeft= "0";
+}
+
+function toutCocher(){
+    var checkbox = document.getElementById("checkbox");
+
+    for(i = 0; i < checkbox.children.length; i ++){
+        checkbox.children[i].children[0].checked = true;
+    }
+    chargeChart();
+}
+
+function toutDecocher(){
+    var checkbox = document.getElementById("checkbox");
+
+    for(i = 0; i < checkbox.children.length; i ++){
+        checkbox.children[i].children[0].checked = false;
+    }
+    chargeChart();
+}
+
+function sortQuartierAlphabetic(){
+
+    var tab = JSON.parse(localStorage.getItem("DistrictTab"));
+    var res = [];
+    var res2 = [];
+
+    tab.forEach(function(item){
+        res.push(item.name);
+    })
+
+    res.sort();
+
+    res.forEach(function(item){
+        tab.forEach(function(quart){
+            if(quart.name == item){
+                res2.push(quart);
+            }
+        })
+    })
+
+    localStorage.setItem("DistrictTab", JSON.stringify(res2));
+    listQuartier();
+    chargeChart();
+}
+
+function sortQuartierNbBornes(){
+
+    var l = JSON.parse(localStorage.getItem("DistrictTab"));
+
+    for(var i= 0 ; i< l.length; i++){ 
+        for(var j=i+1; j< l.length; j++){
+            if(l[j].nbborne > l[i].nbborne){
+                var temp = l[j];
+                l[j]=l[i];
+                l[i]=temp;
+                }
+        }
+    }
+    localStorage.setItem("DistrictTab", JSON.stringify(l));
+    listQuartier();
+    chargeChart();
+}
+
+function sortQuartierNearCentreVille(){
+
+    var l = JSON.parse(localStorage.getItem("DistrictTab"));
+    var coord_centre_ville = [43.6043, 1.4437];
+    
+
+    for(var i= 0 ; i< l.length; i++){ 
+        for(var j=i+1; j< l.length; j++){
+
+            if(dist(l[j].coord, coord_centre_ville) < dist(l[i].coord, coord_centre_ville)){
+                
+                var temp = l[j];
+                l[j]=l[i];
+                l[i]=temp;
+                }
+        }
+    }
+    
+    localStorage.setItem("DistrictTab", JSON.stringify(l));
+    listQuartier();
+    chargeChart();
 
 }
