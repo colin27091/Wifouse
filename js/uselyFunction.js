@@ -38,26 +38,24 @@ function dist(tab1, tab2){
 function distCalcul(tab, coord){
 
     var top5 = [];
-    var result = [];
-
+    
     tab.forEach(function(item) {
-        top5.push(dist(coord, item));
+        top5.push([item[0], dist(coord, item[1])]);
     })
 
-    for (i = 0; i < 10; i++) {
-        var min  = null;
-        var ind = null;
-        top5.forEach(function(item, index){
-            if((min > item || min == null) && item != null){
-                min = item;
-                ind = index;
+    for(var i= 0 ; i< top5.length; i++){ 
+        for(var j=i+1; j< top5.length; j++){
+
+            if(top5[j][1] < top5[i][1]){
+                
+                var temp = top5[j];
+                top5[j]=top5[i];
+                top5[i]=temp;
             }
-        })
-        result.push([ind + 1, top5[ind]]);
-        top5[ind] = null;
-        
+        }
     }
-    return result;
+    
+    return top5.slice(0,10);
 }
 
 function getCoordWithAddress(adresse){
@@ -65,10 +63,11 @@ function getCoordWithAddress(adresse){
     $.getJSON('https://api-adresse.data.gouv.fr/search/?q='+adresse, function(data){
 
         var coord = data.features[0].geometry.coordinates;
+
         centerOnCoord(coord);
         document.getElementById('research').value = data.features[0].properties.label;
 
-         get5near([coord[1], coord[0]]);
+        get5near([coord[1], coord[0]]);
 
     });
 
@@ -374,5 +373,120 @@ function sortQuartierNearCentreVille(){
     localStorage.setItem("DistrictTab", JSON.stringify(l));
     listQuartier();
     chargeChart();
+
+}
+
+function getFormToAdd(coord){
+
+
+    var flag = true;
+    var nom_connexion = document.getElementById("input_nom").value;
+    if(nom_connexion == ""){
+        flag = false;
+    }
+    var site = document.getElementById("input_site").value;
+    if(site == ""){
+        flag = false;
+    }
+    var annee = document.getElementById("input_annee_form").value;
+    console.log(annee);
+    if(annee == ""){
+        flag = false;
+    }
+    var dispo = document.getElementById("input_dispo").value;
+    if(dispo == ""){
+        flag = false;
+    }
+    var zone = document.getElementById("input_zone_form").value;
+    if(zone == ""){
+        flag = false;
+    }
+
+    if(flag){
+        var new_terminal = {
+            "fields": {
+                "site" : site,
+                "geo_point_2d" : [coord[1], coord[0]],
+                "nom_connexion" : nom_connexion,
+                "annee_installation" : annee,
+                "disponibilite" : dispo,
+                "zone_emission" : zone,
+            },
+            "geometry" : {
+                "type": 'Point',
+                "coordinates": coord
+            }
+        }
+        document.getElementsByClassName('mapboxgl-popup')[0].remove();
+        document.getElementById('drag').remove();
+        
+        addBorne(new_terminal);
+    }
+    
+    
+
+}
+
+function giveUpForm(){
+    document.getElementsByClassName('mapboxgl-popup')[0].remove();
+    document.getElementById('drag').remove();
+}
+
+function changeTerminal(id){
+
+    //nom de connexion
+    var nom = document.getElementById("label_nom");;
+    var data_nom = nom.textContent;
+    nom.outerHTML ='';
+    var lnom = document.createElement('input');
+    lnom.setAttribute('id', 'input_nom');
+    lnom.setAttribute('value', data_nom);
+    lnom.className = "form-control";
+    var Nnom = document.getElementById('Nnom');
+    Nnom.append(lnom);
+    //fin nom de connexion
+
+    //site
+    var site = document.getElementById("label_site");;
+    var data_site = site.textContent;
+    site.outerHTML ='';
+    var lsite = document.createElement('input');
+    lsite.setAttribute('id', 'input_site');
+    lsite.setAttribute('value', data_site);
+    lsite.className = "form-control";
+    var Nsite = document.getElementById('Nsite');
+    Nsite.append(lsite);
+    //fin site
+
+    // debut annee
+    var annee = document.getElementById("label_annee");;
+    var data_annee = annee.textContent;
+    annee.outerHTML ='';
+    var lannee = document.createElement('div');
+    lannee.setAttribute('id', 'input_annee');
+    lannee.className = "form-group";
+    var annee_form = "<select id='input_annee_form' class='form-control'>";
+    annee_form += "<option selected>"+data_annee+"</option>";
+    for(var i = 2018; i > 2000; i --){
+        if(i != data_annee){
+            annee_form += "<option>"+ i +"</option>";
+        }
+    }
+    annee_form += "</select>";
+    lannee.innerHTML = annee_form;
+    var Nannee = document.getElementById('Nannee');
+    Nannee.append(lannee);
+    //fin annee
+
+    //dispo
+    var dispo = document.getElementById("label_dispo");;
+    var data_dispo = dispo.textContent;
+    dispo.outerHTML ='';
+    var ldispo = document.createElement('input');
+    ldispo.setAttribute('id', 'input_site');
+    lsite.setAttribute('value', data_site);
+    lsite.className = "form-control";
+    var Nsite = document.getElementById('Nsite');
+    Nsite.append(lsite);
 
 }

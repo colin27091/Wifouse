@@ -41,6 +41,7 @@ map.on('contextmenu', function(e) {
             document.getElementById("menu").remove();
         }
 
+
     });
 
 });
@@ -76,9 +77,6 @@ function popup(obj){
         anchor: 'bottom'
     })
 
-    $(window).bind('click', function(event){
-        pop.remove();
-    })
 
     var coord = obj.geometry.coordinates;
 
@@ -206,14 +204,14 @@ function popup(obj){
 
     remove.setAttribute("class", "btn btn-outline-danger btn-sm");
     remove.setAttribute("id", "butform");
-    remove.setAttribute('onclick', 'removeTerminal()');
+    //remove.setAttribute('onclick', '()');
     remove.style.float = 'right';
     remove.innerText = "Supprimer";
     
 
     modify.setAttribute("class", "btn btn-outline-warning btn-sm");
     modify.setAttribute("id", "butform");
-    modify.setAttribute('onclick', 'removeTerminal()');
+    modify.setAttribute('onclick', 'changeTerminal('+ obj.ID+')');
     modify.style.float = 'right';
     modify.innerText = "Modifier";
     //fin button
@@ -260,6 +258,13 @@ function searchWithCoord(coord){
 
 function addQuartier(obj){
 
+    if(map.getLayer(obj.fields.libelle_des_grands_quartiers)){
+        map.removeLayer(obj.fields.libelle_des_grands_quartiers);
+    }
+    if(map.getLayer(obj.fields.libelle_des_grands_quartiers+'_name')){
+        map.removeLayer(obj.fields.libelle_des_grands_quartiers+'_name');
+    }
+    
     map.addLayer({
         'id' : obj.fields.libelle_des_grands_quartiers,
         'type' : 'fill',
@@ -315,7 +320,12 @@ function addMarker(obj){
 
     var el = document.createElement('div');
     el.setAttribute("id", obj.ID);
-    el.className = 'marker';
+    if(obj.ID <= 84){
+        el.className = 'marker';
+    } else {
+        el.className = 'newmarker';
+    }
+    
 
     el.onclick = function(event){
 
@@ -353,17 +363,12 @@ function addTerminal(coord){
 // Method to add a draggable marker
 
 function openForm(coord){
-
-    // console.log("coord", coord);
     
     var pop = new mapboxgl.Popup({
         closeButton: false,
         closeOnClick: true,
         anchor: 'bottom',
     })
-
-
-    
 
     var div = document.createElement('div');
     div.setAttribute("id", "Nouvelleborne");
@@ -489,13 +494,13 @@ function openForm(coord){
 
     cancel.setAttribute("class", "btn btn-outline-danger btn-sm");
     cancel.setAttribute("id", "butform");
-    cancel.setAttribute('onclick', 'removeTerminal()');
+    cancel.setAttribute('onclick', 'giveUpForm()');
     cancel.style.float = 'right';
     cancel.innerText = "Annuler";
 
     save.setAttribute("class", "btn btn-outline-success btn-sm");
     save.setAttribute("id", "butform");
-    save.setAttribute('onclick', 'removeTerminal()');
+    save.setAttribute('onclick', 'getFormToAdd('+ JSON.stringify(coord) +")" );
     save.style.float = 'right';
     save.innerText = "Sauvegarder";
     //fin button
@@ -507,8 +512,6 @@ function openForm(coord){
     div.append(row2);
     div.append(cancel,save);
     
-
-    pop.setLngLat(coord);
     pop.setHTML(div.outerHTML);
 
     return pop;

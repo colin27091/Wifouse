@@ -71,28 +71,30 @@ function setData(data, store) {
 }
 
 
-var new_terminal = {
 
-    "fields":{
-        "site":"New Bornes"
-    },
-    
-    "geometry":{
-
-        "coordinates":[
-            1.636122221425398,
-            43.6032638910665
-        ]
-
-}}
-
-
-
-function addTerminal(terminal){
+function addBorne(terminal){
     
     var transaction = db.transaction("bornes", "readwrite");
     var store = transaction.objectStore("bornes");
     var request = store.add(terminal);
+    
+    request.onsuccess = function(event){
+        chargeMap();
+        chargeQuartier();
+        console.log("Terminal added");
+    };
+    
+    request.onerror = function(event){
+        console.log("Terminal not added");
+    };
+
+}
+
+function modifTerminal(terminal){
+    
+    var transaction = db.transaction("bornes", "readwrite");
+    var store = transaction.objectStore("bornes");
+    var request = store.put(terminal);
     
     request.onsuccess = function(event){
         chargeMap();
@@ -233,6 +235,8 @@ function getCoordPoint(){//Change result value __ to fix
 }
 
 function chargeQuartier(){
+
+    
     var transaction = db.transaction(storePop, 'readonly');
     var store = transaction.objectStore(storePop);
     var request = store.getAll();
@@ -284,8 +288,8 @@ function getByIdTab(tab){//Array of ID to Array of Terminal(Object)
     var transaction = db.transaction(storeName);
     var store = transaction.objectStore(storeName);
 
+    
     tab.forEach(function(item){
-
         var request = store.get(item[0]);
 
         request.onsuccess = function(event){
@@ -319,7 +323,7 @@ function get5near(coord){//Coord([lat, lng]) -> Array of Terminal(Object)
 
         var cursor = request.result;
         if(cursor){
-            tab.push(cursor.value.fields.geo_point_2d);
+            tab.push([cursor.value.ID, cursor.value.fields.geo_point_2d]);
             cursor.continue(); 
         } 
     };
