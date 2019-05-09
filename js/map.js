@@ -528,16 +528,6 @@ function openForm(coord){
 // Changement du style de la map
 function Changemap(){
 
-    // switch (map.getStyle().sprite) {
-    //     case "mapbox://sprites/mapbox/streets-v11":
-    //         map.setStyle('mapbox://styles/mapbox/satellite-v9');
-    //         chargeQuartier();
-    //         break;
-    //     case 'mapbox://sprites/mapbox/satellite-v9':
-    //         map.setStyle('mapbox://styles/mapbox/streets-v11');
-    //         chargeQuartier();
-    //         break;
-    // }
     if (map.getStyle().sprite=='mapbox://sprites/mapbox/streets-v11'){
         map.setStyle('mapbox://styles/mapbox/satellite-v9');
         if (map.getStyle().sprite=='mapbox://sprites/mapbox/satellite-v9'){
