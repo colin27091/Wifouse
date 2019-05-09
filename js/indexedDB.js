@@ -262,6 +262,7 @@ function onloadMap(){
 function chargeMap(){
 
     $('.marker').remove();
+    $('.newmarker').remove();
     var transaction = db.transaction(storeName, 'readonly');
     var store = transaction.objectStore(storeName);
     var request = store.getAll();

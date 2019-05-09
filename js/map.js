@@ -20,8 +20,8 @@ map.on('contextmenu', function(e) {
     contextMenu.id = "menu";
     contextMenu.className = "show";
     contextMenu.innerHTML = "<div id='context' style='height:50px; box-shadow:2px 5px 2em #aaa; width: 150px;'>"
-    +   "<div id='ajout' style='margin-left:2px; font-size:14px; font-style:italic; font-family:Hind,sans-serif; padding-top:2px; margin: 2px 2px;' onclick=addTerminal("+ JSON.stringify([e.lngLat.lng, e.lngLat.lat]) +")>Ajouter une Borne</div>"
-    +   "<div id='clic' style=' margin-left:2px; font-size:14px;font-style:italic; font-family:Hind, sans-serif;  padding-bottom:3px;' onclick=get5near("+ JSON.stringify([e.lngLat.lat,e.lngLat.lng]) +")>Recherche sur le clic</div>"
+    +   "<div id='ajout' style='margin-left:2px; font-size:14px; font-style:italic; font-family:Hind,sans-serif; padding-top:2px; margin: 2px 2px;' onclick=addTerminal("+ JSON.stringify([e.lngLat.lng, e.lngLat.lat]) +")+>Ajouter une Borne</div>"
+    +   "<div id='clic' style=' margin-left:2px; font-size:14px;font-style:italic; font-family:Hind, sans-serif;  padding-bottom:3px;' onclick= centerOnCoord("+ JSON.stringify([e.lngLat.lng,e.lngLat.lat])+"),get5near("+ JSON.stringify([e.lngLat.lat,e.lngLat.lng]) +")>Recherche sur le clic</div>"
     +"</div>";
     contextMenu.style.top =  event.pageY-document.getElementById("navigation").clientHeight + 'px';
     contextMenu.style.left = event.pageX-document.getElementById("results").clientWidth + 'px';
@@ -204,14 +204,14 @@ function popup(obj){
 
     remove.setAttribute("class", "btn btn-outline-danger btn-sm");
     remove.setAttribute("id", "butform");
-    //remove.setAttribute('onclick', '()');
+    remove.setAttribute('onclick', 'removeTerminal('+obj.ID+')');
     remove.style.float = 'right';
     remove.innerText = "Supprimer";
     
 
     modify.setAttribute("class", "btn btn-outline-warning btn-sm");
     modify.setAttribute("id", "butform");
-    modify.setAttribute('onclick', 'changeTerminal('+ obj.ID+')');
+    modify.setAttribute('onclick', 'changeTerminal('+ obj.ID +','+JSON.stringify(coord)+')');
     modify.style.float = 'right';
     modify.innerText = "Modifier";
     //fin button
@@ -325,6 +325,7 @@ function addQuartier(obj){
 
 function addMarker(obj){
 
+
     var el = document.createElement('div');
     el.setAttribute("id", obj.ID);
     if(obj.ID <= 84){
@@ -337,7 +338,7 @@ function addMarker(obj){
     el.onclick = function(event){
 
         var id = parseInt(event.target.id);
-        console.log(id);
+
         centerOnId(id);
     };
 
@@ -545,9 +546,9 @@ function Changemap(){
 }
 
     if (map.getStyle().sprite=='mapbox://sprites/mapbox/satellite-v9'){
-         map.setStyle('mapbox://styles/mapbox/streets-v11');
+        map.setStyle('mapbox://styles/mapbox/streets-v11');
 
-         if (map.getStyle().sprite=='mapbox://sprites/mapbox/streets-v11'){
+        if (map.getStyle().sprite=='mapbox://sprites/mapbox/streets-v11'){
             chargeQuartier();     
     }
 }
