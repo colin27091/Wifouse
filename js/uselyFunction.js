@@ -240,9 +240,21 @@ function showInResult(tab){
 
     var results = document.getElementById("results");
     results.innerHTML ="";
+    var croix = document.createElement("div");
+    croix.id = "croixleft";
+    croix.innerHTML = "<a><i class='fa fa-times'></i></a>";
+    croix.style.float = "right";
+    results.append(croix);
+    croix.onclick = function(event){
+        closeNav(results);
+    }
     results.style.width = "250px";
     tab.forEach(function(item){
         var it = document.createElement('div');
+        if(tab[0] == item){
+            it.style.marginTop = "25px";
+            it.style.borderTop = "1px solid rgba(0,0,0,.125)";
+        }
         if(item[0].ID <= 84){
             it.id = "not_mine";
         } else {

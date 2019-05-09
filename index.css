@@ -274,11 +274,12 @@ padding: 0 !important;
 
 
 #results #not_mine, #mine{
+	
 	height: 67px;
 	line-height: 3.5em;
 	text-align: center;
 	font-family: 'Ubuntu Condensed', sans-serif;
-	border: 1.5px solid green;
+	border-bottom: 1px solid rgba(0,0,0,.125);
 	border-top : none;
 
 }
@@ -315,4 +316,7 @@ padding: 0 !important;
 .gotoright{
 	margin: 0 !important;
 	width: 545px;
+}
+
+#croixleft{
 }
