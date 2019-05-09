@@ -498,40 +498,5 @@ function openForm(coord){
 }
 
 
-// function onDragEnd() {
-//     var lngLat = markerdrag.getLngLat();
-//     console.log(JSON.stringify(lngLat));
-// }
-
-// markerdrag.on('dragend', function(event){
-//     console.log(event);
-// });
-
-// var marqueur = document.getElementById("ajout-borne");
-
-
-
-// function AjoutBorne() {
-//     markerdrag.addTo(map)
-//     var coordon = markerdrag.getLngLat();
-//     map.flyTo({center: coordon, zoom:13});
-// }
-
-// ------------LAISSEZ CA EN COMMENTAIRE ON EN A PAS BESOIN POUR LE MOMENT---------
-// ---------CA CORRESPOND AU CHANGEMENT DE STYLE DE LA MAP DONC PAS PRIORITAIRE POUR LE MOMENT------
-
-// Switch the theme of the layers
-// function switchLayer(layer) {
-//     var layerId = layer.target.id;
-//     map.setStyle('mapbox://styles/mapbox/' + layerId + '-v9');
-// }
-
-// for (var i = 0; i < inputs.length; i++) {
-//     inputs[i].onclick = switchLayer;
-// }
-
-
-
-
 
 

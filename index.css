@@ -269,7 +269,7 @@ padding: 0 !important;
 
 #results #not_mine:hover{
 
-	background-color: rgb(38, 226, 51);
+	background-color: rgb(120, 228, 127);
 }
 
 
@@ -316,7 +316,4 @@ padding: 0 !important;
 .gotoright{
 	margin: 0 !important;
 	width: 545px;
-}
-
-#croixleft{
 }

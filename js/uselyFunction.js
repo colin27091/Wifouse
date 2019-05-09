@@ -122,9 +122,6 @@ function getGraphForm(){
         case "Colonnes":
             newType = "bar";
             break;
-        case "Nuage de points":
-            newType = "bubble";
-            break;
         case "Radar":
             newType = "radar";
             break;
