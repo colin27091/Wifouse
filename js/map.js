@@ -517,6 +517,15 @@ function openForm(coord){
     return pop;
 }
 
-
-
-
+// Changement du style de la map
+function Changemap(){
+    if (map.getStyle().sprite=='mapbox://sprites/mapbox/streets-v11'){
+        map.setStyle('mapbox://styles/mapbox/satellite-v9');
+        chargeQuartier();
+    }
+    if (map.getStyle().sprite=='mapbox://sprites/mapbox/satellite-v9'){
+        map.setStyle('mapbox://styles/mapbox/streets-v11');
+        chargeQuartier();
+    }
+    
+}

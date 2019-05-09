@@ -64,13 +64,6 @@ img{
 	
 }
 
-#choixdata{
-	margin-top: 15px ;
-	margin-bottom: 15px ;
-	margin-left: auto ;
-	
-	
-}
 
 
 #checkboxdiv{
@@ -373,6 +366,11 @@ html { overflow-y: hidden;
 
 }
 
+#listmap {
+	position : relative;
+	top: 10px;
+	z-index: 2;
+}
 
 @media all and  (orientation: portrait){
 
