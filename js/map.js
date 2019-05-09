@@ -351,7 +351,6 @@ function addMarker(obj){
 
 function addTerminal(coord){
 
-    console.log(coord);
     var el = document.createElement('div');
     el.setAttribute("id", "drag");
     el.className = 'draggable';
