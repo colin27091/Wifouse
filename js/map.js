@@ -146,16 +146,18 @@ function popup(obj){
 }
 
 function centerOnCoord(coord){
-
+    
+    $("#location").remove();
     var el = document.createElement('div');
-
-    el.setAttribute("id", "userLocation");
+    
+    el.setAttribute("id", "location");
     el.className = 'marker';
-    new mapboxgl.Marker(el)
-    .setLngLat(coord)
-    .addTo(map);
+    var locate = new mapboxgl.Marker(el);
 
+    locate.setLngLat(coord)
+    locate.addTo(map);
     map.flyTo({center: coord, zoom:17});
+
 
 }
 

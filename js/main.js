@@ -46,6 +46,7 @@ $(document).ready(function(){
     });
     
     $("#reponse").click(function() {
+
         getCoordWithAddress(document.getElementById("research").value);
     });
     
@@ -53,6 +54,7 @@ $(document).ready(function(){
         if(event.keyCode == 13) {
             event.preventDefault();
             getCoordWithAddress(document.getElementById("research").value);
+
 
         }
     });

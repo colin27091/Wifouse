@@ -64,6 +64,15 @@ img{
 
 }
 
+#choixdata{
+	margin-top: 15px ;
+	margin-bottom: 15px ;
+	margin-left: auto ;
+
+
+}
+
+
 #checkboxdiv{
 	margin-left: 10px;
 	float: left;
@@ -109,8 +118,8 @@ img{
 	cursor: pointer;
 }
 
-#userLocation {
-	background-image: url('logo/userlocation.png');
+#location {
+	background-image: url('logo/target.png');
 	background-size: cover;
 	width: 30px;
 	height: 30px;

@@ -65,11 +65,10 @@ function getCoordWithAddress(adresse){
     $.getJSON('https://api-adresse.data.gouv.fr/search/?q='+adresse, function(data){
 
         var coord = data.features[0].geometry.coordinates;
-        map.flyTo({center: coord, zoom:14});
+        centerOnCoord(coord);
         document.getElementById('research').value = data.features[0].properties.label;
 
-        get5near([coord[1], coord[0]]);
-
+         get5near([coord[1], coord[0]]);
 
     });
 
