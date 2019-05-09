@@ -214,10 +214,13 @@ html { overflow-y: hidden;
   display: none;
 }
 
-.mapboxgl-popup-content{
-  font: 15px 'Hind', 'Helvetica Neue', Sans-serif;
-
+.mapboxgl-popup-content {
+	font: 15px 'Hind', 'Helvetica Neue', Sans-serif;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
 }
+
+
 
 
 #popupborne{

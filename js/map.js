@@ -314,7 +314,7 @@ function openForm(coord){
     
     
     zone.innerText = "Zone d'émission : ";
-    lzone.innerHTML = "Intérieur  " + "<input type='checkbox'>"+"</input>" + "    Extérieur  "+ "<input type='checkbox'>"+"</input>"
+    lzone.innerHTML = "<div id ='trigraph' class='form-group col-md-1'>" + "</div>" + "<select id='inputSort' class='form-control'>"+" <option>" +"Intérieur"+" </option>"+ "<option>"+"Extérieur"+"</option>"+"</select>"
 
     
     var but = document.createElement('button');
@@ -345,7 +345,6 @@ function openForm(coord){
     
 
     pop.setLngLat(coord);
-    pop.maxWidth("350px");
     pop.setHTML(div.outerHTML);
 
     return pop;
