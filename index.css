@@ -272,7 +272,7 @@ html { overflow-y: hidden;
 
 #results #mine:hover {
 	
-	background-color: rgb(255, 240, 246);
+	background-color:#7FBAFD;
 	
 }
 
@@ -294,13 +294,8 @@ html { overflow-y: hidden;
 }
 
 #Les_graphs{
-<<<<<<< Updated upstream
-	margin-top: 50px;
-	
-=======
 	margin-top: 80px;
 
->>>>>>> Stashed changes
 }
 
 #coche{
