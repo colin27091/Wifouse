@@ -20,7 +20,7 @@ map.on('contextmenu', function(e) {
     contextMenu.id = "menu";
     contextMenu.className = "show";
     contextMenu.innerHTML = "<div id='context' style='height:50px; box-shadow:2px 5px 2em #aaa; width: 150px;'>"
-    +   "<div id='ajout' style='margin-left:2px; font-size:14px; font-style:italic; font-family:Hind,sans-serif; padding-top:2px; margin: 2px 2px;' onclick=addTerminal("+ JSON.stringify([e.lngLat.lng, e.lngLat.lat]) +")+>Ajouter une Borne</div>"
+    +   "<div id='ajout' style='margin-left:2px; font-size:14px; font-style:italic; font-family:Hind,sans-serif; padding-top:2px; margin: 2px 2px;' onclick= addTerminal("+ JSON.stringify([e.lngLat.lng,e.lngLat.lat]) +")>Ajouter une Borne</div>"
     +   "<div id='clic' style=' margin-left:2px; font-size:14px;font-style:italic; font-family:Hind, sans-serif;  padding-bottom:3px;' onclick= centerOnCoord("+ JSON.stringify([e.lngLat.lng,e.lngLat.lat])+"),get5near("+ JSON.stringify([e.lngLat.lat,e.lngLat.lng]) +")>Recherche sur le clic</div>"
     +"</div>";
     contextMenu.style.top =  event.pageY-document.getElementById("navigation").clientHeight + 'px';
@@ -351,6 +351,7 @@ function addMarker(obj){
 
 function addTerminal(coord){
 
+    console.log(coord);
     var el = document.createElement('div');
     el.setAttribute("id", "drag");
     el.className = 'draggable';

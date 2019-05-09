@@ -64,6 +64,7 @@ function getCoordWithAddress(adresse){
 
         var coord = data.features[0].geometry.coordinates;
 
+        centerOnCoord(coord);
         document.getElementById('research').value = data.features[0].properties.label;
 
         get5near([coord[1], coord[0]]);
