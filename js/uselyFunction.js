@@ -207,7 +207,7 @@ function chargeChart() {
 
         }
     };
-
+    
     var ctx = document.getElementById("Charts").getContext("2d");
     // Remove the old chart and all its event handles
 

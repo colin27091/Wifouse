@@ -294,8 +294,13 @@ html { overflow-y: hidden;
 }
 
 #Les_graphs{
+<<<<<<< Updated upstream
 	margin-top: 50px;
 	
+=======
+	margin-top: 80px;
+
+>>>>>>> Stashed changes
 }
 
 #coche{
@@ -322,4 +327,75 @@ html { overflow-y: hidden;
 .gotoright{
 	margin: 0 !important;
 	width: 545px;
+}
+
+.inforow{
+	height: 80px;
+}
+
+.infocol{
+	margin-bottom: 10px;
+	text-align: left;
+}
+
+.textmodif{
+	text-align: left;
+	}
+
+.infocoltop{
+	max-width:28.099999995% !important;
+	text-align: center;
+}
+
+.infocol2{
+	margin-left: 22px;
+	text-align: left;
+}
+
+
+.infocol3{
+	text-align: left;
+}
+
+
+.butrow{
+	position: relative;
+	top: 50px;
+}
+
+
+#label_annee{
+	margin-bottom: 23px;
+}
+
+.textmodif{
+	font: 18px 'Ubuntu Condensed', sans-serif !important;
+
+}
+
+.textmodiflite{
+	font: 16px 'Dosis', sans-serif !important;
+
+}
+
+
+@media all and  (orientation: portrait){
+
+	#carte{
+		min-height: 96vh !important;
+
+	}
+
+	#navigation{
+		min-height: 172px;
+	}
+
+	.nav{
+		margin-top: 50px;
+	}
+
+
+
+
+
 }

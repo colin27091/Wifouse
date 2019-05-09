@@ -83,84 +83,98 @@ function popup(obj){
     var coord = obj.geometry.coordinates;
 
     var div = document.createElement('div');
-    div.setAttribute("id", "Nouvelleborne");
+    div.setAttribute("id", "InfoBorne");
+    div.style.height = '255px';
+    div.style.width = '510px';
 
     //Ligne et Colonnes
     var row1 = document.createElement('div');
-    row1.setAttribute("class" , "row");
+    row1.setAttribute("class" , "row inforow");
 
     var row2 = document.createElement('div');
-    row2.setAttribute("class" , "row");
+    row2.setAttribute("class" , "row inforow");
 
+    var row3 = document.createElement('div');
+    row3.setAttribute("class" , "row butrow");
 
     var col1 = document.createElement('div');
-    col1.setAttribute("class" , "col");
+    col1.setAttribute("class" , "col sm-1 infocoltop");
 
     var col2 = document.createElement('div');
-    col2.setAttribute("class" , "col sm-1");
+    col2.setAttribute("class" , "col sm-1 infocol2");
 
     var col3 = document.createElement('div');
-    col3.setAttribute("class" , "col sm-1");
+    col3.setAttribute("class" , "col sm-1  infocol3");
+
+    var col4 = document.createElement('div');
+    col4.setAttribute("class" , "col sm-1  infocol4");
     //fin de ligne et colonnes
 
     //nom de la connexion
-    var nom = document.createElement('label');
+    var nom = document.createElement('div');
     nom.setAttribute('id', 'Nnom');
     nom.innerText = "Nom de la connexion :  ";
+    nom.style.width = '500px';
+    nom.style.textAlign = 'center';
+    nom.className = "textmodiflite";
     nom.setAttribute('for', 'label_nom');
-    nom.style.float = 'left';
     nom.style.marginTop = "3px";
-
-    var lnom = document.createElement('label');
+    var lnom = document.createElement('div');
     lnom.setAttribute('id', 'label_nom');
     lnom.innerText = obj.fields.nom_connexion;
+    lnom.className = "textmodif";
+    lnom.style.width = '500px';
+    lnom.style.textAlign = 'center';
 
     col1.append(nom, lnom);
     row1.append(col1);
     //fin nom de la connexion
 
     //Nom du quartier(site)
-    var site = document.createElement('label');
+    var site = document.createElement('div');
     site.setAttribute('id', 'Nsite');
     site.innerText = "Adresse : ";
     site.setAttribute('for', 'label_site');
-    site.style.float = 'left';
+    site.className = "textmodiflite";
     site.style.marginTop = "3px";
-
     var lsite = document.createElement('label');
     lsite.setAttribute('id', 'label_site');
     lsite.innerText = obj.fields.site;
+    lsite.className = "textmodif";
 
     col3.append(site,lsite);
     //fin 
 
 
     //année
-    var annee = document.createElement('label');
+    var annee = document.createElement('div');
     annee.setAttribute('id', 'Nannee');
     annee.innerText = "Installé en :" ;
     annee.setAttribute('for', 'label_annee');
-    annee.style.float = 'left';
+    annee.className = "textmodiflite";
     annee.style.marginTop = "3px";
 
     var lannee = document.createElement('div');
     lannee.setAttribute('id', 'label_annee');
     lannee.className = "form-group";
+    lannee.className = "textmodif";
     lannee.innerText = obj.fields.annee_installation;
 
     col2.append(annee,lannee);
     //fin année
 
     //dispo
-    var dispo = document.createElement('label');
+    var dispo = document.createElement('div');
     dispo.setAttribute('id', 'Ndispo');
     dispo.innerText = "Disponibilité :";
+    dispo.className = "textmodiflite";
     dispo.setAttribute('for', 'input_dispo');
-    dispo.style.float = 'left';
     dispo.style.marginTop = "3px";
 
-    var ldispo = document.createElement('label');
+    var ldispo = document.createElement('div');
     ldispo.setAttribute('id', 'label_dispo');
+    ldispo.className = "textmodif";
+    ldispo.style.width = '270px';
     ldispo.innerText = obj.fields.disponibilite;
 
 
@@ -170,16 +184,18 @@ function popup(obj){
     
 
     //zone d'emission 
-    var zone = document.createElement('label');
+    var zone = document.createElement('div');
     zone.setAttribute('id', 'Nzone');
     zone.innerText = "Zone d'émission : ";
+    zone.className = "textmodiflite";
     zone.setAttribute('for', 'input_zone');
-    zone.style.float = 'left';
     zone.style.marginTop = "19px";
 
-    var lzone = document.createElement('label');
+    var lzone = document.createElement('div');
     lzone.setAttribute('id', 'label_zone');
     lzone.innerText = obj.fields.zone_emission;
+    lzone.className = "textmodif";
+
     
     col3.append(zone,lzone);
     //fin zone d'emission
@@ -195,7 +211,7 @@ function popup(obj){
     remove.innerText = "Supprimer";
     
 
-    modify.setAttribute("class", "btn btn-outline-success btn-sm");
+    modify.setAttribute("class", "btn btn-outline-warning btn-sm");
     modify.setAttribute("id", "butform");
     modify.setAttribute('onclick', 'removeTerminal()');
     modify.style.float = 'right';
@@ -206,11 +222,12 @@ function popup(obj){
         remove.disabled = true;
         modify.disabled = true;
     }
-    
+    col4.append(remove, modify)
+    row3.append(col4);
     row2.append(col2, col3);
     div.append(row1);
     div.append(row2);
-    div.append(remove,modify);
+    div.append(row3);
 
     
     
