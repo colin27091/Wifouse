@@ -11,7 +11,24 @@ $(document).ready(function(){
     
     $("#checkboxdiv").change(function(){
         chargeChart();
+        
     });
+
+    $("#inputSort").on('click', function(){
+        var sort = document.getElementById('inputSort').value;
+
+        switch (sort){
+            case 'Ordre alphabetique': 
+                sortQuartierAlphabetic();
+                break;
+            case 'Nombre de borne':
+                sortQuartierNbBornes();
+                break;
+            case 'Distance centre ville':
+                sortQuartierNearCentreVille();
+                break;
+        }
+    })
     
     $("#geolocalisation").click(function(){
         navigator.geolocation.getCurrentPosition(function(position){

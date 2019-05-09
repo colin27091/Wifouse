@@ -216,7 +216,9 @@ function chargeChart() {
     temp.type = type;
 
     if(type == "polarArea"){
-        
+        Charts.defaults.global.backgroundColor = '#2980b9','#f1c40f';
+
+
     }
 
     var quartier_checked = getQuartierChecked();
@@ -242,9 +244,16 @@ function showInResult(tab){
             it.id = "mine";
         }
 
+        var div = document.createElement('div');
         var name = document.createElement('h');
-        name.innerText = item[0].fields.site + " "+ item[1]+"km";
-        it.append(name);
+        name.innerText = item[0].fields.site;
+        var dist = document.createElement('h');
+        dist.style.float = "right";
+        dist.style.marginRight = "5px";
+        dist.innerText = + item[1]+"km";
+        div.append(name);
+        div.append(dist);
+        it.append(div);
         results.append(it);
         it.onclick = function(event){
             centerOnId(item[0].ID);

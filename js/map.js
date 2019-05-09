@@ -243,15 +243,35 @@ function openForm(coord){
     
     var pop = new mapboxgl.Popup({
         closeButton: false,
+        style: "width: 2000px",
         closeOnClick: true,
         anchor: 'bottom',
     })
 
+
+    
+
     var div = document.createElement('div');
     div.setAttribute("id", "Nouvelleborne");
 
+    var row1 = document.createElement('div');
+    row1.setAttribute("class" , "row");
+
+    var row2 = document.createElement('div');
+    row2.setAttribute("class" , "row");
+
+    var col1 = document.createElement('div');
+    col1.setAttribute("class" , "col");
+
+    var col2 = document.createElement('div');
+    col2.setAttribute("class" , "col sm-1");
+
+    var col3 = document.createElement('div');
+    col3.setAttribute("class" , "col sm-1");
+
     var site = document.createElement('div');
     site.setAttribute('id', 'Nsite');
+
     var lsite = document.createElement('div');
     site.setAttribute('id', 'Lsite');
 
@@ -293,7 +313,7 @@ function openForm(coord){
     
     
     zone.innerText = "Zone d'émission : ";
-    lzone.innerHTML = "<input>"+"</input>"
+    lzone.innerHTML = "Intérieur  " + "<input type='checkbox'>"+"</input>" + "    Extérieur  "+ "<input type='checkbox'>"+"</input>"
 
     
     var but = document.createElement('button');
@@ -311,11 +331,15 @@ function openForm(coord){
     but.innerText = "Sauvegarder"
     but2.innerText = "Annuler"
 
-    div.append(site,lsite);
-    div.append(annee,lannee);
-    div.append(dispo,ldispo);
-    div.append(nom,lnom);
-    div.append(zone,lzone);
+    col1.append(site,lsite);
+    row1.append(col1);
+    col2.append(annee,lannee);
+    col2.append(dispo,ldispo);
+    col3.append(nom,lnom);
+    col3.append(zone,lzone);
+    row2.append(col2, col3);
+    div.append(row1);
+    div.append(row2);
     div.append(but,but2);
     
 

@@ -31,7 +31,7 @@
 <!-- Fonts Google-->
 
 	<link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
-
+	<link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
 </head>
 
 <body>
@@ -98,15 +98,23 @@
 		</div>
 		<div class="section_graph" >
 
-			<div id="checkboxdiv"  class ="col-md-8" style="max-width:14.499999995%;">
+			<div id="checkboxdiv"  class ="col-md-8" style="max-width:17.099999995%;">
+				<div id ="trigraph" class="form-group col-md-1"></div>
+				<label id="lab" for="inputState">Trier par</label>
+				<select id="inputSort" class="form-control" value="Trier par">
+					<option>Ordre alphabetique</option>
+					<option>Nombre de borne</option>
+					<option>Distance centre ville</option>
+					</select>
 				<button id="coche" class="btn btn-secondary btn-sm" onclick='toutCocher()'>Tout cocher</button>
 				<button id="coche" class="btn btn-secondary btn-sm" onclick='toutDecocher()'>Tout decocher</button>
 				<div id="checkbox" class="form-check">
+
 				</div>
 				
 			</div>
 
-		<div id="Les_graphs" style="width:75%; min-height: 83vh;">
+		<div id="Les_graphs" style="width:70%; min-height: 100vh;">
 
 		<canvas id="Charts"></canvas>
 		
