@@ -286,3 +286,12 @@ html { overflow-y: hidden;
 .popups{
 	padding: 0;
 }
+
+#Nzone{
+	margin-top: 44px;
+
+}
+.zonemargin{
+	margin-top: 44px;
+	margin-bottom: 0 !important;
+}

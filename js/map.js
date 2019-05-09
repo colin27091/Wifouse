@@ -255,11 +255,13 @@ function openForm(coord){
     var div = document.createElement('div');
     div.setAttribute("id", "Nouvelleborne");
 
+    //Ligne et Colonnes
     var row1 = document.createElement('div');
     row1.setAttribute("class" , "row");
 
     var row2 = document.createElement('div');
     row2.setAttribute("class" , "row");
+
 
     var col1 = document.createElement('div');
     col1.setAttribute("class" , "col");
@@ -269,79 +271,128 @@ function openForm(coord){
 
     var col3 = document.createElement('div');
     col3.setAttribute("class" , "col sm-1");
+    //fin de ligne et colonnes
 
-    var site = document.createElement('div');
-    site.setAttribute('id', 'Nsite');
-
-    var lsite = document.createElement('div');
-    site.setAttribute('id', 'Lsite');
-
-    var annee = document.createElement('div');
-    annee.setAttribute('id', 'Nannee');
-    var lannee = document.createElement('div');
-    annee.setAttribute('id', 'Lannee');
-
-    var dispo = document.createElement('div');
-    dispo.setAttribute('id', 'Ndispo');
-    var ldispo = document.createElement('div');
-    dispo.setAttribute('id', 'Ldispo');
-
-    var nom = document.createElement('div');
+    //nom de la connexion
+    var nom = document.createElement('label');
     nom.setAttribute('id', 'Nnom');
-    var lnom = document.createElement('div');
-    nom.setAttribute('id', 'Lnom');
-
-    var zone = document.createElement('div');
-    zone.setAttribute('id', 'Nzone');
-    var lzone = document.createElement('div');
-    zone.setAttribute('id', 'Lzone');
-
-
-    site.innerText = "Adresse :"
-    lsite.innerHTML = "<input>"+"</input>"
-
-
-    annee.innerText = "Installé en :" ;
-    lannee.innerHTML = "<input>"+"</input>"
-    
-    
-    dispo.innerText = "Disponibilité :";
-    ldispo.innerHTML = "<input>"+"</input>"
-    
-    
     nom.innerText = "Nom de la connexion :  ";
-    lnom.innerHTML = "<input>"+"</input>"
-    
-    
-    zone.innerText = "Zone d'émission : ";
-    lzone.innerHTML = "<div id ='trigraph' class='form-group col-md-1'>" + "</div>" + "<select id='inputSort' class='form-control'>"+" <option>" +"Intérieur"+" </option>"+ "<option>"+"Extérieur"+"</option>"+"</select>"
+    nom.setAttribute('for', 'input_nom');
+    nom.style.float = 'left';
+    nom.style.marginTop = "3px";
 
-    
-    var but = document.createElement('button');
-    var but2 = document.createElement('button');
+    var lnom = document.createElement('input');
+    lnom.setAttribute('id', 'input_nom');
+    lnom.className = "form-control";
 
-    but.setAttribute("class", "btn btn-outline-success btn-sm");
-    but.setAttribute("id", "butform");
-    but.setAttribute("onclick", "removeTerminal("+"),");
-
-
-    but2.setAttribute("class", "btn btn-outline-danger btn-sm");
-    but2.setAttribute("id", "butform");
-    but2.setAttribute("onclick", "removeTerminal("+"),");
-
-    but.innerText = "Sauvegarder"
-    but2.innerText = "Annuler"
-
-    col1.append(site,lsite);
+    col1.append(nom, lnom);
     row1.append(col1);
+    //fin nom de la connexion
+
+    //Nom du quartier(site)
+    var site = document.createElement('label');
+    site.setAttribute('id', 'Nsite');
+    site.innerText = "Adresse : ";
+    site.setAttribute('for', 'input_site');
+    site.style.float = 'left';
+    site.style.marginTop = "3px";
+
+    var lsite = document.createElement('input');
+    lsite.setAttribute('id', 'input_site');
+    lsite.className = "form-control";
+
+    col3.append(site,lsite);
+    //fin 
+
+
+    //année
+    var annee = document.createElement('label');
+    annee.setAttribute('id', 'Nannee');
+    annee.innerText = "Installé en :" ;
+    annee.setAttribute('for', 'input_annee');
+    annee.style.float = 'left';
+    annee.style.marginTop = "3px";
+
+    var lannee = document.createElement('div');
+    lannee.setAttribute('id', 'input_annee');
+    lannee.className = "form-group";
+    var annee_form = "<select id='input_annee_form' class='form-control'>";
+    annee_form += "<option selected>2019</option>";
+    for(var i = 2018; i > 2000; i --){
+        annee_form += "<option>"+ i +"</option>";
+    }
+    annee_form += "</select>";
+    lannee.innerHTML = annee_form;
+
     col2.append(annee,lannee);
-    col2.append(dispo,ldispo);
-    col3.append(nom,lnom);
+    //fin année
+
+    //dispo
+    var dispo = document.createElement('label');
+    dispo.setAttribute('id', 'Ndispo');
+    dispo.innerText = "Disponibilité :";
+    dispo.setAttribute('for', 'input_dispo');
+    dispo.style.float = 'left';
+    dispo.style.marginTop = "3px";
+
+    var ldispo = document.createElement('input');
+    ldispo.setAttribute('id', 'input_dispo');
+    ldispo.setAttribute('aria-describedby', 'Help');
+    ldispo.className = "form-control";
+
+    var ldispohelp = document.createElement('small');
+    ldispohelp.id = 'Help';
+    ldispohelp.className = "form-text text-muted";
+    ldispohelp.innerText = "ex:24/24h(avec garantie de service)";
+    ldispohelp.style.float = 'left';
+
+    col2.append(dispo,ldispo, ldispohelp);
+    //fin dispo
+
+    
+
+    //zone d'emission 
+    var zone = document.createElement('label');
+    zone.setAttribute('id', 'Nzone');
+    zone.innerText = "Zone d'émission : ";
+    zone.setAttribute('for', 'input_zone');
+    zone.style.float = 'left';
+    zone.style.marginTop = "19px";
+
+    var lzone = document.createElement('div');
+    lzone.setAttribute('id', 'input_zone');
+    lzone.className = "form-group col zonemargin";
+    lzone.innerHTML ="<select id='input_zone_form' class='form-control'>"
+                    +"<option selected>Intérieur</option>"
+                    + "<option>Extérieur</option>"
+                    +"</select>";
+    
     col3.append(zone,lzone);
+    //fin zone d'emission
+
+    //button
+    var save = document.createElement('button');
+    var cancel = document.createElement('button');
+
+    cancel.setAttribute("class", "btn btn-outline-danger btn-sm");
+    cancel.setAttribute("id", "butform");
+    cancel.setAttribute('onclick', 'removeTerminal()');
+    cancel.style.float = 'right';
+    cancel.innerText = "Annuler";
+
+    save.setAttribute("class", "btn btn-outline-success btn-sm");
+    save.setAttribute("id", "butform");
+    save.setAttribute('onclick', 'removeTerminal()');
+    save.style.float = 'right';
+    save.innerText = "Sauvegarder";
+    //fin button
+
+    
+    
     row2.append(col2, col3);
     div.append(row1);
     div.append(row2);
-    div.append(but,but2);
+    div.append(cancel,save);
     
 
     pop.setLngLat(coord);
