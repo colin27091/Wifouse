@@ -176,10 +176,22 @@ function disctrictToChart(quartier_checked){//Verifie les quartier qui ont été
     return res;
 }
 
+var tab_rgb = [];
+for(var i = 0; i < 60; i++){
+    var rgb = "#";
+    for(var j = 0; j < 3; j++){
+        rgb += (Math.floor(Math.random() * 255)).toString(16); 
+    }
+    
+    tab_rgb.push(rgb);
+}
+
 function chargeChart() {
 
     Chart.defaults.global.title.display = true;
     Chart.defaults.global.title.text = "Répartition des bornes Wi-Fi par quartier";
+
+    
 
     var chart_pattern ={
         type: 'line', // bar , radar , polarArea, buble , doughnut
@@ -188,7 +200,7 @@ function chargeChart() {
             labels: [],
             datasets: [{
                 label: '',
-                backgroundColor: '#42AA4D',
+                backgroundColor: tab_rgb,
                 borderColor: '42AA4D',
                 data: []
             }]
@@ -214,12 +226,6 @@ function chargeChart() {
     var type = getGraphForm();
 
     temp.type = type;
-
-    if(type == "polarArea"){
-        Charts.defaults.global.backgroundColor = '#2980b9','#f1c40f';
-
-
-    }
 
     var quartier_checked = getQuartierChecked();
 

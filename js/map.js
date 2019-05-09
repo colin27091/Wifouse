@@ -70,10 +70,15 @@ function centerOnId(id){
 function popup(obj){
 
     var pop = new mapboxgl.Popup({
+        className: 'popups',
         closeButton: false,
         closeOnClick: true,
-        anchor: 'bottom',
+        anchor: 'bottom'
+    })
 
+
+    $(window).bind('click', function(event){
+        pop.remove();
     })
 
     var coord = obj.geometry.coordinates;
@@ -117,7 +122,6 @@ function popup(obj){
     
     pop.setLngLat(coord);
     pop.setHTML(div.outerHTML);
-
     pop.addTo(map);
 }
 
@@ -202,8 +206,6 @@ function addMarker(obj){
 
     el.onclick = function(event){
 
-        console.log("ok", mark.getLngLat());
-
         var id = parseInt(event.target.id);
         console.log(id);
         centerOnId(id);
@@ -243,7 +245,6 @@ function openForm(coord){
     
     var pop = new mapboxgl.Popup({
         closeButton: false,
-        style: "width: 2000px",
         closeOnClick: true,
         anchor: 'bottom',
     })
@@ -344,6 +345,7 @@ function openForm(coord){
     
 
     pop.setLngLat(coord);
+    pop.maxWidth("350px");
     pop.setHTML(div.outerHTML);
 
     return pop;

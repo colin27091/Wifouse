@@ -123,13 +123,6 @@ img{
 	max-width: 1000px;
 }
 
-.mapboxgl-popup-content {
-	
-	text-align: center;
-	font-family: 'Open Sans', sans-serif;
-}
-
-
 html { overflow-y: hidden;
 }
 
