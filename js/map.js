@@ -264,11 +264,18 @@ function addQuartier(obj){
     if(map.getLayer(obj.fields.libelle_des_grands_quartiers+'_name')){
         map.removeLayer(obj.fields.libelle_des_grands_quartiers+'_name');
     }
+    if (map.getSource(obj.fields.libelle_des_grands_quartiers)){
+        map.removeSource(obj.fields.libelle_des_grands_quartiers);
+    }
+    if (map.getSource(obj.fields.libelle_des_grands_quartiers+'_name')){
+        map.removeSource(obj.fields.libelle_des_grands_quartiers+'_name');
+    }
+    
     
     map.addLayer({
         'id' : obj.fields.libelle_des_grands_quartiers,
         'type' : 'fill',
-        'source' : {
+        'source' : (obj.fields.libelle_des_grands_quartiers,{
             'type' : 'geojson',
             'data' : {
                 'type': 'Feature',
@@ -279,7 +286,7 @@ function addQuartier(obj){
                 'geometry' : obj.fields.geo_shape
             }
                 
-        },
+        }),
         'layout' : {
         },
         'paint' : {
@@ -292,7 +299,7 @@ function addQuartier(obj){
     map.addLayer({
         "id": obj.fields.libelle_des_grands_quartiers+'_name',
         "type": "symbol",
-        "source":{
+        "source":(obj.fields.libelle_des_grands_quartiers+'_name',{
             'type' : 'geojson',
             'data' : {
                 'type': 'Feature',
@@ -302,7 +309,7 @@ function addQuartier(obj){
             
                 'geometry' : obj.geometry
             } 
-        },
+        }),
         "layout": {
             "text-font": ["Open Sans Regular"],
             "text-field": obj.fields.libelle_des_grands_quartiers,
@@ -519,13 +526,32 @@ function openForm(coord){
 
 // Changement du style de la map
 function Changemap(){
+
+    // switch (map.getStyle().sprite) {
+    //     case "mapbox://sprites/mapbox/streets-v11":
+    //         map.setStyle('mapbox://styles/mapbox/satellite-v9');
+    //         chargeQuartier();
+    //         break;
+    //     case 'mapbox://sprites/mapbox/satellite-v9':
+    //         map.setStyle('mapbox://styles/mapbox/streets-v11');
+    //         chargeQuartier();
+    //         break;
+    // }
     if (map.getStyle().sprite=='mapbox://sprites/mapbox/streets-v11'){
         map.setStyle('mapbox://styles/mapbox/satellite-v9');
+        if (map.getStyle().sprite=='mapbox://sprites/mapbox/satellite-v9'){
         chargeQuartier();
-    }
+    }   
+}
+
     if (map.getStyle().sprite=='mapbox://sprites/mapbox/satellite-v9'){
-        map.setStyle('mapbox://styles/mapbox/streets-v11');
-        chargeQuartier();
+         map.setStyle('mapbox://styles/mapbox/streets-v11');
+
+         if (map.getStyle().sprite=='mapbox://sprites/mapbox/streets-v11'){
+            chargeQuartier();     
     }
+}
+
+    
     
 }
