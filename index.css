@@ -169,7 +169,7 @@ html { overflow-y: hidden;
 	margin-bottom: 3px;
 	font-size:14px; 
 	font-style:italic; 
-	font-family:Hind,sans-serif;
+	font-family:'Hind',sans-serif;
 }
 
 .context-menu {
@@ -215,28 +215,37 @@ html { overflow-y: hidden;
 }
 
 .mapboxgl-popup-content {
-	font: 15px 'Hind', 'Helvetica Neue', Sans-serif;
+	font: 15px 'Ubuntu Condensed', sans-serif;
 	text-align: center;
-	font-family: 'Open Sans', sans-serif;
 }
 
 
 
 
 #popupborne{
+	width: 550px;
+	padding-right: 25px;
 	margin-bottom: 5px;
 	border: thick double black;
 
 }
 
 .popuptext{
+	margin-top:2px;
+	height: 55px;
+	text-align: center;
 	margin-bottom: 5px;
+	margin-left: 20px;
+	font: 17px 'Ubuntu Condensed', sans-serif;
 
-	border-bottom: 2px solid black;
 
 }
 
 
+.nopadding{
+margin-left: 5px;	
+padding: 0 !important;
+}
 #butform{
 	margin-top: 10px;
 	margin-right: 10px;
@@ -259,7 +268,7 @@ html { overflow-y: hidden;
 	height: 67px;
 	line-height: 3.5em;
 	text-align: center;
-	font-family: 'Acme', sans-serif;
+	font-family: 'Ubuntu Condensed', sans-serif;
 	border: 1.5px solid green;
 	border-top : none;
 
@@ -287,11 +296,14 @@ html { overflow-y: hidden;
 	padding: 0;
 }
 
-#Nzone{
-	margin-top: 44px;
 
-}
 .zonemargin{
 	margin-top: 44px;
 	margin-bottom: 0 !important;
+
+}
+
+.gotoright{
+	margin: 0 !important;
+	width: 545px;
 }

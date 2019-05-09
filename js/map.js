@@ -83,42 +83,62 @@ function popup(obj){
 
     var coord = obj.geometry.coordinates;
 
+    var row1 = document.createElement('div');
+    row1.setAttribute("class" , "row gotoright");
+
+    var row2 = document.createElement('div');
+    row2.setAttribute("class" , "row gotoright");
+
+    var col1 = document.createElement('div');
+    col1.setAttribute("class" , "col");
+
+    var col2 = document.createElement('div');
+    col2.setAttribute("class" , "col sm-1 nopadding");
+
+    var col3 = document.createElement('div');
+    col3.setAttribute("class" , "col sm-1 nopadding");
+
     var div = document.createElement('div');
     div.setAttribute("id", "popupborne");
 
-    var site = document.createElement('div');
+    var site = document.createElement('label');
     site.setAttribute('id', 'site');
     site.setAttribute('class', 'popuptext');
 
-    var annee = document.createElement('div');
+    var annee = document.createElement('label');
     annee.setAttribute('id', 'annee');
     annee.setAttribute('class', 'popuptext');
 
-    var dispo = document.createElement('div');
+    var dispo = document.createElement('label');
     dispo.setAttribute('id', 'dispo');
     dispo.setAttribute('class', 'popuptext');
 
-    var nom = document.createElement('div');
+    var nom = document.createElement('label');
     nom.setAttribute('id', 'nom');
     nom.setAttribute('class', 'popuptext');
 
-    var zone = document.createElement('div');
+    var zone = document.createElement('label');
     zone.setAttribute('id', 'zone');
+    zone.setAttribute('class', 'popuptext');
 
 
 
-    site.innerText = obj.fields.site;
+    site.innerText = "Adresse"+obj.fields.site;
     annee.innerText = "Installé en " +obj.fields.annee_installation;
     dispo.innerText = "Disponible "+obj.fields.disponibilite;
     nom.innerText = "Nom de connexion:  "+obj.fields.nom_connexion;
     zone.innerText = "Zone d'émission: "+ obj.fields.zone_emission;
 
 
-    div.append(site);
-    div.append(annee);
-    div.append(dispo);
-    div.append(nom);
-    div.append(zone);
+    col1.append(nom);
+    row1.append(col1);
+    col2.append(annee);
+    col2.append(dispo);
+    col3.append(site);
+    col3.append(zone);
+    row2.append(col2, col3);
+    div.append(row1);
+    div.append(row2);
     
     pop.setLngLat(coord);
     pop.setHTML(div.outerHTML);
