@@ -76,69 +76,143 @@ function popup(obj){
         anchor: 'bottom'
     })
 
-
     $(window).bind('click', function(event){
         pop.remove();
     })
 
     var coord = obj.geometry.coordinates;
 
+    var div = document.createElement('div');
+    div.setAttribute("id", "Nouvelleborne");
+
+    //Ligne et Colonnes
     var row1 = document.createElement('div');
-    row1.setAttribute("class" , "row gotoright");
+    row1.setAttribute("class" , "row");
 
     var row2 = document.createElement('div');
-    row2.setAttribute("class" , "row gotoright");
+    row2.setAttribute("class" , "row");
+
 
     var col1 = document.createElement('div');
     col1.setAttribute("class" , "col");
 
     var col2 = document.createElement('div');
-    col2.setAttribute("class" , "col sm-1 nopadding");
+    col2.setAttribute("class" , "col sm-1");
 
     var col3 = document.createElement('div');
-    col3.setAttribute("class" , "col sm-1 nopadding");
+    col3.setAttribute("class" , "col sm-1");
+    //fin de ligne et colonnes
 
-    var div = document.createElement('div');
-    div.setAttribute("id", "popupborne");
-
-    var site = document.createElement('label');
-    site.setAttribute('id', 'site');
-    site.setAttribute('class', 'popuptext');
-
-    var annee = document.createElement('label');
-    annee.setAttribute('id', 'annee');
-    annee.setAttribute('class', 'popuptext');
-
-    var dispo = document.createElement('label');
-    dispo.setAttribute('id', 'dispo');
-    dispo.setAttribute('class', 'popuptext');
-
+    //nom de la connexion
     var nom = document.createElement('label');
-    nom.setAttribute('id', 'nom');
-    nom.setAttribute('class', 'popuptext');
+    nom.setAttribute('id', 'Nnom');
+    nom.innerText = "Nom de la connexion :  ";
+    nom.setAttribute('for', 'label_nom');
+    nom.style.float = 'left';
+    nom.style.marginTop = "3px";
 
-    var zone = document.createElement('label');
-    zone.setAttribute('id', 'zone');
-    zone.setAttribute('class', 'popuptext');
+    var lnom = document.createElement('label');
+    lnom.setAttribute('id', 'label_nom');
+    lnom.innerText = obj.fields.nom_connexion;
 
-
-
-    site.innerText = "Adresse"+obj.fields.site;
-    annee.innerText = "Installé en " +obj.fields.annee_installation;
-    dispo.innerText = "Disponible "+obj.fields.disponibilite;
-    nom.innerText = "Nom de connexion:  "+obj.fields.nom_connexion;
-    zone.innerText = "Zone d'émission: "+ obj.fields.zone_emission;
-
-
-    col1.append(nom);
+    col1.append(nom, lnom);
     row1.append(col1);
-    col2.append(annee);
-    col2.append(dispo);
-    col3.append(site);
-    col3.append(zone);
+    //fin nom de la connexion
+
+    //Nom du quartier(site)
+    var site = document.createElement('label');
+    site.setAttribute('id', 'Nsite');
+    site.innerText = "Adresse : ";
+    site.setAttribute('for', 'label_site');
+    site.style.float = 'left';
+    site.style.marginTop = "3px";
+
+    var lsite = document.createElement('label');
+    lsite.setAttribute('id', 'label_site');
+    lsite.innerText = obj.fields.site;
+
+    col3.append(site,lsite);
+    //fin 
+
+
+    //année
+    var annee = document.createElement('label');
+    annee.setAttribute('id', 'Nannee');
+    annee.innerText = "Installé en :" ;
+    annee.setAttribute('for', 'label_annee');
+    annee.style.float = 'left';
+    annee.style.marginTop = "3px";
+
+    var lannee = document.createElement('div');
+    lannee.setAttribute('id', 'label_annee');
+    lannee.className = "form-group";
+    lannee.innerText = obj.fields.annee_installation;
+
+    col2.append(annee,lannee);
+    //fin année
+
+    //dispo
+    var dispo = document.createElement('label');
+    dispo.setAttribute('id', 'Ndispo');
+    dispo.innerText = "Disponibilité :";
+    dispo.setAttribute('for', 'input_dispo');
+    dispo.style.float = 'left';
+    dispo.style.marginTop = "3px";
+
+    var ldispo = document.createElement('label');
+    ldispo.setAttribute('id', 'label_dispo');
+    ldispo.innerText = obj.fields.disponibilite;
+
+
+    col2.append(dispo,ldispo);
+    //fin dispo
+
+    
+
+    //zone d'emission 
+    var zone = document.createElement('label');
+    zone.setAttribute('id', 'Nzone');
+    zone.innerText = "Zone d'émission : ";
+    zone.setAttribute('for', 'input_zone');
+    zone.style.float = 'left';
+    zone.style.marginTop = "19px";
+
+    var lzone = document.createElement('label');
+    lzone.setAttribute('id', 'label_zone');
+    lzone.innerText = obj.fields.zone_emission;
+    
+    col3.append(zone,lzone);
+    //fin zone d'emission
+
+    //button
+    var modify = document.createElement('button');
+    var remove = document.createElement('button');
+
+    remove.setAttribute("class", "btn btn-outline-danger btn-sm");
+    remove.setAttribute("id", "butform");
+    remove.setAttribute('onclick', 'removeTerminal()');
+    remove.style.float = 'right';
+    remove.innerText = "Supprimer";
+    
+
+    modify.setAttribute("class", "btn btn-outline-success btn-sm");
+    modify.setAttribute("id", "butform");
+    modify.setAttribute('onclick', 'removeTerminal()');
+    modify.style.float = 'right';
+    modify.innerText = "Modifier";
+    //fin button
+
+    if(obj.ID <= 84){
+        remove.disabled = true;
+        modify.disabled = true;
+    }
+    
     row2.append(col2, col3);
     div.append(row1);
     div.append(row2);
+    div.append(remove,modify);
+
+    
     
     pop.setLngLat(coord);
     pop.setHTML(div.outerHTML);
