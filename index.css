@@ -2,7 +2,7 @@ form{
 	padding-top: 15px;
 	padding-left : 25px;
 	padding-bottom: 15px;
-
+	
 }
 
 img{
@@ -28,19 +28,19 @@ img{
 	margin-left: auto;
 	margin-top: 15px;
 	margin-bottom: 15px;
-
+	
 }
 
 .sidebar {
 	box-shadow: 2px 4px 5px #aaa;
 	margin-top: 5px;
-  height: 90vh; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: relative; /* Stay in place */
-  z-index:1000; /* Stay on top */
-  background-color: rgb(255, 255, 255); /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+	height: 90vh; /* 100% Full-height */
+	width: 0; /* 0 width - change this with JavaScript */
+	position: relative; /* Stay in place */
+	z-index:1000; /* Stay on top */
+	background-color: rgb(255, 255, 255); /* Black*/
+	overflow-x: hidden; /* Disable horizontal scroll */
+	transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
 }
 
 /* #results{
@@ -60,23 +60,23 @@ img{
 	margin-top: 15px ;
 	margin-bottom: 15px ;
 	margin-left: auto ;
-
-
+	
+	
 }
 
 #choixdata{
 	margin-top: 15px ;
 	margin-bottom: 15px ;
 	margin-left: auto ;
-
-
+	
+	
 }
 
 
 #checkboxdiv{
 	margin-left: 10px;
 	float: left;
-
+	
 }
 
 #Les_graphs{
@@ -94,7 +94,7 @@ img{
 #checkbox{
 	margin-top: 13px;
 	margin-left : 20px;
-
+	
 }
 
 
@@ -107,10 +107,19 @@ img{
 	height: 30px;
 	border-radius: 50%;
 	cursor: pointer;
-	}
-	
+}
+
 .draggable {
 	background-image: url('logo/wifi-red.png');
+	background-size: cover;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.newmarker {
+	background-image: url('logo/wifi-blue.png');
 	background-size: cover;
 	width: 30px;
 	height: 30px;
@@ -137,20 +146,20 @@ html { overflow-y: hidden;
 
 
 #supprimer{
-			margin :20px 0 20px 0 ;
-		}
+	margin :20px 0 20px 0 ;
+}
 
 /* Testing map width and height, quentin will improve it */
 #map {top:7px; left:-2px; width:100%; min-height: 91vh; position: absolute; z-index: 0;}
 
 .slide-enter-active{
 	transition: all .5s ease;
-
+	
 }
 
 .slide-enter-active{
 	transition: all .5s cubic-bezier(1.0,0.5,0.8,1.0);
-
+	
 }
 
 .slide-enter, .slide-leave-to{
@@ -158,19 +167,19 @@ html { overflow-y: hidden;
 }
 
 .show {
-    z-index:1000;
-    position: absolute;
-    background-color : white;
-    border: 1px solid white;
-    padding: 2px;
-    display: block;
-    margin: 0;
-    list-style-type: none;
-    list-style: none;
+	z-index:1000;
+	position: absolute;
+	background-color : white;
+	border: 1px solid white;
+	padding: 2px;
+	display: block;
+	margin: 0;
+	list-style-type: none;
+	list-style: none;
 }
 
 .hide {
-    display: none;
+	display: none;
 }
 
 
@@ -182,8 +191,8 @@ html { overflow-y: hidden;
 }
 
 .context-menu {
-  position: absolute;
-  z-index: 10;
+	position: absolute;
+	z-index: 10;
 }
 
 #graphique{
@@ -200,12 +209,12 @@ html { overflow-y: hidden;
 	overflow-x: hidden;
 	width: 800px;
 	border-width: 3px;
-  border-style: solid;
-  border-image: 
-    linear-gradient(
-      rgb(25, 199, 83), 
-      rgba(0, 0, 0, 0)
-    ) 100 ;
+	border-style: solid;
+	border-image: 
+	linear-gradient(
+	rgb(25, 199, 83), 
+	rgba(0, 0, 0, 0)
+	) 100 ;
 }
 
 
@@ -215,12 +224,12 @@ html { overflow-y: hidden;
 
 #clic:hover{
 	background-color: #f2f2f2;
-
+	
 }
 
 
 .mapboxgl-popup-close-button {
-  display: none;
+	display: none;
 }
 
 .mapboxgl-popup-content {
@@ -236,7 +245,7 @@ html { overflow-y: hidden;
 	padding-right: 25px;
 	margin-bottom: 5px;
 	border: thick double black;
-
+	
 }
 
 .popuptext{
@@ -246,29 +255,29 @@ html { overflow-y: hidden;
 	margin-bottom: 5px;
 	margin-left: 20px;
 	font: 17px 'Ubuntu Condensed', sans-serif;
-
-
+	
+	
 }
 
 
 .nopadding{
-margin-left: 5px;	
-padding: 0 !important;
+	margin-left: 5px;	
+	padding: 0 !important;
 }
 #butform{
 	margin-top: 10px;
 	margin-right: 10px;
-
+	
 }
 
 #results #mine:hover {
-
+	
 	background-color: rgb(255, 240, 246);
-
+	
 }
 
 #results #not_mine:hover{
-
+	
 	background-color: rgb(120, 228, 127);
 }
 
@@ -281,21 +290,18 @@ padding: 0 !important;
 	font-family: 'Ubuntu Condensed', sans-serif;
 	border-bottom: 1px solid rgba(0,0,0,.125);
 	border-top : none;
-
+	
 }
 
 #Les_graphs{
 	margin-top: 50px;
-
+	
 }
 
 #coche{
 	margin-top: 15px;
 }
 
-#trigraph{
-	margin: 0px 10px;
-}
 
 #lab{
 	margin-top: 5px;
@@ -310,7 +316,7 @@ padding: 0 !important;
 .zonemargin{
 	margin-top: 44px;
 	margin-bottom: 0 !important;
-
+	
 }
 
 .gotoright{

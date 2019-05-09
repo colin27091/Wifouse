@@ -262,7 +262,7 @@ function addQuartier(obj){
         },
         'paint' : {
             'fill-color': '#AFAFAF',
-            'fill-opacity': 0.2,
+            'fill-opacity': 0.3,
             'fill-outline-color' : '#000000'
         }
     });
