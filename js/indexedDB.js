@@ -80,7 +80,7 @@ function addBorne(terminal){
     
     request.onsuccess = function(event){
         chargeMap();
-        chargeQuartier();
+        //chargeQuartier();
         console.log("Terminal added");
     };
     
@@ -98,7 +98,7 @@ function modifTerminal(terminal){
     
     request.onsuccess = function(event){
         chargeMap();
-        chargeQuartier();
+        //chargeQuartier();
         console.log("Terminal added");
     };
     
@@ -132,7 +132,7 @@ function removeTerminal(id){
 
     transaction.oncomplete = function(event){
         chargeMap();
-        chargeQuartier();
+        //chargeQuartier();
     }
     
     
